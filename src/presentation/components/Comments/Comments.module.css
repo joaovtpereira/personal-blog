@@ -1,0 +1,293 @@
+@keyframes cin {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.count {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.box {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.3s;
+}
+
+.box:focus-within {
+  border-color: var(--fg);
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.input,
+.textarea {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  color: var(--fg);
+}
+
+.input {
+  border-bottom: 1px solid var(--line);
+  padding: 6px 0 10px;
+}
+
+.textarea {
+  line-height: 1.5;
+  resize: none;
+  padding: 6px 0;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--mute);
+}
+
+.error {
+  font-size: 13px;
+}
+
+.error::before {
+  content: "! ";
+  font-family: var(--font-mono);
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.moderation {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--mute);
+}
+
+.publish {
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  border: 0;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.publish:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.publish:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.sent {
+  border-style: dashed;
+  border-color: var(--fg);
+  align-items: flex-start;
+}
+
+.sent:focus {
+  outline: none;
+}
+
+.another {
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.empty {
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--mute);
+}
+
+.list {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px;
+  animation: cin 0.55s var(--ease-out) both;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.when {
+  font-size: 11px;
+  color: var(--mute);
+  white-space: nowrap;
+}
+
+.text {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--mute);
+}
+
+.reply {
+  margin-top: 4px;
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 34px;
+    letter-spacing: -0.045em;
+  }
+
+  .box {
+    margin-top: 16px;
+    border-radius: 26px;
+    padding: 22px;
+    gap: 12px;
+  }
+
+  .footer {
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+
+  .moderation {
+    font-size: 13px;
+  }
+
+  .publish {
+    height: 48px;
+    padding: 0 22px;
+    font-size: 15px;
+  }
+
+  .comment {
+    padding: 20px 0;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .reply {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .box {
+    margin-top: 18px;
+    border-radius: var(--radius-l);
+    padding: 24px;
+    gap: 14px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 17px;
+  }
+
+  .comment {
+    padding: 22px 0;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+}

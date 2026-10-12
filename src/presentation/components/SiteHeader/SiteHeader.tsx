@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/main/i18n/navigation";
+import { usePageHeaderOverride } from "@/presentation/contexts/PageHeaderContext";
 import { ROUTES } from "@/main/routes";
 import { CRUMB_KEYS, HEADER_ORDER, NAV_ITEMS, isActive } from "../../navigation";
 import { Icon } from "../Icon";
@@ -23,17 +24,21 @@ export function SiteHeader() {
   const pathname = usePathname();
   const items = HEADER_ORDER.map((key) => NAV_ITEMS.find((item) => item.key === key)!);
   const current = items.find((item) => isActive(item, pathname));
-  const crumb = current && (CRUMB_KEYS as readonly string[]).includes(current.key) ? (current.key as CrumbKey) : null;
+  const crumbKey = current && (CRUMB_KEYS as readonly string[]).includes(current.key) ? (current.key as CrumbKey) : null;
+  const override = usePageHeaderOverride();
+  const crumb = override?.crumb ?? (crumbKey ? t(`crumbs.${crumbKey}`) : null);
+  // Em subpáginas (ex.: /estudos/x) o voltar sobe um nível; nas páginas de 1º nível volta ao início.
+  const backHref = override?.backHref ?? (current && current.href !== pathname && typeof current.href === "string" ? current.href : ROUTES.home);
 
   return (
     <header className={`${styles.header} ${crumb ? styles.inner : ""}`}>
       <div className={`wrap rise ${styles.bar}`}>
         {crumb && (
           <>
-            <Link href={ROUTES.home} aria-label={t("back")} className={`${styles.back} ${styles.mobileOnly}`}>
+            <Link href={backHref} aria-label={override?.backLabel ?? t("back")} className={`${styles.back} ${styles.mobileOnly}`}>
               <Icon name="chevronLeft" />
             </Link>
-            <span className={`mono ${styles.crumb} ${styles.mobileOnly}`}>{t(`crumbs.${crumb}`)}</span>
+            <span className={`mono ${styles.crumb} ${styles.mobileOnly}`}>{crumb}</span>
             <span className={`${styles.spacer} ${styles.mobileOnly}`} aria-hidden="true" />
           </>
         )}

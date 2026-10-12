@@ -25,3 +25,10 @@ export function summarizeProgress(study: Study, progress: StudyProgress | undefi
   const status: StudyStatus = done === 0 ? "notStarted" : done >= total ? "completed" : "inProgress";
   return { done, total, ratio: total === 0 ? 0 : done / total, status };
 }
+
+/** Primeira aula ainda não vista, para "continuar de onde parou". null = nada visto ou tudo visto. */
+export function lessonToResume<T extends { id: string }>(lessons: T[], progress: StudyProgress | undefined): T | null {
+  if (!progress || progress.completedLessonIds.length === 0) return null;
+  const done = new Set(progress.completedLessonIds);
+  return lessons.find((lesson) => !done.has(lesson.id)) ?? null;
+}

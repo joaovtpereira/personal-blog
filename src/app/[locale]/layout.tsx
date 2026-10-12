@@ -7,6 +7,7 @@ import { routing } from "@/main/i18n/routing";
 import { AppStudyProgressProvider } from "@/main/providers/AppStudyProgressProvider";
 import { BottomNav } from "@/presentation/components/BottomNav";
 import { InlineScript } from "@/presentation/components/InlineScript";
+import { PageHeaderProvider } from "@/presentation/contexts/PageHeaderContext";
 import { SiteFooter } from "@/presentation/components/SiteFooter";
 import { SiteHeader } from "@/presentation/components/SiteHeader";
 import { themeInitScript } from "@/presentation/components/ThemeToggle/theme-script";
@@ -58,10 +59,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <body id="top">
         <NextIntlClientProvider>
           <AppStudyProgressProvider>
-            <SiteHeader />
-            {children}
-            <SiteFooter />
-            <BottomNav />
+            <PageHeaderProvider>
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+              <BottomNav />
+            </PageHeaderProvider>
           </AppStudyProgressProvider>
         </NextIntlClientProvider>
       </body>

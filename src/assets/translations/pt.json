@@ -237,5 +237,121 @@
       "completed": "CONCLUÍDO"
     },
     "progress": "{done}/{total} AULAS"
+  },
+  "Lesson": {
+    "metaTitle": "{lesson} — {study}",
+    "badge": "ESTUDO",
+    "badgeReading": "ESTUDO · SÓ TEXTO",
+    "progressVideo": "{done} DE {total} CONCLUÍDAS",
+    "progressReading": "{done} DE {total} LIDAS",
+    "progressTotalTime": " · {minutes} MIN NO TOTAL",
+    "counter": "AULA {current}/{total}",
+    "kindLabel": "AULA {number} · {kind}",
+    "kind": {
+      "video": "VÍDEO-AULA",
+      "text": "TEXTO"
+    },
+    "textCard": "AULA EM TEXTO",
+    "readTime": "{minutes} MIN DE LEITURA",
+    "minutes": "{minutes} MIN",
+    "notes": "ANOTAÇÕES",
+    "materials": "MATERIAL DE APOIO",
+    "materialKind": {
+      "pdf": "PDF ↓",
+      "link": "LINK ↗",
+      "file": "ARQUIVO ↓"
+    },
+    "lessons": "Aulas",
+    "toc": "Sumário",
+    "videoCount": "{count} EM VÍDEO",
+    "totalTime": "{minutes} MIN NO TOTAL",
+    "meta": {
+      "video": "VÍDEO · {duration}",
+      "videoNoDuration": "VÍDEO",
+      "text": "TEXTO · {minutes} MIN",
+      "done": " · CONCLUÍDA",
+      "read": " · LIDA"
+    },
+    "mark": {
+      "video": "Marcar concluída",
+      "videoDone": "Concluída",
+      "reading": "Marcar como lida",
+      "readingDone": "Aula lida"
+    },
+    "previous": "Aula anterior",
+    "next": "Próxima aula",
+    "prevLabel": "← ANTERIOR",
+    "nextLabel": "PRÓXIMA →",
+    "studyStart": "Início do estudo",
+    "studyEnd": "Fim do estudo",
+    "backToStudies": "Voltar aos estudos",
+    "resume": "Continuar da aula {number}",
+    "completed": "Estudo concluído",
+    "currentLesson": "aula atual",
+    "lessonsNav": "Aulas do estudo",
+    "textSize": {
+      "label": "Tamanho do texto",
+      "small": "Texto menor",
+      "medium": "Texto médio",
+      "large": "Texto maior"
+    },
+    "readingProgress": "Progresso de leitura",
+    "collection": {
+      "label": "COLEÇÃO",
+      "aria": "Coleção de estudos",
+      "position": "ESTUDO {position} DE {total}",
+      "previous": "← ESTUDO {position}",
+      "next": "ESTUDO {position} →",
+      "here": "ESTUDO {position} · VOCÊ ESTÁ AQUI",
+      "seeAll": "Ver coleção completa",
+      "seeAllCount": "· {total} ESTUDOS"
+    }
+  },
+  "Video": {
+    "placeholder": "VÍDEO DA AULA",
+    "play": "Reproduzir vídeo: {title}",
+    "unavailable": "Vídeo indisponível no momento",
+    "unavailableHint": "As anotações e o material de apoio continuam abaixo.",
+    "loading": "Carregando vídeo…"
+  },
+  "Comments": {
+    "title": "Comentários",
+    "count": "{count} NESTA AULA",
+    "name": "NOME",
+    "namePlaceholder": "Seu nome (opcional)",
+    "text": "DÚVIDA OU COMENTÁRIO",
+    "textPlaceholder": "O que ficou dessa aula?",
+    "moderation": "Comentários passam por moderação.",
+    "publish": "Publicar",
+    "sending": "Enviando…",
+    "anonymous": "Anônimo",
+    "reply": "Responder",
+    "replyTo": "Responder a {name}",
+    "empty": "Ainda não há comentários nesta aula. Seja o primeiro.",
+    "pending": "Recebido! Seu comentário aparece aqui depois da moderação.",
+    "another": "Escrever outro",
+    "errors": {
+      "textRequired": "Escreva seu comentário.",
+      "textTooShort": "Escreva um pouco mais.",
+      "textTooLong": "Use no máximo {max} caracteres.",
+      "nameTooLong": "Use no máximo {max} caracteres.",
+      "failed": "Não consegui enviar agora. Tente de novo em instantes."
+    }
+  },
+  "Content": {
+    "callout": {
+      "note": "NOTA",
+      "tip": "DICA",
+      "warning": "ATENÇÃO",
+      "exercise": "EXERCÍCIO"
+    },
+    "spoiler": "SPOILER · toque para revelar",
+    "spoilerHide": "Esconder spoiler",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "copyCode": "Copiar código",
+    "keyPoints": "PRINCIPAIS IDEIAS",
+    "checklist": "CHECKLIST",
+    "glossary": "GLOSSÁRIO"
   }
 }

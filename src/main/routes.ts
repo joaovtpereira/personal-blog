@@ -5,6 +5,8 @@ export const ROUTES = {
   post: (slug: string) => `/blog/${slug}`,
   studies: "/estudos",
   study: (slug: string) => `/estudos/${slug}`,
+  lesson: (studySlug: string, lessonSlug: string) => `/estudos/${studySlug}/${lessonSlug}`,
+  collection: (slug: string) => `/colecoes/${slug}`,
   resume: "/curriculo",
   contact: "/contato",
 } as const;

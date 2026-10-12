@@ -237,5 +237,121 @@
       "completed": "COMPLETED"
     },
     "progress": "{done}/{total} LESSONS"
+  },
+  "Lesson": {
+    "metaTitle": "{lesson} — {study}",
+    "badge": "STUDY",
+    "badgeReading": "STUDY · TEXT ONLY",
+    "progressVideo": "{done} OF {total} COMPLETED",
+    "progressReading": "{done} OF {total} READ",
+    "progressTotalTime": " · {minutes} MIN TOTAL",
+    "counter": "LESSON {current}/{total}",
+    "kindLabel": "LESSON {number} · {kind}",
+    "kind": {
+      "video": "VIDEO LESSON",
+      "text": "TEXT"
+    },
+    "textCard": "TEXT LESSON",
+    "readTime": "{minutes} MIN READ",
+    "minutes": "{minutes} MIN",
+    "notes": "NOTES",
+    "materials": "RESOURCES",
+    "materialKind": {
+      "pdf": "PDF ↓",
+      "link": "LINK ↗",
+      "file": "FILE ↓"
+    },
+    "lessons": "Lessons",
+    "toc": "Contents",
+    "videoCount": "{count} ON VIDEO",
+    "totalTime": "{minutes} MIN TOTAL",
+    "meta": {
+      "video": "VIDEO · {duration}",
+      "videoNoDuration": "VIDEO",
+      "text": "TEXT · {minutes} MIN",
+      "done": " · DONE",
+      "read": " · READ"
+    },
+    "mark": {
+      "video": "Mark as done",
+      "videoDone": "Done",
+      "reading": "Mark as read",
+      "readingDone": "Lesson read"
+    },
+    "previous": "Previous lesson",
+    "next": "Next lesson",
+    "prevLabel": "← PREVIOUS",
+    "nextLabel": "NEXT →",
+    "studyStart": "Start of the study",
+    "studyEnd": "End of the study",
+    "backToStudies": "Back to studies",
+    "resume": "Continue from lesson {number}",
+    "completed": "Study completed",
+    "currentLesson": "current lesson",
+    "lessonsNav": "Study lessons",
+    "textSize": {
+      "label": "Text size",
+      "small": "Smaller text",
+      "medium": "Medium text",
+      "large": "Larger text"
+    },
+    "readingProgress": "Reading progress",
+    "collection": {
+      "label": "COLLECTION",
+      "aria": "Study collection",
+      "position": "STUDY {position} OF {total}",
+      "previous": "← STUDY {position}",
+      "next": "STUDY {position} →",
+      "here": "STUDY {position} · YOU ARE HERE",
+      "seeAll": "See the full collection",
+      "seeAllCount": "· {total} STUDIES"
+    }
+  },
+  "Video": {
+    "placeholder": "LESSON VIDEO",
+    "play": "Play video: {title}",
+    "unavailable": "Video unavailable right now",
+    "unavailableHint": "The notes and resources are still below.",
+    "loading": "Loading video…"
+  },
+  "Comments": {
+    "title": "Comments",
+    "count": "{count} ON THIS LESSON",
+    "name": "NAME",
+    "namePlaceholder": "Your name (optional)",
+    "text": "QUESTION OR COMMENT",
+    "textPlaceholder": "What did you take from this lesson?",
+    "moderation": "Comments are moderated.",
+    "publish": "Post",
+    "sending": "Sending…",
+    "anonymous": "Anonymous",
+    "reply": "Reply",
+    "replyTo": "Reply to {name}",
+    "empty": "No comments on this lesson yet. Be the first.",
+    "pending": "Got it! Your comment will show up here after moderation.",
+    "another": "Write another",
+    "errors": {
+      "textRequired": "Write your comment.",
+      "textTooShort": "Write a bit more.",
+      "textTooLong": "Use at most {max} characters.",
+      "nameTooLong": "Use at most {max} characters.",
+      "failed": "I couldn’t send it right now. Try again in a moment."
+    }
+  },
+  "Content": {
+    "callout": {
+      "note": "NOTE",
+      "tip": "TIP",
+      "warning": "WARNING",
+      "exercise": "EXERCISE"
+    },
+    "spoiler": "SPOILER · tap to reveal",
+    "spoilerHide": "Hide spoiler",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyCode": "Copy code",
+    "keyPoints": "KEY IDEAS",
+    "checklist": "CHECKLIST",
+    "glossary": "GLOSSARY"
   }
 }

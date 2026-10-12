@@ -25,7 +25,7 @@ export class StudyModelMapper implements StudyMapper {
       title: entity.title,
       description: entity.description,
       tags: [...entity.tags],
-      lessons: entity.lessonIds.map((id, i) => ({ id, format: i < entity.videoLessons ? "video" : "texto" })),
+      lessons: entity.lessonIds.map((id, i) => ({ id, slug: id, format: i < entity.videoLessons ? "video" : "texto" })),
       order: 0,
     };
   }

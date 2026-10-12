@@ -1,0 +1,85 @@
+.round {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  transition: transform 0.25s, border-color 0.3s;
+}
+
+a.round:hover {
+  border-color: var(--fg);
+}
+
+a.round:active {
+  transform: scale(0.96);
+}
+
+.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.3s, transform 0.25s;
+}
+
+a.card:hover {
+  border-color: var(--fg);
+}
+
+a.card:active {
+  transform: scale(0.98);
+}
+
+.cardNext {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.cardLabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.cardTitle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 16px 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards {
+    gap: 12px;
+  }
+
+  .card {
+    border-radius: 22px;
+    padding: 18px 20px;
+    gap: 6px;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+  }
+}

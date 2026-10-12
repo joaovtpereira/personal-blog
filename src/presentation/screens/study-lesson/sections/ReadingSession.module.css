@@ -1,0 +1,52 @@
+@keyframes page {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.counter {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+/* No celular o contador já está no cabeçalho do site. */
+@media (max-width: 767px) {
+  .counter {
+    visibility: hidden;
+  }
+}
+
+.article {
+  --reading-size: 18px;
+  font-size: var(--reading-size);
+  animation: page 0.7s var(--ease-out) both;
+  scroll-margin-top: 96px;
+}
+
+.article[data-size="small"] {
+  --reading-size: 16px;
+}
+
+.article[data-size="large"] {
+  --reading-size: 20px;
+}
+
+@media (min-width: 1200px) {
+  .article {
+    --reading-size: 19px;
+  }
+
+  .article[data-size="small"] {
+    --reading-size: 17px;
+  }
+
+  .article[data-size="large"] {
+    --reading-size: 21px;
+  }
+}

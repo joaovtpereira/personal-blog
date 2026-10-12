@@ -1,5 +1,8 @@
 import {
   ContactMessageModelMapper,
+  ContentBlockModelMapper,
+  LessonModelMapper,
+  PublicCommentModelMapper,
   PostModelMapper,
   ProjectModelMapper,
   ResumeModelMapper,
@@ -8,6 +11,8 @@ import {
 } from "@/data/mappers";
 import type {
   ContactMessageMapper,
+  LessonMapper,
+  PublicCommentMapper,
   PostMapper,
   ProjectMapper,
   ResumeMapper,
@@ -26,3 +31,7 @@ export const makeContactMessageMapper = (): ContactMessageMapper => new ContactM
 export const makeResumeMapper = (): ResumeMapper => new ResumeModelMapper();
 
 export const makeStudyProgressMapper = (): StudyProgressMapper => new StudyProgressModelMapper();
+
+export const makeLessonMapper = (): LessonMapper => new LessonModelMapper(new ContentBlockModelMapper());
+
+export const makePublicCommentMapper = (): PublicCommentMapper => new PublicCommentModelMapper();

@@ -1,0 +1,110 @@
+.hero {
+  padding-top: 16px;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.badge {
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.tag {
+  border: 1px solid var(--line);
+  color: var(--mute);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.title {
+  margin-top: 18px;
+  font-size: clamp(34px, 11vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.description {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--mute);
+}
+
+.meter {
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+    align-items: end;
+  }
+
+  /* O texto ocupa a linha inteira; descrição e progresso dividem a de baixo. */
+  .text {
+    display: contents;
+  }
+
+  .badges,
+  .title {
+    grid-column: 1 / -1;
+  }
+
+  .title {
+    font-size: clamp(56px, 8.2vw, 68px);
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+  }
+
+  .description {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+
+  .meter {
+    margin-top: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    padding-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .text {
+    display: block;
+  }
+
+  .title {
+    font-size: clamp(48px, 6vw, 88px);
+  }
+
+  .description {
+    margin-top: 14px;
+    max-width: 620px;
+    font-size: 18px;
+  }
+
+  .meter {
+    margin-top: 0;
+    min-width: 260px;
+    flex: 0 1 320px;
+  }
+}

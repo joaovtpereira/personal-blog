@@ -1,0 +1,29 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.bar {
+  margin-top: 8px;
+}
+
+.bar > div {
+  height: 4px;
+}
+
+.resume {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .bar {
+    margin-top: 10px;
+  }
+}

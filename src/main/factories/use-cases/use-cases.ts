@@ -1,31 +1,44 @@
 import {
   ContactMessageSender,
   FeaturedStudies,
+  LessonCommentModeration,
+  LessonCommentsLoader,
   LatestPosts,
   Projects,
   ResumeLoader,
   StudiesCatalog,
+  StudyLessonLoader,
+  StudyLessonRoutesLoader,
 } from "@/data/use-cases";
 import type {
   GetFeaturedStudies,
+  GetLessonComments,
   GetLatestPosts,
   GetProjects,
   GetResume,
   GetStudies,
+  GetStudyLesson,
+  GetStudyLessonRoutes,
+  PostLessonComment,
   SendContactMessage,
 } from "@/domain/use-cases";
 import { EXTERNAL } from "@/main/routes";
 import {
+  makeLessonCommentsDataSource,
+  makeLessonsDataSource,
   makePostsDataSource,
   makeProjectsDataSource,
   makeResumeDataSource,
   makeStudiesDataSource,
+  makeStudyCollectionsDataSource,
 } from "../infra/data-sources";
 import { makeEmailSender } from "../infra/email-sender";
 import {
   makeContactMessageMapper,
+  makeLessonMapper,
   makePostMapper,
   makeProjectMapper,
+  makePublicCommentMapper,
   makeResumeMapper,
   makeStudyMapper,
 } from "../mappers/mappers";
@@ -43,3 +56,23 @@ export const makeSendContactMessage = (): SendContactMessage =>
 export const makeGetResume = (): GetResume => new ResumeLoader(makeResumeDataSource(), makeResumeMapper());
 
 export const makeGetStudies = (): GetStudies => new StudiesCatalog(makeStudiesDataSource(), makeStudyMapper());
+
+export const makeGetStudyLesson = (): GetStudyLesson =>
+  new StudyLessonLoader(
+    {
+      studies: makeStudiesDataSource(),
+      lessons: makeLessonsDataSource(),
+      collections: makeStudyCollectionsDataSource(),
+    },
+    makeStudyMapper(),
+    makeLessonMapper(),
+  );
+
+export const makeGetStudyLessonRoutes = (): GetStudyLessonRoutes =>
+  new StudyLessonRoutesLoader(makeStudiesDataSource(), makeLessonsDataSource());
+
+export const makeGetLessonComments = (): GetLessonComments =>
+  new LessonCommentsLoader(makeLessonCommentsDataSource(), makePublicCommentMapper());
+
+export const makePostLessonComment = (): PostLessonComment =>
+  new LessonCommentModeration(makeEmailSender(), EXTERNAL.email);

@@ -237,5 +237,121 @@
       "completed": "COMPLETADO"
     },
     "progress": "{done}/{total} CLASES"
+  },
+  "Lesson": {
+    "metaTitle": "{lesson} — {study}",
+    "badge": "ESTUDIO",
+    "badgeReading": "ESTUDIO · SOLO TEXTO",
+    "progressVideo": "{done} DE {total} COMPLETADAS",
+    "progressReading": "{done} DE {total} LEÍDAS",
+    "progressTotalTime": " · {minutes} MIN EN TOTAL",
+    "counter": "CLASE {current}/{total}",
+    "kindLabel": "CLASE {number} · {kind}",
+    "kind": {
+      "video": "VIDEOCLASE",
+      "text": "TEXTO"
+    },
+    "textCard": "CLASE EN TEXTO",
+    "readTime": "{minutes} MIN DE LECTURA",
+    "minutes": "{minutes} MIN",
+    "notes": "NOTAS",
+    "materials": "MATERIAL DE APOYO",
+    "materialKind": {
+      "pdf": "PDF ↓",
+      "link": "ENLACE ↗",
+      "file": "ARCHIVO ↓"
+    },
+    "lessons": "Clases",
+    "toc": "Índice",
+    "videoCount": "{count} EN VIDEO",
+    "totalTime": "{minutes} MIN EN TOTAL",
+    "meta": {
+      "video": "VIDEO · {duration}",
+      "videoNoDuration": "VIDEO",
+      "text": "TEXTO · {minutes} MIN",
+      "done": " · COMPLETADA",
+      "read": " · LEÍDA"
+    },
+    "mark": {
+      "video": "Marcar completada",
+      "videoDone": "Completada",
+      "reading": "Marcar como leída",
+      "readingDone": "Clase leída"
+    },
+    "previous": "Clase anterior",
+    "next": "Próxima clase",
+    "prevLabel": "← ANTERIOR",
+    "nextLabel": "SIGUIENTE →",
+    "studyStart": "Inicio del estudio",
+    "studyEnd": "Fin del estudio",
+    "backToStudies": "Volver a los estudios",
+    "resume": "Seguir desde la clase {number}",
+    "completed": "Estudio completado",
+    "currentLesson": "clase actual",
+    "lessonsNav": "Clases del estudio",
+    "textSize": {
+      "label": "Tamaño del texto",
+      "small": "Texto pequeño",
+      "medium": "Texto mediano",
+      "large": "Texto grande"
+    },
+    "readingProgress": "Progreso de lectura",
+    "collection": {
+      "label": "COLECCIÓN",
+      "aria": "Colección de estudios",
+      "position": "ESTUDIO {position} DE {total}",
+      "previous": "← ESTUDIO {position}",
+      "next": "ESTUDIO {position} →",
+      "here": "ESTUDIO {position} · ESTÁS AQUÍ",
+      "seeAll": "Ver colección completa",
+      "seeAllCount": "· {total} ESTUDIOS"
+    }
+  },
+  "Video": {
+    "placeholder": "VIDEO DE LA CLASE",
+    "play": "Reproducir video: {title}",
+    "unavailable": "Video no disponible por ahora",
+    "unavailableHint": "Las notas y el material de apoyo siguen abajo.",
+    "loading": "Cargando video…"
+  },
+  "Comments": {
+    "title": "Comentarios",
+    "count": "{count} EN ESTA CLASE",
+    "name": "NOMBRE",
+    "namePlaceholder": "Tu nombre (opcional)",
+    "text": "DUDA O COMENTARIO",
+    "textPlaceholder": "¿Qué te dejó esta clase?",
+    "moderation": "Los comentarios pasan por moderación.",
+    "publish": "Publicar",
+    "sending": "Enviando…",
+    "anonymous": "Anónimo",
+    "reply": "Responder",
+    "replyTo": "Responder a {name}",
+    "empty": "Todavía no hay comentarios en esta clase. Sé el primero.",
+    "pending": "¡Recibido! Tu comentario aparecerá aquí después de la moderación.",
+    "another": "Escribir otro",
+    "errors": {
+      "textRequired": "Escribe tu comentario.",
+      "textTooShort": "Escribe un poco más.",
+      "textTooLong": "Usa como máximo {max} caracteres.",
+      "nameTooLong": "Usa como máximo {max} caracteres.",
+      "failed": "No pude enviarlo ahora. Inténtalo de nuevo en un momento."
+    }
+  },
+  "Content": {
+    "callout": {
+      "note": "NOTA",
+      "tip": "CONSEJO",
+      "warning": "ATENCIÓN",
+      "exercise": "EJERCICIO"
+    },
+    "spoiler": "SPOILER · toca para revelar",
+    "spoilerHide": "Ocultar spoiler",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "copyCode": "Copiar código",
+    "keyPoints": "IDEAS PRINCIPALES",
+    "checklist": "CHECKLIST",
+    "glossary": "GLOSARIO"
   }
 }

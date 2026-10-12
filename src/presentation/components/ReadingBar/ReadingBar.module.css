@@ -1,0 +1,37 @@
+.wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.track {
+  height: 2px;
+  background: var(--line);
+}
+
+.fill {
+  height: 100%;
+  background: var(--fg);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.15s linear;
+}
+
+/* No desktop o cabeçalho do site é fixo: a faixa encosta embaixo dele. */
+@media (min-width: 1200px) {
+  .wrapper {
+    top: 79px;
+  }
+}

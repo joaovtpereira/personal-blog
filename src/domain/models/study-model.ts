@@ -1,6 +1,7 @@
 /** Formato externo (markdown/API). Não usar na camada de apresentação. */
 export type StudyLessonModel = {
   id: string;
+  slug: string;
   format: "video" | "texto";
 };
 

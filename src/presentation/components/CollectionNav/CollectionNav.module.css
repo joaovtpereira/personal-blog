@@ -1,0 +1,286 @@
+@keyframes segfill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.nav {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 18px;
+  background: var(--card);
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+}
+
+.kicker {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.position {
+  flex-shrink: 0;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 5px 9px;
+}
+
+.segments {
+  margin-top: 14px;
+  display: grid;
+  gap: 4px;
+}
+
+.segment {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.segmentFill {
+  display: block;
+  height: 100%;
+  width: 0;
+  transform-origin: left;
+  animation: segfill 1s var(--ease-out) both;
+}
+
+.past {
+  width: 100%;
+  background: var(--mute);
+}
+
+.here {
+  width: 100%;
+  background: var(--fg);
+}
+
+.cards {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.3s, transform 0.35s var(--ease-out);
+}
+
+a.card:hover {
+  border-color: var(--fg);
+  transform: translateY(-3px);
+}
+
+.next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.empty {
+  border-style: dashed;
+  opacity: 0.5;
+}
+
+.cardLabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.cardTitle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.currentCard {
+  display: none;
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.currentCard .cardLabel {
+  color: inherit;
+  opacity: 0.6;
+}
+
+.currentBar {
+  margin-top: auto;
+  height: 3px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--bg) 25%, transparent);
+  overflow: hidden;
+}
+
+.currentBar span {
+  display: block;
+  height: 100%;
+  background: var(--bg);
+  transform-origin: left;
+  animation: segfill 1s var(--ease-out) 0.6s both;
+}
+
+.seeAll {
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.seeAll:hover {
+  border-color: var(--fg);
+}
+
+.seeAllMobile {
+  margin-top: 8px;
+}
+
+.seeAllDesktop {
+  display: none;
+}
+
+.count {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+/* Tablet: anterior · atual · próximo */
+@media (min-width: 768px) {
+  .nav {
+    border-radius: 26px;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .segments {
+    display: none !important;
+  }
+
+  .cards {
+    margin-top: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .card {
+    border-radius: 18px;
+    padding: 14px 16px;
+    gap: 6px;
+  }
+
+  .cardTitle {
+    font-size: 15px;
+  }
+
+  .currentCard {
+    display: flex;
+  }
+
+  .seeAllMobile {
+    margin-top: 10px;
+  }
+}
+
+/* Desktop: resumo à esquerda + 3 cards */
+@media (min-width: 1200px) {
+  .nav {
+    border-radius: 30px;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 3fr);
+    gap: 12px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 8px;
+  }
+
+  .heading {
+    flex-wrap: wrap;
+  }
+
+  .title {
+    font-size: 19px;
+  }
+
+  .position {
+    order: 3;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .cards {
+    margin-top: 0;
+    gap: 12px;
+  }
+
+  .card {
+    border-radius: 20px;
+    padding: 16px 18px;
+    gap: 8px;
+  }
+
+  .cardTitle {
+    font-size: 17px;
+  }
+
+  .seeAllMobile {
+    display: none;
+  }
+
+  .seeAllDesktop {
+    display: flex;
+    align-self: flex-start;
+    height: 44px;
+    padding: 0 18px;
+  }
+}

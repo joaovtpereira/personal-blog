@@ -1,0 +1,333 @@
+.collection {
+  padding-top: 24px;
+}
+
+.body {
+  padding-top: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "media"
+    "head"
+    "notes"
+    "comments"
+    "lessons";
+}
+
+.media {
+  grid-area: media;
+}
+
+.head {
+  grid-area: head;
+  margin-top: 18px;
+}
+
+.notes {
+  grid-area: notes;
+  padding-top: 32px;
+}
+
+.comments {
+  grid-area: comments;
+  padding-top: 40px;
+  scroll-margin-top: 24px;
+}
+
+.lessons {
+  grid-area: lessons;
+  padding-top: 36px;
+}
+
+/* Cartão de aula em texto (no lugar do vídeo) */
+.textCard {
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: swap 0.5s var(--ease-out) both;
+}
+
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.textCardMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.textCardIdea {
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.textCardSummary {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mute);
+}
+
+.kicker {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.lessonTitle {
+  margin-top: 6px;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.actions {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 52px;
+  gap: 8px;
+}
+
+.done {
+  width: 100%;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.notesContent {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.materials {
+  margin-top: 28px;
+}
+
+.lessonsHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.lessonsTitle {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.count {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.lessonsList {
+  margin-top: 16px;
+}
+
+.lessonsListCompact {
+  display: none;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .collection {
+    padding-top: 28px;
+  }
+
+  .body {
+    padding-top: 32px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "media media"
+      "head head"
+      "notes lessons"
+      "comments comments";
+    column-gap: 28px;
+    align-items: start;
+  }
+
+  .textCard {
+    aspect-ratio: 16 / 9;
+    border-radius: 30px;
+    padding: 40px;
+    justify-content: space-between;
+  }
+
+  .textCardMeta {
+    font-size: 12px;
+  }
+
+  .textCardIdea {
+    font-size: 48px;
+    line-height: 1.05;
+  }
+
+  .textCardSummary {
+    font-size: 16px;
+    max-width: 520px;
+  }
+
+  .head {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  .lessonTitle {
+    margin-top: 8px;
+    font-size: 32px;
+    letter-spacing: -0.045em;
+    line-height: 1.1;
+  }
+
+  .actions {
+    margin-top: 0;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .done {
+    width: auto;
+  }
+
+  .notes {
+    padding-top: 40px;
+  }
+
+  .lessons {
+    margin-top: 40px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    background: var(--card);
+  }
+
+  .lessonsTitle {
+    font-size: 24px;
+  }
+
+  .lessonsList {
+    display: none;
+  }
+
+  .lessonsListCompact {
+    display: block;
+    margin-top: 14px;
+  }
+
+  .comments {
+    padding-top: 48px;
+  }
+}
+
+/* Desktop: aulas fixas na lateral */
+@media (min-width: 1200px) {
+  .collection {
+    padding-top: 32px;
+  }
+
+  .body {
+    padding-top: 40px;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+    grid-template-areas:
+      "media lessons"
+      "head lessons"
+      "notes lessons"
+      "comments lessons";
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 32px;
+  }
+
+  .textCard {
+    border-radius: 32px;
+    padding: clamp(24px, 4vw, 56px);
+  }
+
+  .textCardIdea {
+    font-size: clamp(32px, 4vw, 56px);
+    max-width: 760px;
+  }
+
+  .textCardSummary {
+    font-size: 17px;
+    max-width: 560px;
+  }
+
+  .head {
+    margin-top: 28px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .kicker {
+    font-size: 12px;
+  }
+
+  .lessonTitle {
+    font-size: 36px;
+  }
+
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 32px;
+  }
+
+  .notesContent {
+    margin-top: 14px;
+    font-size: 17px;
+  }
+
+  .materials {
+    margin-top: 0;
+  }
+
+  .lessons {
+    margin-top: 0;
+    position: sticky;
+    top: 104px;
+    align-self: start;
+    border-radius: 30px;
+    padding: 22px;
+  }
+
+  .lessonsTitle {
+    font-size: 26px;
+  }
+
+  .lessonsList {
+    display: block;
+    margin-top: 16px;
+  }
+
+  .lessonsListCompact {
+    display: none;
+  }
+
+  .comments {
+    padding-top: 64px;
+    scroll-margin-top: 96px;
+  }
+}

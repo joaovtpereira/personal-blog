@@ -78,6 +78,19 @@ export function useStudiesProgress(studies: Study[]): { ready: boolean; summarie
   return { ready, summaries };
 }
 
+/** Ids das aulas que o visitante já concluiu num estudo. */
+export function useCompletedLessons(studyId: string): { ready: boolean; completed: Set<string> } {
+  const { ready, byStudy } = useStudyProgressContext();
+  const progress = byStudy.get(studyId);
+  const completed = useMemo(() => new Set(progress?.completedLessonIds ?? []), [progress]);
+  return { ready, completed };
+}
+
+/** Progresso bruto de um estudo (para regras como "continuar de onde parou"). */
+export function useRawStudyProgress(studyId: string): StudyProgress | undefined {
+  return useStudyProgressContext().byStudy.get(studyId);
+}
+
 export function useSetLessonCompleted() {
   return useStudyProgressContext().setLessonCompleted;
 }

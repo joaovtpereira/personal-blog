@@ -3,5 +3,7 @@ export * from "./get-latest-posts";
 export * from "./get-projects";
 export * from "./get-resume";
 export * from "./get-studies";
+export * from "./get-study-lesson";
+export * from "./lesson-comments";
 export * from "./send-contact-message";
 export * from "./study-progress";
