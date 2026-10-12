@@ -1,0 +1,66 @@
+@keyframes stack {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.stack {
+  --size: 56px;
+  --step: 7px;
+  position: relative;
+  width: calc(var(--size) + 2 * var(--step) + 2px);
+  height: calc(var(--size) + 2 * var(--step) + 2px);
+}
+
+.card {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: calc(var(--size) / 4);
+  border: 1px solid var(--line);
+  background: var(--card);
+  animation: stack 3s ease-in-out infinite;
+}
+
+.back {
+  left: calc(2 * var(--step));
+  top: 0;
+  animation-delay: 0.4s;
+}
+
+.middle {
+  left: var(--step);
+  top: var(--step);
+  animation-delay: 0.2s;
+}
+
+.front {
+  left: 0;
+  top: calc(2 * var(--step));
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-size: calc(var(--size) * 0.36);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 768px) {
+  .stack {
+    --size: 64px;
+    --step: 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .stack {
+    --size: 78px;
+    --step: 10px;
+  }
+}

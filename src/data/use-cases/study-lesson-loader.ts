@@ -7,7 +7,7 @@ import {
   type StudyLessonPage,
 } from "@/domain/entities";
 import type { LessonMapper, StudyMapper } from "@/domain/mappers";
-import type { LessonModel, StudyCollectionModel, StudyModel } from "@/domain/models";
+import type { CollectionModel, LessonModel, StudyModel } from "@/domain/models";
 import type {
   GetStudyLesson,
   GetStudyLessonParams,
@@ -20,7 +20,7 @@ import { toLocale } from "../mappers/locale";
 type Sources = {
   studies: CollectionDataSource<StudyModel>;
   lessons: CollectionDataSource<LessonModel>;
-  collections: CollectionDataSource<StudyCollectionModel>;
+  collections: CollectionDataSource<CollectionModel>;
 };
 
 const toSummary = ({ id, slug, number, title, format, durationSeconds, readingMinutes }: Lesson): LessonSummary => ({
@@ -70,14 +70,20 @@ export class StudyLessonLoader implements GetStudyLesson {
   private collectionOf(
     study: StudyModel,
     studies: StudyModel[],
-    collections: StudyCollectionModel[],
+    collections: CollectionModel[],
     locale: Locale,
   ): StudyCollectionPosition | null {
-    const collection = collections.find((model) => model.locale === locale && model.study_ids.includes(study.id));
+    const collection = collections.find(
+      (model) =>
+        model.locale === locale &&
+        model.kind === "estudos" &&
+        model.items.some((item) => item.status === "publicado" && item.ref_id === study.id),
+    );
     if (!collection) return null;
 
-    const items = collection.study_ids
-      .map((id) => studies.find((model) => model.id === id && model.locale === locale))
+    const items = collection.items
+      .filter((item) => item.status === "publicado" && item.ref_id)
+      .map((item) => studies.find((model) => model.id === item.ref_id && model.locale === locale))
       .filter((model): model is StudyModel => !!model)
       .map((model, i) => ({ slug: model.slug, title: model.title, position: i + 1 }));
 

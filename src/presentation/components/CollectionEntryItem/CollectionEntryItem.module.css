@@ -1,0 +1,289 @@
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes line {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Celular: trilha com pontos */
+.list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 22px;
+  bottom: 22px;
+  width: 1px;
+  background: var(--line);
+  transform-origin: top;
+  animation: line 1.8s var(--ease-out) 0.3s both;
+}
+
+.entry {
+  position: relative;
+  animation: swap 0.55s var(--ease-out) both;
+}
+
+.dot {
+  position: absolute;
+  left: -27px;
+  top: 22px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.dot_done {
+  background: var(--mute);
+  border-color: var(--mute);
+}
+
+.dot_current {
+  background: var(--fg);
+  border-color: var(--fg);
+}
+
+.dot_upcoming {
+  border-style: dashed;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 14px 16px;
+  transition: border-color 0.3s, transform 0.4s var(--ease-out);
+}
+
+a.item:hover {
+  border-color: var(--fg);
+  transform: translateX(4px);
+}
+
+.current {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.upcoming {
+  opacity: 0.5;
+  border-style: dashed;
+}
+
+.number {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.metaCompact,
+.meta,
+.tag {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--mute);
+}
+
+.current .metaCompact,
+.current .meta,
+.current .tag {
+  color: inherit;
+  opacity: 0.65;
+}
+
+.meta,
+.side,
+.arrow {
+  display: none;
+}
+
+.ratingCompact {
+  margin-top: 2px;
+}
+
+/* Tablet: cards em grade de 2 colunas, sem trilha */
+@media (min-width: 768px) {
+  .list {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .list::before,
+  .dot {
+    display: none;
+  }
+
+  .item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    border-radius: 24px;
+    padding: 20px;
+    position: relative;
+  }
+
+  a.item:hover {
+    transform: translateY(-4px);
+  }
+
+  .number {
+    font-size: 40px;
+    letter-spacing: -0.06em;
+  }
+
+  .title {
+    font-size: 19px;
+    letter-spacing: -0.02em;
+  }
+
+  .metaCompact {
+    display: none;
+  }
+
+  .meta {
+    display: block;
+    font-size: 11px;
+  }
+
+  .side {
+    display: flex;
+    position: absolute;
+    top: 24px;
+    right: 20px;
+  }
+
+  .tag {
+    letter-spacing: 0.08em;
+  }
+
+  .ratingSide {
+    display: none;
+  }
+
+  .text {
+    gap: 10px;
+  }
+}
+
+/* Desktop: trilha volta, linhas largas com seta */
+@media (min-width: 1200px) {
+  .list {
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list::before {
+    display: block;
+    left: 9px;
+    top: 30px;
+    bottom: 30px;
+  }
+
+  .dot {
+    display: block;
+    left: -37px;
+    top: 50%;
+    margin-top: -8px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) auto 24px;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 24px;
+  }
+
+  a.item:hover {
+    transform: translateX(4px);
+  }
+
+  .number {
+    font-size: 44px;
+  }
+
+  .title {
+    font-size: 22px;
+    letter-spacing: -0.03em;
+  }
+
+  .text {
+    gap: 6px;
+  }
+
+  .side {
+    position: static;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .tag {
+    white-space: nowrap;
+  }
+
+  .ratingSide {
+    display: flex;
+  }
+
+  .ratingCompact {
+    display: none;
+  }
+
+  .arrow {
+    display: block;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  a.item:hover .arrow {
+    transform: translate(4px, -4px);
+  }
+}

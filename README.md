@@ -44,6 +44,8 @@ O progresso dos estudos é do visitante e fica no navegador dele: os casos de us
 
 As aulas (`/estudos/[estudo]/[aula]`) são montadas a partir de `ContentBlock` (`domain/entities/content-block.ts`): cada bloco do markdown (títulos, parágrafos, ideia central, citação, código, listas, checklist, passos, tabela, avisos, imagem, vídeo, principais ideias, glossário, divisor, spoiler) vira um componente do DS via `ContentRenderer`. O formato externo fica em `domain/models/content-block-model.ts` e a tradução em `data/mappers/content-block-model-mapper.ts` — é aqui que o parser de markdown vai se encaixar.
 
+Coleções (`/colecoes/[slug]`) servem para estudos e para séries de resenhas do blog (`kind` no `CollectionModel`). Itens podem ser anunciados como "em breve" (só título). Regra: com menos de 2 itens publicados não é coleção (404 e sem navegação de coleção nas aulas).
+
 O formulário de contato usa uma Server Action (`main/actions`) que chama o caso de uso `SendContactMessage`. Hoje o envio é simulado pelo `ConsoleEmailSender` (só registra no log do servidor); para enviar de verdade, implemente um `EmailSender` em `infra/email/` e troque a instância em `main/factories/infra/email-sender.ts`.
 
 ## Breakpoints

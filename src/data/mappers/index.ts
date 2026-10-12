@@ -1,3 +1,4 @@
+export * from "./collection-model-mapper";
 export * from "./contact-message-model-mapper";
 export * from "./content-block-model-mapper";
 export * from "./inline-markdown";

@@ -1,3 +1,4 @@
+export * from "./collection-mapper";
 export * from "./contact-message-mapper";
 export * from "./lesson-mapper";
 export * from "./mapper";

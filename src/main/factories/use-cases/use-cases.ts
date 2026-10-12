@@ -1,4 +1,6 @@
 import {
+  CollectionLoader,
+  CollectionRoutesLoader,
   ContactMessageSender,
   FeaturedStudies,
   LessonCommentModeration,
@@ -11,6 +13,8 @@ import {
   StudyLessonRoutesLoader,
 } from "@/data/use-cases";
 import type {
+  GetCollection,
+  GetCollectionRoutes,
   GetFeaturedStudies,
   GetLessonComments,
   GetLatestPosts,
@@ -30,10 +34,11 @@ import {
   makeProjectsDataSource,
   makeResumeDataSource,
   makeStudiesDataSource,
-  makeStudyCollectionsDataSource,
+  makeCollectionsDataSource,
 } from "../infra/data-sources";
 import { makeEmailSender } from "../infra/email-sender";
 import {
+  makeCollectionMapper,
   makeContactMessageMapper,
   makeLessonMapper,
   makePostMapper,
@@ -62,7 +67,7 @@ export const makeGetStudyLesson = (): GetStudyLesson =>
     {
       studies: makeStudiesDataSource(),
       lessons: makeLessonsDataSource(),
-      collections: makeStudyCollectionsDataSource(),
+      collections: makeCollectionsDataSource(),
     },
     makeStudyMapper(),
     makeLessonMapper(),
@@ -76,3 +81,17 @@ export const makeGetLessonComments = (): GetLessonComments =>
 
 export const makePostLessonComment = (): PostLessonComment =>
   new LessonCommentModeration(makeEmailSender(), EXTERNAL.email);
+
+export const makeGetCollection = (): GetCollection =>
+  new CollectionLoader(
+    {
+      collections: makeCollectionsDataSource(),
+      studies: makeStudiesDataSource(),
+      lessons: makeLessonsDataSource(),
+      posts: makePostsDataSource(),
+    },
+    makeCollectionMapper(),
+    makePostMapper(),
+  );
+
+export const makeGetCollectionRoutes = (): GetCollectionRoutes => new CollectionRoutesLoader(makeCollectionsDataSource());

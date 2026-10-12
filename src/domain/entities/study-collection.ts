@@ -16,8 +16,3 @@ export type StudyCollectionPosition = {
   current: CollectionItem;
   next: CollectionItem | null;
 };
-
-/** Regra de negócio: com 1 item não é coleção. */
-export const MIN_COLLECTION_ITEMS = 2;
-
-export const isCollection = (total: number): boolean => total >= MIN_COLLECTION_ITEMS;

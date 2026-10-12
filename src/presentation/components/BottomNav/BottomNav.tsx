@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/main/i18n/navigation";
+import { usePageHeaderOverride } from "@/presentation/contexts/PageHeaderContext";
 import { BOTTOM_NAV_KEYS, NAV_ITEMS, isActive } from "../../navigation";
 import { Icon } from "../Icon";
 import styles from "./BottomNav.module.css";
@@ -10,12 +11,13 @@ import styles from "./BottomNav.module.css";
 export function BottomNav() {
   const t = useTranslations("Common");
   const pathname = usePathname();
+  const section = usePageHeaderOverride()?.section;
   const items = BOTTOM_NAV_KEYS.map((key) => NAV_ITEMS.find((item) => item.key === key)!);
 
   return (
     <nav aria-label={t("bottomNav")} className={styles.nav}>
       {items.map((item) => {
-        const active = isActive(item, pathname);
+        const active = section ? item.key === section : isActive(item, pathname);
         return (
           <Link
             key={item.key}

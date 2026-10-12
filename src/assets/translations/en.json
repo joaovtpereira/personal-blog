@@ -353,5 +353,68 @@
     "keyPoints": "KEY IDEAS",
     "checklist": "CHECKLIST",
     "glossary": "GLOSSARY"
+  },
+  "Collection": {
+    "metaTitle": "{name} — Collection",
+    "metaDescription": "{description}",
+    "crumb": "JVP / COLLECTION",
+    "badge": "COLLECTION · {kind}",
+    "kind": {
+      "studies": "STUDIES",
+      "reviews": "REVIEWS"
+    },
+    "status": {
+      "ongoing": "IN PROGRESS",
+      "complete": "COMPLETE"
+    },
+    "progress": {
+      "studies": "{done} OF {total} COMPLETED",
+      "reviews": "{done} OF {total} READ"
+    },
+    "count": "{count} ITEMS",
+    "countAndTime": "{count} ITEMS · {minutes} MIN",
+    "totalTime": "{minutes} MIN TOTAL",
+    "totalTimeLong": "TOTAL TIME · {minutes} MIN",
+    "unit": {
+      "studies": "Study",
+      "reviews": "Part"
+    },
+    "unitUpper": {
+      "studies": "STUDY {n}",
+      "reviews": "PART {n}"
+    },
+    "cta": {
+      "start": "Start · {unit} {n}",
+      "continue": "Continue · {unit} {n}",
+      "again": "Revisit · {unit} {n}"
+    },
+    "items": "Items",
+    "allItems": "All items",
+    "order": {
+      "label": "Sort items",
+      "asc": "Order",
+      "desc": "Latest"
+    },
+    "tag": {
+      "done": {
+        "studies": "COMPLETED",
+        "reviews": "READ"
+      },
+      "current": "YOU ARE HERE",
+      "started": "IN PROGRESS",
+      "upcoming": "COMING SOON"
+    },
+    "lessons": "{count, plural, one {# LESSON} other {# LESSONS}}",
+    "minutes": "{minutes} MIN",
+    "reading": "{minutes} MIN READ",
+    "back": {
+      "studies": "Back to studies",
+      "reviews": "Back to the blog"
+    },
+    "share": "Share",
+    "shareAria": "Share collection",
+    "copied": "Link copied",
+    "rating": "Rated {score} out of 5",
+    "progressNote": "Your progress is saved only in this browser."
   }
 }

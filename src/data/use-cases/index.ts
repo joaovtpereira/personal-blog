@@ -1,4 +1,5 @@
 export * from "./cached-study-progress";
+export * from "./collection-loader";
 export * from "./contact-message-sender";
 export * from "./featured-studies";
 export * from "./latest-posts";

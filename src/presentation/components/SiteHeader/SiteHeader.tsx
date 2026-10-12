@@ -23,9 +23,11 @@ export function SiteHeader() {
   const t = useTranslations("Common");
   const pathname = usePathname();
   const items = HEADER_ORDER.map((key) => NAV_ITEMS.find((item) => item.key === key)!);
-  const current = items.find((item) => isActive(item, pathname));
-  const crumbKey = current && (CRUMB_KEYS as readonly string[]).includes(current.key) ? (current.key as CrumbKey) : null;
   const override = usePageHeaderOverride();
+  const current = override?.section
+    ? items.find((item) => item.key === override.section)
+    : items.find((item) => isActive(item, pathname));
+  const crumbKey = current && (CRUMB_KEYS as readonly string[]).includes(current.key) ? (current.key as CrumbKey) : null;
   const crumb = override?.crumb ?? (crumbKey ? t(`crumbs.${crumbKey}`) : null);
   // Em subpáginas (ex.: /estudos/x) o voltar sobe um nível; nas páginas de 1º nível volta ao início.
   const backHref = override?.backHref ?? (current && current.href !== pathname && typeof current.href === "string" ? current.href : ROUTES.home);
@@ -39,7 +41,11 @@ export function SiteHeader() {
               <Icon name="chevronLeft" />
             </Link>
             <span className={`mono ${styles.crumb} ${styles.mobileOnly}`}>{crumb}</span>
-            <span className={`${styles.spacer} ${styles.mobileOnly}`} aria-hidden="true" />
+            {override?.action ? (
+              <span className={`${styles.spacer} ${styles.mobileOnly}`}>{override.action}</span>
+            ) : (
+              <span className={`${styles.spacer} ${styles.mobileOnly}`} aria-hidden="true" />
+            )}
           </>
         )}
 

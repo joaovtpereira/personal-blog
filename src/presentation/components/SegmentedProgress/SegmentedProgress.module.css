@@ -1,0 +1,49 @@
+@keyframes segfill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.track {
+  display: grid;
+  gap: 4px;
+}
+
+.segment {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  transform-origin: left;
+  animation: segfill 1s var(--ease-out) both;
+}
+
+.done .fill {
+  width: 100%;
+  background: var(--mute);
+}
+
+.current .fill {
+  width: 50%;
+  background: var(--fg);
+}
+
+.upcoming {
+  background: transparent;
+  border: 1px dashed var(--line);
+}
+
+@media (min-width: 768px) {
+  .segment {
+    height: 5px;
+  }
+}

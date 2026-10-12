@@ -1,3 +1,4 @@
+export * from "./collection-model";
 export * from "./contact-message-model";
 export * from "./content-block-model";
 export * from "./lesson-comment-model";
@@ -5,6 +6,5 @@ export * from "./lesson-model";
 export * from "./post-model";
 export * from "./project-model";
 export * from "./resume-model";
-export * from "./study-collection-model";
 export * from "./study-model";
 export * from "./study-progress-model";

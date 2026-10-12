@@ -91,6 +91,12 @@ export function useRawStudyProgress(studyId: string): StudyProgress | undefined 
   return useStudyProgressContext().byStudy.get(studyId);
 }
 
+/** Progresso de todos os estudos (para telas que cruzam vários, como coleções). */
+export function useStudyProgressMap(): { ready: boolean; byStudy: Map<string, StudyProgress> } {
+  const { ready, byStudy } = useStudyProgressContext();
+  return { ready, byStudy };
+}
+
 export function useSetLessonCompleted() {
   return useStudyProgressContext().setLessonCompleted;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import type { NavItem } from "../navigation";
 
 export type PageHeaderOverride = {
   /** Texto central do cabeçalho no celular (ex.: "AULA 03/08"). */
@@ -8,6 +9,10 @@ export type PageHeaderOverride = {
   /** Para onde o botão voltar leva (rota sem idioma). */
   backHref?: string;
   backLabel?: string;
+  /** Ação à direita no cabeçalho do celular (ex.: compartilhar). */
+  action?: ReactNode;
+  /** Seção do menu que fica ativa quando a URL não diz (ex.: coleção de estudos). */
+  section?: NavItem["key"];
 };
 
 type Value = {
@@ -27,11 +32,11 @@ export function usePageHeaderOverride(): PageHeaderOverride | null {
 }
 
 /** Uma tela pede um cabeçalho diferente enquanto estiver montada. */
-export function PageHeader({ crumb, backHref, backLabel }: PageHeaderOverride) {
+export function PageHeader({ crumb, backHref, backLabel, action, section }: PageHeaderOverride) {
   const setOverride = useContext(PageHeaderContext)?.setOverride;
   useEffect(() => {
-    setOverride?.({ crumb, backHref, backLabel });
+    setOverride?.({ crumb, backHref, backLabel, action, section });
     return () => setOverride?.(null);
-  }, [setOverride, crumb, backHref, backLabel]);
+  }, [setOverride, crumb, backHref, backLabel, action, section]);
   return null;
 }

@@ -353,5 +353,68 @@
     "keyPoints": "PRINCIPAIS IDEIAS",
     "checklist": "CHECKLIST",
     "glossary": "GLOSSÁRIO"
+  },
+  "Collection": {
+    "metaTitle": "{name} — Coleção",
+    "metaDescription": "{description}",
+    "crumb": "JVP / COLEÇÃO",
+    "badge": "COLEÇÃO · {kind}",
+    "kind": {
+      "studies": "ESTUDOS",
+      "reviews": "RESENHAS"
+    },
+    "status": {
+      "ongoing": "EM ANDAMENTO",
+      "complete": "COMPLETA"
+    },
+    "progress": {
+      "studies": "{done} DE {total} CONCLUÍDOS",
+      "reviews": "{done} DE {total} LIDOS"
+    },
+    "count": "{count} ITENS",
+    "countAndTime": "{count} ITENS · {minutes} MIN",
+    "totalTime": "{minutes} MIN NO TOTAL",
+    "totalTimeLong": "TEMPO TOTAL · {minutes} MIN",
+    "unit": {
+      "studies": "Estudo",
+      "reviews": "Parte"
+    },
+    "unitUpper": {
+      "studies": "ESTUDO {n}",
+      "reviews": "PARTE {n}"
+    },
+    "cta": {
+      "start": "Começar · {unit} {n}",
+      "continue": "Continuar · {unit} {n}",
+      "again": "Rever · {unit} {n}"
+    },
+    "items": "Itens",
+    "allItems": "Todos os itens",
+    "order": {
+      "label": "Ordenar itens",
+      "asc": "Ordem",
+      "desc": "Recentes"
+    },
+    "tag": {
+      "done": {
+        "studies": "CONCLUÍDO",
+        "reviews": "LIDO"
+      },
+      "current": "VOCÊ ESTÁ AQUI",
+      "started": "EM ANDAMENTO",
+      "upcoming": "EM BREVE"
+    },
+    "lessons": "{count, plural, one {# AULA} other {# AULAS}}",
+    "minutes": "{minutes} MIN",
+    "reading": "{minutes} MIN DE LEITURA",
+    "back": {
+      "studies": "Voltar aos estudos",
+      "reviews": "Voltar ao blog"
+    },
+    "share": "Compartilhar",
+    "shareAria": "Compartilhar coleção",
+    "copied": "Link copiado",
+    "rating": "Nota {score} de 5",
+    "progressNote": "Seu progresso fica salvo só neste navegador."
   }
 }

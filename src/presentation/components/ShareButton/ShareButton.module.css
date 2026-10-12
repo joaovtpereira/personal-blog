@@ -1,0 +1,32 @@
+.button {
+  border: 1px solid var(--line);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+}
+
+.button:hover {
+  border-color: var(--fg);
+}
+
+.round {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.pill {
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+}
+
+.on {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
