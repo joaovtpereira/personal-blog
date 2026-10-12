@@ -6,7 +6,8 @@
 /* Celular: carrossel horizontal com snap */
 .list {
   list-style: none;
-  margin: 20px 0 0;
+  /* Só o topo: as margens laterais automáticas vêm do .wrap (centraliza no desktop). */
+  margin-top: 20px;
   display: flex;
   gap: 12px;
   overflow-x: auto;

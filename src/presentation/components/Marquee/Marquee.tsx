@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import styles from "./Marquee.module.css";
 
 /** Faixa de palavras infinita; uma sim, outra não em serif. Decorativa. */
-export function Marquee({ items }: { items: string[] }) {
+export function Marquee({ items, className }: { items: string[]; className?: string }) {
   const row = (copy: number) =>
     items.map((item, i) => (
       <Fragment key={`${copy}-${i}`}>
@@ -12,7 +12,7 @@ export function Marquee({ items }: { items: string[] }) {
     ));
 
   return (
-    <section className={styles.marquee} aria-hidden="true">
+    <section className={`${styles.marquee} ${className ?? ""}`} aria-hidden="true">
       <div className={styles.track}>
         {row(0)}
         {row(1)}

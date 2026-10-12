@@ -1,0 +1,87 @@
+.field {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.35s;
+}
+
+.field::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--fg);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.field:focus-within::after,
+.invalid::after {
+  transform: scaleX(1);
+}
+
+/* Erro: a linha fica em fg tracejada — sem cor de destaque no sistema monocromático. */
+.invalid {
+  border-bottom-style: dashed;
+}
+
+.invalid::after {
+  background: repeating-linear-gradient(90deg, var(--fg) 0 6px, transparent 6px 10px);
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.control {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 20px;
+  color: var(--fg);
+  padding: 10px 0 14px;
+  border-radius: 0;
+}
+
+.control::placeholder {
+  color: var(--mute);
+  opacity: 0.7;
+}
+
+.control:focus {
+  outline: none;
+}
+
+.area {
+  resize: none;
+  line-height: 1.5;
+}
+
+.error {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--fg);
+}
+
+.error::before {
+  content: "! ";
+  font-family: var(--font-mono);
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .control {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .control {
+    padding-top: 12px;
+  }
+}

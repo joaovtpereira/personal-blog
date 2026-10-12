@@ -18,13 +18,16 @@ export const NAV_ITEMS: NavItem[] = [
   { key: "blog", href: ROUTES.blog, icon: "doc", header: "both" },
   { key: "studies", href: ROUTES.studies, icon: "book", header: "both" },
   { key: "projects", href: { pathname: "/", hash: SECTIONS.projects }, icon: "code", header: "both" },
-  { key: "contact", href: ROUTES.contact, icon: "mail", header: "desktop" },
+  { key: "contact", href: ROUTES.contact, icon: "mail", header: "both" },
 ];
 
 /** Ordem do cabeçalho de tablet/desktop (Blog primeiro, como no canvas). */
 export const HEADER_ORDER: NavItem["key"][] = ["home", "blog", "studies", "projects", "resume", "contact"];
 
 export const BOTTOM_NAV_KEYS: NavItem["key"][] = ["home", "blog", "studies", "resume", "contact"];
+
+/** Rótulo "JVP / X" do cabeçalho das páginas internas no celular. */
+export const CRUMB_KEYS = ["blog", "studies", "resume", "contact"] as const;
 
 export const isActive = (item: NavItem, pathname: string): boolean =>
   typeof item.href === "string" &&

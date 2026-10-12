@@ -22,17 +22,36 @@
     "homeLink": "Início — João Vitor Pereira",
     "copyright": "© {year} JOÃO VITOR PEREIRA",
     "languages": "PT · ES · EN",
-    "backToTop": "TOPO"
+    "backToTop": "TOPO",
+    "back": "Voltar ao início",
+    "crumbs": {
+      "blog": "JVP / BLOG",
+      "studies": "JVP / ESTUDOS",
+      "resume": "JVP / CV",
+      "contact": "JVP / CONTATO"
+    }
   },
   "Home": {
     "badge": "TECH LEAD E DESENVOLVEDOR EM 5BY5 SOLUÇÕES EM SISTEMAS",
     "intro": "Desenvolvedor e cofundador da <strong>ByteKickStudio</strong>. Aqui eu escrevo sobre",
-    "words": ["pensamentos.", "livros.", "jogos.", "código."],
+    "words": [
+      "pensamentos.",
+      "livros.",
+      "jogos.",
+      "código."
+    ],
     "ctaBlog": "Ler o blog",
     "portraitAlt": "Retrato de João Vitor Pereira",
     "location": "UBERLÂNDIA - MG, BR",
     "seal": "ESCRITOS • RESENHAS • CÓDIGO • ",
-    "marquee": ["Pensamentos", "Resenhas", "Livros", "Jogos", "Código", "Estudos"],
+    "marquee": [
+      "Pensamentos",
+      "Resenhas",
+      "Livros",
+      "Jogos",
+      "Código",
+      "Estudos"
+    ],
     "shortcuts": {
       "resume": "Trajetória e stack",
       "blog": "Textos e resenhas",
@@ -89,5 +108,60 @@
     },
     "readingTime": "{minutes} MIN",
     "rating": "Nota {score} de 5"
+  },
+  "Contact": {
+    "metaTitle": "Contato — João Vitor Pereira",
+    "metaDescription": "Fale com João Vitor Pereira: projetos, parcerias, indicações de livros ou só um papo.",
+    "titleLine1": "Diga",
+    "titleLine2": "olá",
+    "lead": "Projeto, parceria, indicação de livro ou só um papo.",
+    "form": {
+      "label": "Formulário de contato",
+      "topic": "ASSUNTO",
+      "topics": {
+        "project": "Projeto",
+        "chat": "Conversa",
+        "recommendation": "Indicação",
+        "other": "Outro"
+      },
+      "name": "NOME",
+      "namePlaceholder": "Como posso te chamar?",
+      "email": "E-MAIL",
+      "emailPlaceholder": "voce@email.com",
+      "message": "MENSAGEM",
+      "messagePlaceholder": "Conta um pouco…",
+      "submit": "Enviar mensagem",
+      "sending": "Enviando…",
+      "honeypot": "Deixe este campo em branco"
+    },
+    "errors": {
+      "nameRequired": "Diga como posso te chamar.",
+      "nameTooLong": "Use no máximo {max} caracteres.",
+      "emailRequired": "Informe seu e-mail.",
+      "emailInvalid": "Esse e-mail não parece válido.",
+      "topicInvalid": "Escolha um assunto.",
+      "messageRequired": "Escreva sua mensagem.",
+      "messageTooShort": "Conte um pouco mais (mínimo de {min} caracteres).",
+      "messageTooLong": "Use no máximo {max} caracteres.",
+      "summary": "Revise os campos destacados.",
+      "failed": "Não consegui enviar agora. Tente de novo ou escreva direto para o e-mail abaixo."
+    },
+    "success": {
+      "title": "Mensagem <accent>enviada.</accent>",
+      "text": "Obrigado por escrever. Em breve te respondo no e-mail informado.",
+      "again": "Enviar outra"
+    },
+    "direct": {
+      "label": "OU DIRETO",
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "copyAria": "Copiar e-mail {email}",
+      "company": "— empresa"
+    },
+    "marquee": [
+      "Vamos conversar",
+      "Hablemos",
+      "Let’s talk"
+    ]
   }
 }

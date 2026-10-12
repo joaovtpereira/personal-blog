@@ -1,3 +1,9 @@
+@keyframes fillw {
+  from {
+    width: 0;
+  }
+}
+
 .track {
   height: 3px;
   border-radius: 3px;

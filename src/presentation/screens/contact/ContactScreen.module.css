@@ -1,0 +1,64 @@
+.layout {
+  padding-top: 24px;
+  display: grid;
+  grid-template-areas:
+    "intro"
+    "form"
+    "direct";
+  row-gap: 36px;
+}
+
+.intro {
+  grid-area: intro;
+}
+
+.form {
+  grid-area: form;
+  min-width: 0;
+}
+
+.direct {
+  grid-area: direct;
+  padding-top: 12px;
+}
+
+/* A faixa multilíngue só aparece no desktop, como no canvas. */
+.marquee {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    padding-top: 40px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "intro form"
+      "direct form";
+    column-gap: 40px;
+    row-gap: 36px;
+    align-items: start;
+  }
+
+  .form {
+    animation-delay: 0.3s;
+  }
+
+  .direct {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .layout {
+    padding-top: 80px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    column-gap: 64px;
+    row-gap: 48px;
+  }
+
+  .marquee {
+    display: block;
+    margin-top: 96px;
+  }
+}

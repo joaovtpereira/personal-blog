@@ -40,6 +40,8 @@ src/
 
 Para trocar os dados mockados por markdown ou API, implemente um novo `CollectionDataSource` em `infra/` e troque a instância em `main/factories/infra/data-sources.ts`.
 
+O formulário de contato usa uma Server Action (`main/actions`) que chama o caso de uso `SendContactMessage`. Hoje o envio é simulado pelo `ConsoleEmailSender` (só registra no log do servidor); para enviar de verdade, implemente um `EmailSender` em `infra/email/` e troque a instância em `main/factories/infra/email-sender.ts`.
+
 ## Breakpoints
 
 Celular < 768px · Tablet 768–1199px · Desktop ≥ 1200px (conteúdo em até 1280px).

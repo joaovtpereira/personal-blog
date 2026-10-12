@@ -1,0 +1,43 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  transition: padding 0.4s var(--ease-out);
+}
+
+.arrow {
+  flex-shrink: 0;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.row:hover {
+  padding-left: 8px;
+}
+
+.row:hover .arrow {
+  transform: translate(4px, -4px);
+}
+
+@media (min-width: 768px) {
+  .row {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .row {
+    padding: 24px 0;
+    font-size: 30px;
+    letter-spacing: -0.03em;
+  }
+
+  .arrow {
+    width: 22px;
+    height: 22px;
+  }
+}

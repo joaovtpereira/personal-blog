@@ -11,6 +11,10 @@ const PATHS = {
   user: "M12 4a4 4 0 1 1 0 8a4 4 0 0 1 0-8z M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6",
   mail: "M4 6h16v12H4z M4 7l8 6 8-6",
   code: "M8 6l-5 6 5 6M16 6l5 6-5 6M13.5 4l-3 16",
+  chevronLeft: "M15 6l-6 6 6 6",
+  send: "M21 3L10 14M21 3l-7 18-4-7-7-4z",
+  check: "M5 12.5l4.5 4.5L19 7.5",
+  wave: "M7 11V6.5a1.5 1.5 0 0 1 3 0V11M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 9.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5a6 6 0 0 1-5-2.7L4 15a1.6 1.6 0 0 1 2.6-1.8L7 14",
 } as const;
 
 export type IconName = keyof typeof PATHS | "theme" | "play";

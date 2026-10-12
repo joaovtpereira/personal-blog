@@ -3,7 +3,7 @@
   z-index: 20;
 }
 
-.inner {
+.bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,9 +26,44 @@
   display: none !important;
 }
 
+/* Páginas internas no celular: voltar · JVP / PÁGINA · espaço */
+.back {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  transition: border-color 0.3s;
+}
+
+.back:hover {
+  border-color: var(--fg);
+}
+
+.crumb {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  white-space: nowrap;
+}
+
+.spacer {
+  width: 44px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .inner .home,
+  .inner .actions {
+    display: none;
+  }
+}
+
 /* Tablet: navegação em pílula */
 @media (min-width: 768px) {
-  .inner {
+  .bar {
     padding-top: 24px;
     padding-bottom: 24px;
   }
@@ -88,7 +123,7 @@
     border-bottom: 1px solid var(--line);
   }
 
-  .inner {
+  .bar {
     padding-top: 16px;
     padding-bottom: 16px;
     gap: 24px;

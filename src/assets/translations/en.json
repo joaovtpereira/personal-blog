@@ -22,17 +22,36 @@
     "homeLink": "Home — João Vitor Pereira",
     "copyright": "© {year} JOÃO VITOR PEREIRA",
     "languages": "PT · ES · EN",
-    "backToTop": "TOP"
+    "backToTop": "TOP",
+    "back": "Back to home",
+    "crumbs": {
+      "blog": "JVP / BLOG",
+      "studies": "JVP / STUDIES",
+      "resume": "JVP / CV",
+      "contact": "JVP / CONTACT"
+    }
   },
   "Home": {
     "badge": "TECH LEAD & DEVELOPER AT 5BY5 SOLUÇÕES EM SISTEMAS",
     "intro": "Developer and co-founder of <strong>ByteKickStudio</strong>. Here I write about",
-    "words": ["thoughts.", "books.", "games.", "code."],
+    "words": [
+      "thoughts.",
+      "books.",
+      "games.",
+      "code."
+    ],
     "ctaBlog": "Read the blog",
     "portraitAlt": "Portrait of João Vitor Pereira",
     "location": "UBERLÂNDIA - MG, BR",
     "seal": "WRITING • REVIEWS • CODE • ",
-    "marquee": ["Thoughts", "Reviews", "Books", "Games", "Code", "Studies"],
+    "marquee": [
+      "Thoughts",
+      "Reviews",
+      "Books",
+      "Games",
+      "Code",
+      "Studies"
+    ],
     "shortcuts": {
       "resume": "Career and stack",
       "blog": "Writing and reviews",
@@ -89,5 +108,60 @@
     },
     "readingTime": "{minutes} MIN",
     "rating": "Rated {score} out of 5"
+  },
+  "Contact": {
+    "metaTitle": "Contact — João Vitor Pereira",
+    "metaDescription": "Talk to João Vitor Pereira: projects, partnerships, book recommendations or just a chat.",
+    "titleLine1": "Say",
+    "titleLine2": "hello",
+    "lead": "A project, a partnership, a book recommendation or just a chat.",
+    "form": {
+      "label": "Contact form",
+      "topic": "SUBJECT",
+      "topics": {
+        "project": "Project",
+        "chat": "Chat",
+        "recommendation": "Recommendation",
+        "other": "Other"
+      },
+      "name": "NAME",
+      "namePlaceholder": "What should I call you?",
+      "email": "E-MAIL",
+      "emailPlaceholder": "you@email.com",
+      "message": "MESSAGE",
+      "messagePlaceholder": "Tell me a bit…",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "honeypot": "Leave this field empty"
+    },
+    "errors": {
+      "nameRequired": "Tell me what to call you.",
+      "nameTooLong": "Use at most {max} characters.",
+      "emailRequired": "Enter your e-mail.",
+      "emailInvalid": "That e-mail doesn’t look valid.",
+      "topicInvalid": "Pick a subject.",
+      "messageRequired": "Write your message.",
+      "messageTooShort": "Tell me a bit more (at least {min} characters).",
+      "messageTooLong": "Use at most {max} characters.",
+      "summary": "Please review the highlighted fields.",
+      "failed": "I couldn’t send it right now. Try again or write straight to the e-mail below."
+    },
+    "success": {
+      "title": "Message <accent>sent.</accent>",
+      "text": "Thanks for writing. I’ll reply soon at the e-mail you provided.",
+      "again": "Send another"
+    },
+    "direct": {
+      "label": "OR DIRECTLY",
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyAria": "Copy e-mail {email}",
+      "company": "— company"
+    },
+    "marquee": [
+      "Vamos conversar",
+      "Hablemos",
+      "Let’s talk"
+    ]
   }
 }

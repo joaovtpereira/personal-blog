@@ -147,7 +147,9 @@ p {
   padding-right: var(--gutter);
 }
 
-/* ---------- Movimento ---------- */
+/* ---------- Movimento ----------
+   Keyframes usados dentro de CSS Modules precisam ser declarados no próprio módulo
+   (o nome é escopado); aqui ficam só os usados pelas classes globais abaixo. */
 @keyframes rise {
   from {
     opacity: 0;
@@ -187,21 +189,9 @@ p {
   }
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes float {
   50% {
     transform: translateY(-6px);
-  }
-}
-
-@keyframes fillw {
-  from {
-    width: 0;
   }
 }
 
