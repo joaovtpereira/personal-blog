@@ -1,0 +1,93 @@
+{
+  "Metadata": {
+    "title": "João Vitor Pereira — thoughts, reviews and code",
+    "description": "Personal blog of João Vitor Pereira: résumé, ByteKickStudio, projects, thoughts, book and game reviews and studies."
+  },
+  "Common": {
+    "home": "Home",
+    "blog": "Blog",
+    "studies": "Studies",
+    "projects": "Projects",
+    "resume": "Résumé",
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "navigation": "Navigation",
+    "mainMenu": "Main menu",
+    "bottomNav": "Bottom navigation",
+    "toggleTheme": "Toggle light and dark theme",
+    "language": "Language",
+    "changeLanguage": "Change language (current: {current})",
+    "homeLink": "Home — João Vitor Pereira",
+    "copyright": "© {year} JOÃO VITOR PEREIRA",
+    "languages": "PT · ES · EN",
+    "backToTop": "TOP"
+  },
+  "Home": {
+    "badge": "TECH LEAD & DEVELOPER AT 5BY5 SOLUÇÕES EM SISTEMAS",
+    "intro": "Developer and co-founder of <strong>ByteKickStudio</strong>. Here I write about",
+    "words": ["thoughts.", "books.", "games.", "code."],
+    "ctaBlog": "Read the blog",
+    "portraitAlt": "Portrait of João Vitor Pereira",
+    "location": "UBERLÂNDIA - MG, BR",
+    "seal": "WRITING • REVIEWS • CODE • ",
+    "marquee": ["Thoughts", "Reviews", "Books", "Games", "Code", "Studies"],
+    "shortcuts": {
+      "resume": "Career and stack",
+      "blog": "Writing and reviews",
+      "projects": "What I am building",
+      "contact": "Let’s talk"
+    },
+    "projects": {
+      "title": "Company <accent>&</accent> projects",
+      "index": "01 — PROJECTS",
+      "company": "COMPANY",
+      "app": "APP",
+      "resumeDesc": "Career and stack",
+      "soon": "Next project",
+      "soonTag": "SOON",
+      "appScreenAlt": "{name} app screen"
+    },
+    "studies": {
+      "title": "Studies <accent>in public</accent>",
+      "description": "Tracks of what I am learning, split into lessons — some with video.",
+      "seeAll": "See all",
+      "lessons": "{count, plural, one {# LESSON} other {# LESSONS}}",
+      "videos": "{count, plural, one {# VIDEO} other {# VIDEOS}}",
+      "textOnly": "TEXT ONLY",
+      "inProgress": "IN PROGRESS",
+      "completed": "COMPLETED",
+      "progress": "{done}/{total} LESSONS"
+    },
+    "latest": {
+      "title": "Latest <accent>writing</accent>",
+      "seeAll": "See all",
+      "seeAllPosts": "See all posts",
+      "filterLabel": "Filter posts",
+      "empty": "No posts in this category yet."
+    },
+    "contact": {
+      "tag": "CONTACT",
+      "title": "Let’s <accent>talk?</accent>",
+      "description": "Ideas, projects, partnerships or book and game recommendations.",
+      "short": "Ideas, projects or book recommendations.",
+      "form": "Or use the form"
+    }
+  },
+  "Post": {
+    "filters": {
+      "all": "All",
+      "thought": "Thoughts",
+      "book": "Books",
+      "game": "Games"
+    },
+    "kind": {
+      "thought": "THOUGHT",
+      "book": "REVIEW · BOOK",
+      "game": "REVIEW · GAME"
+    },
+    "readingTime": "{minutes} MIN",
+    "rating": "Rated {score} out of 5"
+  }
+}

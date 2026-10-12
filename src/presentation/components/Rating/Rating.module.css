@@ -1,0 +1,28 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bar {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.on {
+  background: var(--fg);
+}
+
+.score {
+  margin-left: 8px;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+@media (min-width: 1200px) {
+  .bar {
+    width: 16px;
+  }
+}

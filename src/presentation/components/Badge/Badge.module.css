@@ -1,0 +1,26 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.outline {
+  border: 1px solid var(--line);
+  color: var(--mute);
+}
+
+.solid {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.surface {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--fg);
+}

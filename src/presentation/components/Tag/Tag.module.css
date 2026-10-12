@@ -1,0 +1,9 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  color: var(--mute);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 4px 9px;
+}

@@ -1,0 +1,137 @@
+.header {
+  position: relative;
+  z-index: 20;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.nav {
+  display: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.desktopOnly {
+  display: none !important;
+}
+
+/* Tablet: navegação em pílula */
+@media (min-width: 768px) {
+  .inner {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mobileOnly {
+    display: none !important;
+  }
+
+  .nav {
+    display: flex;
+    gap: 4px;
+    padding: 5px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+  }
+
+  .link {
+    height: 40px;
+    padding: 0 18px;
+    border-radius: var(--radius-pill);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .link:hover {
+    background: var(--line);
+  }
+
+  .active,
+  .active:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 940px) {
+  .link {
+    padding: 0 12px;
+  }
+}
+
+/* Desktop: links de texto, cabeçalho fixo com desfoque */
+@media (min-width: 1200px) {
+  .header {
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .inner {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    gap: 24px;
+  }
+
+  .belowDesktop {
+    display: none !important;
+  }
+
+  .desktopOnly {
+    display: flex !important;
+  }
+
+  .nav {
+    gap: 28px;
+    padding: 0;
+    border: 0;
+    font-size: 15px;
+    color: var(--mute);
+  }
+
+  .link {
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+    font-size: 15px;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: color 0.3s, background-size 0.45s var(--ease-out);
+  }
+
+  .link:hover,
+  .active,
+  .active:hover {
+    color: var(--fg);
+    background-color: transparent;
+    background-size: 100% 1px;
+  }
+
+  .desktop {
+    display: flex;
+  }
+
+  .tablet {
+    display: none;
+  }
+}

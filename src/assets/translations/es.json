@@ -1,0 +1,93 @@
+{
+  "Metadata": {
+    "title": "João Vitor Pereira — pensamientos, reseñas y código",
+    "description": "Blog personal de João Vitor Pereira: currículum, ByteKickStudio, proyectos, pensamientos, reseñas de libros y juegos y estudios."
+  },
+  "Common": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "studies": "Estudios",
+    "projects": "Proyectos",
+    "resume": "Currículum",
+    "contact": "Contacto",
+    "menu": "Menú",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "navigation": "Navegación",
+    "mainMenu": "Menú principal",
+    "bottomNav": "Navegación inferior",
+    "toggleTheme": "Cambiar entre tema claro y oscuro",
+    "language": "Idioma",
+    "changeLanguage": "Cambiar idioma (actual: {current})",
+    "homeLink": "Inicio — João Vitor Pereira",
+    "copyright": "© {year} JOÃO VITOR PEREIRA",
+    "languages": "PT · ES · EN",
+    "backToTop": "ARRIBA"
+  },
+  "Home": {
+    "badge": "TECH LEAD Y DESARROLLADOR EN 5BY5 SOLUÇÕES EM SISTEMAS",
+    "intro": "Desarrollador y cofundador de <strong>ByteKickStudio</strong>. Aquí escribo sobre",
+    "words": ["pensamientos.", "libros.", "juegos.", "código."],
+    "ctaBlog": "Leer el blog",
+    "portraitAlt": "Retrato de João Vitor Pereira",
+    "location": "UBERLÂNDIA - MG, BR",
+    "seal": "ESCRITOS • RESEÑAS • CÓDIGO • ",
+    "marquee": ["Pensamientos", "Reseñas", "Libros", "Juegos", "Código", "Estudios"],
+    "shortcuts": {
+      "resume": "Trayectoria y stack",
+      "blog": "Textos y reseñas",
+      "projects": "Lo que estoy creando",
+      "contact": "Hablemos"
+    },
+    "projects": {
+      "title": "Empresa <accent>y</accent> proyectos",
+      "index": "01 — PROYECTOS",
+      "company": "EMPRESA",
+      "app": "APP",
+      "resumeDesc": "Trayectoria y stack",
+      "soon": "Próximo proyecto",
+      "soonTag": "PRONTO",
+      "appScreenAlt": "Pantalla de la app {name}"
+    },
+    "studies": {
+      "title": "Estudios <accent>en público</accent>",
+      "description": "Rutas de lo que estoy aprendiendo, divididas en clases — algunas con video.",
+      "seeAll": "Ver todos",
+      "lessons": "{count, plural, one {# CLASE} other {# CLASES}}",
+      "videos": "{count, plural, one {# VIDEO} other {# VIDEOS}}",
+      "textOnly": "SOLO TEXTO",
+      "inProgress": "EN CURSO",
+      "completed": "COMPLETADO",
+      "progress": "{done}/{total} CLASES"
+    },
+    "latest": {
+      "title": "Últimos <accent>textos</accent>",
+      "seeAll": "Ver todos",
+      "seeAllPosts": "Ver todos los textos",
+      "filterLabel": "Filtrar textos",
+      "empty": "Todavía no hay textos en esta categoría."
+    },
+    "contact": {
+      "tag": "CONTACTO",
+      "title": "¿Hablamos <accent>un rato?</accent>",
+      "description": "Ideas, proyectos, alianzas o recomendaciones de libros y juegos.",
+      "short": "Ideas, proyectos o recomendaciones de libros.",
+      "form": "O usa el formulario"
+    }
+  },
+  "Post": {
+    "filters": {
+      "all": "Todo",
+      "thought": "Pensamientos",
+      "book": "Libros",
+      "game": "Juegos"
+    },
+    "kind": {
+      "thought": "PENSAMIENTO",
+      "book": "RESEÑA · LIBRO",
+      "game": "RESEÑA · JUEGO"
+    },
+    "readingTime": "{minutes} MIN",
+    "rating": "Nota {score} de 5"
+  }
+}

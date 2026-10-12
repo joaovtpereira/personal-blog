@@ -1,0 +1,54 @@
+@keyframes marq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 28px;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  animation: marq 26s linear infinite;
+}
+
+.star {
+  color: var(--mute);
+}
+
+@media (min-width: 768px) {
+  .marquee {
+    margin-top: 56px;
+    padding: 20px 0;
+  }
+
+  .track {
+    gap: 36px;
+    font-size: 34px;
+    animation-duration: 30s;
+  }
+}
+
+@media (min-width: 1200px) {
+  .marquee {
+    margin-top: 88px;
+    padding: 24px 0;
+  }
+
+  .track {
+    gap: 48px;
+    font-size: 48px;
+    letter-spacing: -0.03em;
+    animation-duration: 34s;
+  }
+}

@@ -1,0 +1,89 @@
+.tile {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 150px;
+  background: var(--card);
+}
+
+.placeholder {
+  background: transparent;
+  border-style: dashed;
+  color: var(--mute);
+}
+
+.arrow,
+.tag {
+  align-self: flex-end;
+}
+
+.tag {
+  font-size: 11px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.description {
+  display: none;
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--mute);
+}
+
+.soon {
+  font-size: 18px;
+}
+
+@media (max-width: 767px) {
+  /* No celular o "Próximo projeto" vira uma faixa horizontal. */
+  .placeholder {
+    min-height: 0;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 22px 24px;
+    font-size: 14px;
+  }
+
+  .placeholder .tag {
+    align-self: center;
+    font-size: 12px;
+  }
+
+  .placeholder .soon {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tile {
+    flex: 1;
+    min-height: 200px;
+    padding: 28px;
+    border-radius: 32px;
+  }
+
+  .title {
+    font-size: 30px;
+    letter-spacing: -0.04em;
+  }
+
+  .description {
+    display: block;
+  }
+
+  .tag {
+    font-size: 12px;
+  }
+
+  .soon {
+    font-size: 22px;
+  }
+}

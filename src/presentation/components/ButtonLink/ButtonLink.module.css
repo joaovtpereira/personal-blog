@@ -1,0 +1,56 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-weight: 500;
+  transition: transform 0.3s, letter-spacing 0.4s, border-color 0.3s;
+}
+
+.button:hover {
+  letter-spacing: 0.02em;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.m {
+  height: 56px;
+  padding: 0 28px;
+  font-size: 16px;
+}
+
+.l {
+  height: 64px;
+  padding: 0 28px;
+  font-size: 17px;
+  font-weight: 400;
+  justify-content: space-between;
+}
+
+.primary {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.ghost {
+  border-color: var(--line);
+  font-weight: 400;
+}
+
+.ghost:hover {
+  border-color: var(--fg);
+}
+
+/* Sobre superfície invertida (fundo fg). */
+.inverse {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.inverseGhost {
+  border-color: currentColor;
+}

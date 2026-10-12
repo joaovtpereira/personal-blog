@@ -1,0 +1,49 @@
+@keyframes words {
+  0%, 18% { transform: translateY(0); }
+  22%, 40% { transform: translateY(-20%); }
+  44%, 62% { transform: translateY(-40%); }
+  66%, 84% { transform: translateY(-60%); }
+  88%, 100% { transform: translateY(-80%); }
+}
+
+.window {
+  --h: 27px;
+  display: inline-block;
+  height: var(--h);
+  overflow: hidden;
+  vertical-align: bottom;
+  color: var(--fg);
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  animation: words 9s var(--ease-in-out) infinite;
+}
+
+.word {
+  height: var(--h);
+  font-size: 22px;
+  line-height: var(--h);
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .window {
+    --h: 28px;
+  }
+
+  .word {
+    font-size: 23px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .window {
+    --h: 33px;
+  }
+
+  .word {
+    font-size: 28px;
+  }
+}

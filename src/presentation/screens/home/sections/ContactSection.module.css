@@ -1,0 +1,10 @@
+.section {
+  padding-top: var(--section-gap);
+  scroll-margin-top: 24px;
+}
+
+@media (min-width: 1200px) {
+  .section {
+    scroll-margin-top: 96px;
+  }
+}

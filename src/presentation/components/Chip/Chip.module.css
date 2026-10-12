@@ -1,0 +1,36 @@
+.chip {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.chip:hover {
+  border-color: var(--fg);
+}
+
+.chip:active {
+  transform: scale(0.95);
+}
+
+.on {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+@media (min-width: 768px) {
+  .chip {
+    height: 44px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .chip {
+    padding: 0 18px;
+  }
+}

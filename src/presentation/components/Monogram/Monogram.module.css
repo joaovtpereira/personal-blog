@@ -1,0 +1,42 @@
+.link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mark {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  transition: border-color 0.3s;
+}
+
+.link:hover .mark {
+  border-color: var(--fg);
+}
+
+.name {
+  display: none;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .mark {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .name {
+    display: inline;
+  }
+}

@@ -1,0 +1,95 @@
+@keyframes sheet {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.trigger {
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.trigger:hover {
+  border-color: var(--fg);
+}
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 20px var(--gutter) 32px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: sheet 0.6s var(--ease-in-out) both;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kicker {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.close {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  display: grid;
+  place-items: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 64px;
+}
+
+.link {
+  font-size: clamp(40px, 13vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.num {
+  font-size: 12px;
+  opacity: 0.5;
+  letter-spacing: 0;
+}
+
+.langs {
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.external {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}

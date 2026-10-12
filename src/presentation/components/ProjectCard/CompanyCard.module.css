@@ -1,0 +1,144 @@
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  background: var(--card);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--fg);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+}
+
+.name {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.description {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--mute);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  font-size: 14px;
+}
+
+.fromTablet {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobileOnly {
+    display: none !important;
+  }
+
+  .fromTablet {
+    display: block;
+  }
+
+  .card {
+    grid-row: span 2;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 28px;
+    border-radius: 32px;
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+
+  .logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+  }
+
+  .name {
+    margin-top: 10px;
+    font-size: 40px;
+    letter-spacing: -0.05em;
+  }
+
+  .accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .description {
+    margin-top: 12px;
+    color: inherit;
+    opacity: 0.75;
+  }
+
+  .url {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    grid-row: auto;
+    min-height: 440px;
+    padding: 36px;
+    border-radius: var(--radius-xl);
+  }
+
+  .logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .name {
+    margin-top: 12px;
+    font-size: 52px;
+  }
+
+  .description {
+    margin-top: 14px;
+    font-size: 17px;
+    max-width: 420px;
+  }
+
+  .url {
+    margin-top: 24px;
+  }
+}

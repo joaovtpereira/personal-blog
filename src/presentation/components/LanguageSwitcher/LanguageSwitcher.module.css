@@ -1,0 +1,71 @@
+.cycle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  transition: border-color 0.3s;
+}
+
+.cycle:hover {
+  border-color: var(--fg);
+}
+
+.cycle[aria-busy="true"] {
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .cycle {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.segmented {
+  display: flex;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+
+.segmented .option {
+  height: 36px;
+  min-width: 44px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.segmented .on {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.sheet {
+  display: flex;
+  gap: 6px;
+}
+
+.sheet .option {
+  height: 44px;
+  min-width: 56px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dentro do menu invertido (fundo fg) o selecionado volta para bg/fg. */
+.sheet .on {
+  background: var(--bg);
+  color: var(--fg);
+}

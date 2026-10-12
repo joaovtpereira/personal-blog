@@ -1,0 +1,101 @@
+.card {
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cover {
+  display: none;
+}
+
+.body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.count {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.tags {
+  display: none;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.progress {
+  margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    border-radius: 30px;
+  }
+
+  .cover {
+    display: block;
+    position: relative;
+    height: 150px;
+    border-bottom: 1px solid var(--line);
+    background-image: linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .number {
+    position: absolute;
+    left: 22px;
+    bottom: 8px;
+    font-size: 80px;
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 1;
+  }
+
+  .coverBadge {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+  }
+
+  .top {
+    display: none;
+  }
+
+  .body {
+    padding: 22px 24px 26px;
+    gap: 14px;
+  }
+
+  .tags {
+    display: block;
+  }
+}

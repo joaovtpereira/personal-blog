@@ -1,0 +1,13 @@
+.seal {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  animation: spin 20s linear infinite;
+}
+
+.text {
+  font-size: 10.5px;
+  fill: currentColor;
+}
