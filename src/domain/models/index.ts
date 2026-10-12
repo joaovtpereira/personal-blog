@@ -3,6 +3,7 @@ export * from "./contact-message-model";
 export * from "./content-block-model";
 export * from "./lesson-comment-model";
 export * from "./lesson-model";
+export * from "./post-content-model";
 export * from "./post-model";
 export * from "./project-model";
 export * from "./resume-model";

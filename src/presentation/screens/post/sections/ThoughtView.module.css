@@ -1,0 +1,222 @@
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes ink {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.page {
+  padding-top: 48px;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+}
+
+.glyph {
+  position: absolute;
+  left: 50%;
+  top: -42px;
+  margin-left: -36px;
+  font-size: 140px;
+  line-height: 1;
+  color: var(--line);
+  pointer-events: none;
+  animation: drift 6s ease-in-out infinite;
+}
+
+.badges {
+  position: relative;
+  display: inline-flex;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.badge {
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.date {
+  border: 1px solid var(--line);
+  color: var(--mute);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.title {
+  position: relative;
+  margin-top: 22px;
+  font-size: clamp(36px, 12vw, 46px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.title :global(.serif) {
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  margin-top: 16px;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--mute);
+}
+
+.byline {
+  margin-top: 22px;
+}
+
+.ink {
+  margin: 36px auto 0;
+  width: 80px;
+  height: 1px;
+  background: var(--fg);
+  animation: ink 1.2s var(--ease-out) 0.6s both;
+}
+
+.article {
+  --drop-cap-size: 4.2em;
+  --drop-cap-padding: 6px 10px 0 0;
+  padding-top: 36px;
+  font-size: 18px;
+}
+
+.article :global(p) {
+  line-height: 1.75;
+}
+
+.reactions {
+  padding-top: 40px;
+}
+
+.collection {
+  padding-top: 32px;
+}
+
+.comments {
+  padding-top: 44px;
+}
+
+.related {
+  padding-top: 40px;
+}
+
+.relatedTitle {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.relatedList {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Tablet: coluna de leitura mais estreita e centralizada */
+@media (min-width: 768px) {
+  .page {
+    padding-top: 72px;
+    max-width: calc(640px + 2 * var(--gutter));
+  }
+
+  .glyph {
+    top: -60px;
+    margin-left: -48px;
+    font-size: 190px;
+  }
+
+  .title {
+    font-size: clamp(56px, 9vw, 76px);
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  .lead {
+    font-size: 28px;
+  }
+
+  .article {
+    --drop-cap-size: 4.6em;
+    --drop-cap-padding: 8px 12px 0 0;
+    padding-top: 48px;
+    font-size: 20px;
+  }
+
+  .article :global(p) {
+    line-height: 1.8;
+  }
+
+  .relatedList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: título largo, texto em 720px */
+@media (min-width: 1200px) {
+  .page {
+    padding-top: 96px;
+    max-width: calc(980px + 2 * var(--gutter));
+  }
+
+  .glyph {
+    top: -80px;
+    margin-left: -64px;
+    font-size: 260px;
+  }
+
+  .title {
+    margin: 28px auto 0;
+    font-size: clamp(56px, 7.5vw, 112px);
+    line-height: 0.98;
+  }
+
+  .lead {
+    margin: 20px auto 0;
+    max-width: 720px;
+    font-size: 32px;
+  }
+
+  .article,
+  .reactions,
+  .collection,
+  .comments,
+  .related {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .article {
+    --drop-cap-size: 4.95em;
+    --drop-cap-padding: 8px 14px 0 0;
+    padding-top: 56px;
+    font-size: 21px;
+  }
+
+  .comments {
+    padding-top: 64px;
+  }
+}

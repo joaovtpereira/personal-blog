@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { ContentBlock } from "@/domain/entities";
+import { splitDropCap } from "@/presentation/utils/drop-cap";
 import { VideoPlayer } from "../VideoPlayer";
 import { Checklist } from "./Checklist";
 import { CodeBlock } from "./CodeBlock";
@@ -12,6 +13,11 @@ type ContentRendererProps = {
   blocks: ContentBlock[];
   /** reading: texto corrido de aula/post · notes: anotações compactas ao lado do vídeo */
   variant?: "reading" | "notes";
+  /**
+   * Quantos níveis somar aos títulos do markdown: 1 quando a página já tem um h2 acima
+   * (título da aula), 0 quando o texto vem logo após o h1 (posts).
+   */
+  headingOffset?: 0 | 1;
   className?: string;
 };
 
@@ -19,22 +25,22 @@ type ContentRendererProps = {
  * Transforma os blocos da entidade (vindos do markdown) nos componentes de conteúdo do DS.
  * Tamanhos em `em`: herdam a fonte do contêiner (controle de tamanho do texto).
  */
-export function ContentRenderer({ blocks, variant = "reading", className }: ContentRendererProps) {
+export function ContentRenderer({ blocks, variant = "reading", headingOffset = 1, className }: ContentRendererProps) {
   return (
     <div className={`${styles.content} ${styles[variant]} ${className ?? ""}`}>
       {blocks.map((block, i) => (
-        <Block key={i} block={block} />
+        <Block key={i} block={block} headingOffset={headingOffset} />
       ))}
     </div>
   );
 }
 
-function Block({ block }: { block: ContentBlock }) {
+function Block({ block, headingOffset }: { block: ContentBlock; headingOffset: 0 | 1 }) {
   const t = useTranslations("Content");
 
   switch (block.type) {
     case "heading": {
-      const Tag = `h${block.level + 1}` as "h3" | "h4" | "h5";
+      const Tag = `h${block.level + headingOffset}` as "h2" | "h3" | "h4" | "h5";
       return (
         <Tag id={block.anchor} className={`${styles.heading} ${styles[`h${block.level}`]}`}>
           {block.text}
@@ -47,12 +53,22 @@ function Block({ block }: { block: ContentBlock }) {
           <RichTextView text={block.text} />
         </p>
       );
-    case "paragraph":
+    case "paragraph": {
+      const dropCap = block.dropCap ? splitDropCap(block.text) : null;
       return (
-        <p className={`${styles.paragraph} ${block.muted ? styles.muted : ""} ${block.dropCap ? styles.dropCap : ""}`}>
-          <RichTextView text={block.text} />
+        <p className={`${styles.paragraph} ${block.muted ? styles.muted : ""} ${dropCap ? styles.dropCap : ""}`}>
+          {dropCap && (
+            <>
+              <span className={styles.dropCapLetter} aria-hidden>
+                {dropCap.cap}
+              </span>
+              {dropCap.spoken && <span className="sr-only">{dropCap.spoken}</span>}
+            </>
+          )}
+          <RichTextView text={dropCap ? dropCap.rest : block.text} />
         </p>
       );
+    }
     case "keyIdea":
       return (
         <figure className={styles.keyIdea}>
@@ -64,9 +80,9 @@ function Block({ block }: { block: ContentBlock }) {
       return (
         <figure className={styles.quote}>
           <blockquote className="serif">
-            <RichTextView text={block.text} />
+            “<RichTextView text={block.text} />”
           </blockquote>
-          {block.cite && <figcaption className="mono">— {block.cite}</figcaption>}
+          {block.cite && <figcaption className="mono">— {block.cite.toUpperCase()}</figcaption>}
         </figure>
       );
     case "reference":

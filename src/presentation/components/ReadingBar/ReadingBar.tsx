@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode, type RefObject } from "react";
+import { createContext, useContext, useEffect, useRef, type ReactNode, type RefObject } from "react";
 import styles from "./ReadingBar.module.css";
 
 type ReadingBarProps = {
@@ -48,5 +48,30 @@ export function ReadingBar({ target, label, children }: ReadingBarProps) {
         <div ref={fill} className={styles.fill} />
       </div>
     </div>
+  );
+}
+
+const ReadingTargetContext = createContext<RefObject<HTMLElement | null> | null>(null);
+
+/** Barra de progresso fixa + escopo: o `ReadingTarget` dentro dele é o texto medido. */
+export function ReadingScope({ label, toolbar, children }: { label: string; toolbar?: ReactNode; children: ReactNode }) {
+  const target = useRef<HTMLElement>(null);
+  return (
+    <ReadingTargetContext.Provider value={target}>
+      <ReadingBar target={target} label={label}>
+        {toolbar}
+      </ReadingBar>
+      {children}
+    </ReadingTargetContext.Provider>
+  );
+}
+
+/** O artigo cujo avanço a barra mostra. */
+export function ReadingTarget({ children, className }: { children: ReactNode; className?: string }) {
+  const target = useContext(ReadingTargetContext);
+  return (
+    <article ref={target} className={className}>
+      {children}
+    </article>
   );
 }

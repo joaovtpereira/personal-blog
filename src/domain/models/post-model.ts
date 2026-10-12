@@ -1,4 +1,4 @@
-/** Formato externo (markdown/API). Não usar na camada de apresentação. */
+/** Formato externo (frontmatter do markdown/API). Não usar na camada de apresentação. */
 export type PostModel = {
   id: string;
   slug: string;
@@ -10,4 +10,10 @@ export type PostModel = {
   reading_time_minutes: number;
   published_at: string;
   rating?: number | null;
+  /** autor (livro) */
+  author?: string | null;
+  /** plataforma (jogo) */
+  platform?: string | null;
+  cover_image?: string | null;
+  featured?: boolean;
 };

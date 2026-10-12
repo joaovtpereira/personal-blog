@@ -1,0 +1,102 @@
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.like,
+.reaction {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.like {
+  height: 52px;
+  padding: 0 20px;
+  font-size: 15px;
+}
+
+.like:hover:not(:disabled),
+.reaction:hover:not(:disabled) {
+  border-color: var(--fg);
+}
+
+.like:disabled,
+.reaction:disabled {
+  opacity: 0.6;
+}
+
+.on,
+.on:hover {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.pop {
+  display: inline-flex;
+  animation: pop 0.45s cubic-bezier(0.2, 1.4, 0.3, 1);
+}
+
+.filled path {
+  fill: currentColor;
+}
+
+.count {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.on .count {
+  color: inherit;
+  opacity: 0.6;
+}
+
+.reactions {
+  text-align: center;
+}
+
+.title {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.group {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.reaction {
+  height: 44px;
+  padding: 0 14px;
+  font-size: 14px;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .like {
+    height: 56px;
+  }
+
+  .reaction {
+    height: 48px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+}

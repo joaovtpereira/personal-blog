@@ -4,6 +4,7 @@ import { Link } from "@/main/i18n/navigation";
 import { ROUTES } from "@/main/routes";
 import { Rating } from "../Rating";
 import { Tag } from "../Tag";
+import { formatShortDate } from "../../utils/format";
 import styles from "./PostCard.module.css";
 
 type PostCardProps = {
@@ -16,10 +17,7 @@ type PostCardProps = {
 export function PostCard({ post, delay = 0 }: PostCardProps) {
   const t = useTranslations("Post");
   const format = useFormatter();
-  const date = format
-    .dateTime(new Date(post.publishedAt), { day: "2-digit", month: "short", year: "numeric" })
-    .replace(/\./g, "")
-    .toUpperCase();
+  const date = formatShortDate(format, post.publishedAt);
 
   return (
     <Link href={ROUTES.post(post.slug)} className={`swap ${styles.card}`} style={{ animationDelay: `${delay}s` }}>

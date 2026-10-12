@@ -1,0 +1,483 @@
+/* Abaixo do desktop, main/aside/points somem e os filhos entram direto na grade. */
+.page {
+  padding-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 10px;
+}
+
+.book {
+  grid-template-areas:
+    "hero hero"
+    "collection collection"
+    "cover cover"
+    "facts facts"
+    "article article"
+    "pros cons"
+    "verdict verdict"
+    "actions actions"
+    "comments comments"
+    "next next";
+}
+
+.game {
+  grid-template-areas:
+    "hero hero"
+    "cover cover"
+    "facts facts"
+    "collection collection"
+    "article article"
+    "pros cons"
+    "verdict verdict"
+    "actions actions"
+    "comments comments"
+    "next next";
+}
+
+.main,
+.aside,
+.points {
+  display: contents;
+}
+
+.back,
+.desktopOnly,
+.factsAside,
+.asideTags,
+.dateLong {
+  display: none !important;
+}
+
+.hero {
+  grid-area: hero;
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.badge {
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.completed {
+  border: 1px solid var(--fg);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.date {
+  border: 1px solid var(--line);
+  color: var(--mute);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: clamp(38px, 12.5vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.subtitle {
+  display: block;
+  margin-top: 10px;
+  font-size: 24px;
+  color: var(--mute);
+}
+
+.book .subtitle {
+  font-size: 26px;
+}
+
+.heroTags {
+  margin-top: 16px;
+}
+
+.tagList {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tagLink {
+  display: inline-flex;
+}
+
+.tagLink > span {
+  padding: 6px 11px;
+  font-size: 12px;
+  color: var(--fg);
+  transition: background 0.3s, color 0.3s;
+}
+
+.tagLink:hover > span {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.collection {
+  grid-area: collection;
+  margin-top: 24px;
+}
+
+.game .collection {
+  margin-top: 20px;
+}
+
+.cover {
+  grid-area: cover;
+  margin-top: 32px;
+}
+
+.game .cover {
+  margin-top: 28px;
+}
+
+.facts {
+  grid-area: facts;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game .facts {
+  margin-top: 12px;
+}
+
+.article {
+  --drop-cap-size: 4.1em;
+  --drop-cap-padding: 6px 10px 0 0;
+  grid-area: article;
+  padding-top: 40px;
+  font-size: 18px;
+  min-width: 0;
+}
+
+.pros {
+  grid-area: pros;
+  margin-top: 40px;
+}
+
+.cons {
+  grid-area: cons;
+  margin-top: 40px;
+}
+
+.verdict {
+  grid-area: verdict;
+  margin-top: 12px;
+}
+
+.actions {
+  grid-area: actions;
+  margin-top: 28px;
+}
+
+.actionsRow {
+  display: flex;
+  gap: 10px;
+}
+
+.like {
+  flex: 1;
+}
+
+.round,
+.copy {
+  width: 52px !important;
+  height: 52px !important;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  transition: border-color 0.3s;
+}
+
+.round:hover {
+  border-color: var(--fg);
+}
+
+.comments {
+  grid-area: comments;
+  padding-top: 48px;
+  min-width: 0;
+}
+
+.next {
+  grid-area: next;
+  padding-top: 40px;
+}
+
+.nextLabel {
+  margin-bottom: 12px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.allPosts {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--mute);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .page {
+    padding-top: 48px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 14px;
+  }
+
+  .book,
+  .game {
+    grid-template-areas:
+      "hero hero hero"
+      "collection collection collection"
+      "cover cover cover"
+      "facts facts facts"
+      "article article article"
+      "pros cons verdict"
+      "actions actions actions"
+      "comments comments comments"
+      "next next next";
+  }
+
+  .badge,
+  .completed,
+  .date {
+    padding: 7px 12px;
+  }
+
+  .dateShort {
+    display: none;
+  }
+
+  .dateLong {
+    display: inline !important;
+  }
+
+  .title {
+    margin-top: 24px;
+    font-size: clamp(64px, 10vw, 84px);
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+  }
+
+  .subtitleRow {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .subtitle,
+  .book .subtitle {
+    margin-top: 0;
+    font-size: 34px;
+  }
+
+  .heroTags {
+    margin-top: 0;
+  }
+
+  .collection {
+    margin-top: 28px;
+  }
+
+  .cover,
+  .game .cover {
+    margin-top: 32px;
+  }
+
+  .practice {
+    display: none;
+  }
+
+  .article {
+    --drop-cap-size: 4.6em;
+    --drop-cap-padding: 8px 12px 0 0;
+    padding: 48px 40px 0;
+    font-size: 19px;
+  }
+
+  .pros,
+  .cons {
+    margin-top: 48px;
+  }
+
+  .verdict {
+    margin-top: 48px;
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  .round,
+  .copy {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .comments {
+    padding-top: 56px;
+  }
+}
+
+/* Desktop: texto | coluna lateral fixa */
+@media (min-width: 1200px) {
+  .page {
+    padding-top: 64px;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    column-gap: 64px;
+  }
+
+  .book,
+  .game {
+    grid-template-areas:
+      "back back"
+      "hero hero"
+      "collection collection"
+      "cover cover"
+      "main aside";
+  }
+
+  .back {
+    grid-area: back;
+    display: inline-block !important;
+    justify-self: start;
+    font-size: 14px;
+    color: var(--mute);
+  }
+
+  .hero {
+    margin-top: 28px;
+  }
+
+  .badges {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: clamp(56px, 8vw, 120px);
+    max-width: 1000px;
+  }
+
+  .subtitleRow {
+    margin-top: 12px;
+  }
+
+  .subtitle,
+  .book .subtitle {
+    font-size: clamp(28px, 3vw, 44px);
+  }
+
+  .heroTags,
+  .facts {
+    display: none !important;
+  }
+
+  .collection {
+    margin-top: 36px;
+  }
+
+  .cover,
+  .game .cover {
+    margin-top: 48px;
+  }
+
+  .main {
+    grid-area: main;
+    display: block;
+    min-width: 0;
+    max-width: 720px;
+    padding-top: 64px;
+  }
+
+  .article {
+    --drop-cap-size: 4.8em;
+    --drop-cap-padding: 8px 14px 0 0;
+    padding: 0;
+    font-size: 20px;
+  }
+
+  .points {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Mesmos nomes da grade de fora: cada card tem sua coluna em qualquer navegador. */
+    grid-template-areas: "pros cons";
+    gap: 14px;
+  }
+
+  .pros,
+  .cons {
+    margin-top: 0;
+  }
+
+  .comments {
+    padding-top: 72px;
+  }
+
+  .aside {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: sticky;
+    top: 104px;
+    align-self: start;
+    margin-top: 64px;
+  }
+
+  .verdict,
+  .actions {
+    margin-top: 0;
+  }
+
+  .factsAside,
+  .asideTags {
+    display: block !important;
+  }
+
+  .tagLink > span {
+    padding: 8px 12px;
+  }
+
+  .desktopOnly {
+    display: grid !important;
+  }
+
+  .round,
+  .copy {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .next {
+    margin-top: 10px;
+    padding-top: 0;
+  }
+
+  .nextLabel {
+    display: none;
+  }
+}

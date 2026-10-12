@@ -1,0 +1,67 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.page,
+.step {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.page:hover,
+.step:hover {
+  border-color: var(--fg);
+}
+
+.page:active,
+.step:active {
+  transform: scale(0.95);
+}
+
+.on,
+.on:hover {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.gap {
+  width: 24px;
+  text-align: center;
+  color: var(--mute);
+}
+
+.loadMore {
+  width: 100%;
+  height: 52px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: border-color 0.3s, transform 0.2s;
+}
+
+.loadMore:hover {
+  border-color: var(--fg);
+}
+
+.loadMore:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 768px) {
+  .loadMore {
+    height: 56px;
+  }
+}

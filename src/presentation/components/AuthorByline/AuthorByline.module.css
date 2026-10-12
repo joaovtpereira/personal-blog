@@ -1,0 +1,43 @@
+.byline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: grayscale(1);
+}
+
+.text {
+  text-align: left;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.meta {
+  font-size: 10px;
+  color: var(--mute);
+}
+
+@media (min-width: 768px) {
+  .avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .name {
+    font-size: 15px;
+  }
+
+  .meta {
+    font-size: 11px;
+  }
+}

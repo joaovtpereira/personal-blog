@@ -298,13 +298,13 @@
     "readingProgress": "Reading progress",
     "collection": {
       "label": "COLLECTION",
-      "aria": "Study collection",
-      "position": "STUDY {position} OF {total}",
-      "previous": "← STUDY {position}",
-      "next": "STUDY {position} →",
-      "here": "STUDY {position} · YOU ARE HERE",
+      "aria": "Collection",
+      "position": "{unit} OF {total}",
+      "previous": "← {unit}",
+      "next": "{unit} →",
+      "here": "{unit} · YOU ARE HERE",
       "seeAll": "See the full collection",
-      "seeAllCount": "· {total} STUDIES"
+      "seeAllCount": "{kind, select, studies {· {total} STUDIES} other {· {total} PARTS}}"
     }
   },
   "Video": {
@@ -315,19 +315,14 @@
     "loading": "Loading video…"
   },
   "Comments": {
-    "title": "Comments",
-    "count": "{count} ON THIS LESSON",
     "name": "NAME",
     "namePlaceholder": "Your name (optional)",
-    "text": "QUESTION OR COMMENT",
-    "textPlaceholder": "What did you take from this lesson?",
     "moderation": "Comments are moderated.",
     "publish": "Post",
     "sending": "Sending…",
     "anonymous": "Anonymous",
     "reply": "Reply",
     "replyTo": "Reply to {name}",
-    "empty": "No comments on this lesson yet. Be the first.",
     "pending": "Got it! Your comment will show up here after moderation.",
     "another": "Write another",
     "errors": {
@@ -335,8 +330,34 @@
       "textTooShort": "Write a bit more.",
       "textTooLong": "Use at most {max} characters.",
       "nameTooLong": "Use at most {max} characters.",
-      "failed": "I couldn’t send it right now. Try again in a moment."
-    }
+      "failed": "I couldn’t send it right now. Try again in a moment.",
+      "emailInvalid": "That e-mail doesn’t look valid."
+    },
+    "variants": {
+      "lesson": {
+        "title": "Comments",
+        "count": "{count} ON THIS LESSON",
+        "text": "QUESTION OR COMMENT",
+        "placeholder": "What did you take from this lesson?",
+        "empty": "No comments on this lesson yet. Be the first."
+      },
+      "review": {
+        "title": "Comments",
+        "count": "{count} ON THIS POST",
+        "text": "COMMENT",
+        "placeholder": "What did you think?",
+        "empty": "No comments on this review yet. Be the first."
+      },
+      "thought": {
+        "title": "Conversation",
+        "count": "{count} ON THIS POST",
+        "text": "WHAT DO YOU THINK?",
+        "placeholder": "Agree, disagree, add something…",
+        "empty": "No comments on this post yet. Be the first."
+      }
+    },
+    "email": "E-MAIL (NEVER PUBLISHED)",
+    "emailPlaceholder": "you@email.com"
   },
   "Content": {
     "callout": {
@@ -416,5 +437,99 @@
     "copied": "Link copied",
     "rating": "Rated {score} out of 5",
     "progressNote": "Your progress is saved only in this browser."
+  },
+  "Blog": {
+    "metaTitle": "Blog — Notes & reviews",
+    "metaDescription": "Loose thoughts, books I’ve read and games I’ve beaten — no rush and no algorithm.",
+    "titleLine1": "Notes",
+    "titleLine2": "& reviews",
+    "lead": "Loose thoughts, books I’ve read and games I’ve beaten — no rush and no algorithm.",
+    "search": {
+      "label": "SEARCH",
+      "placeholder": "Title, book, game…",
+      "clear": "Clear search",
+      "submit": "Search"
+    },
+    "categories": {
+      "label": "CATEGORIES",
+      "aria": "Categories",
+      "all": "All",
+      "thought": "Thoughts",
+      "book": "Books",
+      "game": "Games"
+    },
+    "tags": {
+      "label": "TAGS",
+      "aria": "Filter by tag",
+      "remove": "Remove #{tag} filter"
+    },
+    "featured": {
+      "label": "FEATURED",
+      "cover": "[COVER]",
+      "capture": "[CAPTURE]"
+    },
+    "heading": {
+      "all": "All writing",
+      "search": "Results for “{query}”"
+    },
+    "total": "{count, plural, one {{padded} POST} other {{padded} POSTS}}",
+    "empty": "No posts match this filter yet.",
+    "clearFilters": "Clear filters",
+    "loadMore": "Load more",
+    "pagination": "Pagination",
+    "page": "Page {page}",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "readingTime": "{minutes} MIN"
+  },
+  "PostPage": {
+    "metaTitle": "{title} — {kind}",
+    "readTime": "{minutes} MIN READ",
+    "dateAndTime": "{date} · {minutes} MIN READ",
+    "readingProgress": "Reading progress",
+    "back": "Back to the blog",
+    "backShort": "Blog",
+    "allPosts": "All posts",
+    "by": "by {author}",
+    "completed": "✓ BEATEN",
+    "facts": {
+      "title": "Fact sheet",
+      "practice": "IN PRACTICE",
+      "year": "YEAR",
+      "pages": "PAGES",
+      "genre": "GENRE",
+      "genres": "GENRES",
+      "platform": "PLATFORM",
+      "hours": "HOURS",
+      "hoursValue": "{hours}h",
+      "release": "RELEASE",
+      "worth": "WORTH THE PRICE?",
+      "difficulty": "DIFFICULTY",
+      "audience": "FOR WHOM"
+    },
+    "pros": "+ LIKED",
+    "cons": "− NOT SO MUCH",
+    "verdict": "VERDICT",
+    "verdictAria": "Rated {score} out of 5",
+    "like": "Like",
+    "liked": "Liked",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "share": "Share",
+    "goComments": "Go to comments",
+    "reactionsTitle": "THIS POST…",
+    "reactionsAria": "React to the post",
+    "reactions": {
+      "agree": "Made sense",
+      "think": "Made me think",
+      "disagree": "I disagree"
+    },
+    "nextRead": "NEXT READ",
+    "nextReadKind": "NEXT · {kind}",
+    "otherThoughts": "OTHER THOUGHTS",
+    "author": "João Vitor Pereira",
+    "cover": "[COVER]",
+    "capture": "● REC [CAPTURE]",
+    "captureAlt": "Screenshot of {title}"
   }
 }

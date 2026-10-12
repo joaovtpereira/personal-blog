@@ -298,13 +298,13 @@
     "readingProgress": "Progresso de leitura",
     "collection": {
       "label": "COLEÇÃO",
-      "aria": "Coleção de estudos",
-      "position": "ESTUDO {position} DE {total}",
-      "previous": "← ESTUDO {position}",
-      "next": "ESTUDO {position} →",
-      "here": "ESTUDO {position} · VOCÊ ESTÁ AQUI",
+      "aria": "Coleção",
+      "position": "{unit} DE {total}",
+      "previous": "← {unit}",
+      "next": "{unit} →",
+      "here": "{unit} · VOCÊ ESTÁ AQUI",
       "seeAll": "Ver coleção completa",
-      "seeAllCount": "· {total} ESTUDOS"
+      "seeAllCount": "{kind, select, studies {· {total} ESTUDOS} other {· {total} PARTES}}"
     }
   },
   "Video": {
@@ -315,19 +315,14 @@
     "loading": "Carregando vídeo…"
   },
   "Comments": {
-    "title": "Comentários",
-    "count": "{count} NESTA AULA",
     "name": "NOME",
     "namePlaceholder": "Seu nome (opcional)",
-    "text": "DÚVIDA OU COMENTÁRIO",
-    "textPlaceholder": "O que ficou dessa aula?",
     "moderation": "Comentários passam por moderação.",
     "publish": "Publicar",
     "sending": "Enviando…",
     "anonymous": "Anônimo",
     "reply": "Responder",
     "replyTo": "Responder a {name}",
-    "empty": "Ainda não há comentários nesta aula. Seja o primeiro.",
     "pending": "Recebido! Seu comentário aparece aqui depois da moderação.",
     "another": "Escrever outro",
     "errors": {
@@ -335,8 +330,34 @@
       "textTooShort": "Escreva um pouco mais.",
       "textTooLong": "Use no máximo {max} caracteres.",
       "nameTooLong": "Use no máximo {max} caracteres.",
-      "failed": "Não consegui enviar agora. Tente de novo em instantes."
-    }
+      "failed": "Não consegui enviar agora. Tente de novo em instantes.",
+      "emailInvalid": "Esse e-mail não parece válido."
+    },
+    "variants": {
+      "lesson": {
+        "title": "Comentários",
+        "count": "{count} NESTA AULA",
+        "text": "DÚVIDA OU COMENTÁRIO",
+        "placeholder": "O que ficou dessa aula?",
+        "empty": "Ainda não há comentários nesta aula. Seja o primeiro."
+      },
+      "review": {
+        "title": "Comentários",
+        "count": "{count} NESTE TEXTO",
+        "text": "COMENTÁRIO",
+        "placeholder": "O que você achou?",
+        "empty": "Ainda não há comentários nesta resenha. Seja o primeiro."
+      },
+      "thought": {
+        "title": "Conversa",
+        "count": "{count} NESTE TEXTO",
+        "text": "O QUE VOCÊ PENSA?",
+        "placeholder": "Concorda, discorda, acrescenta…",
+        "empty": "Ainda não há comentários neste texto. Seja o primeiro."
+      }
+    },
+    "email": "E-MAIL (NÃO É PUBLICADO)",
+    "emailPlaceholder": "voce@email.com"
   },
   "Content": {
     "callout": {
@@ -416,5 +437,99 @@
     "copied": "Link copiado",
     "rating": "Nota {score} de 5",
     "progressNote": "Seu progresso fica salvo só neste navegador."
+  },
+  "Blog": {
+    "metaTitle": "Blog — Notas & resenhas",
+    "metaDescription": "Pensamentos soltos, livros que li e jogos que zerei — sem pressa e sem algoritmo.",
+    "titleLine1": "Notas",
+    "titleLine2": "& resenhas",
+    "lead": "Pensamentos soltos, livros que li e jogos que zerei — sem pressa e sem algoritmo.",
+    "search": {
+      "label": "BUSCAR",
+      "placeholder": "Título, livro, jogo…",
+      "clear": "Limpar busca",
+      "submit": "Buscar"
+    },
+    "categories": {
+      "label": "CATEGORIAS",
+      "aria": "Categorias",
+      "all": "Tudo",
+      "thought": "Pensamentos",
+      "book": "Livros",
+      "game": "Jogos"
+    },
+    "tags": {
+      "label": "TAGS",
+      "aria": "Filtrar por tag",
+      "remove": "Remover filtro #{tag}"
+    },
+    "featured": {
+      "label": "EM DESTAQUE",
+      "cover": "[CAPA]",
+      "capture": "[CAPTURA]"
+    },
+    "heading": {
+      "all": "Todos os textos",
+      "search": "Resultados para “{query}”"
+    },
+    "total": "{count, plural, one {{padded} TEXTO} other {{padded} TEXTOS}}",
+    "empty": "Nenhum texto com esse filtro ainda.",
+    "clearFilters": "Limpar filtros",
+    "loadMore": "Carregar mais",
+    "pagination": "Paginação",
+    "page": "Página {page}",
+    "previousPage": "Página anterior",
+    "nextPage": "Próxima página",
+    "readingTime": "{minutes} MIN"
+  },
+  "PostPage": {
+    "metaTitle": "{title} — {kind}",
+    "readTime": "{minutes} MIN DE LEITURA",
+    "dateAndTime": "{date} · {minutes} MIN DE LEITURA",
+    "readingProgress": "Progresso de leitura",
+    "back": "Voltar ao blog",
+    "backShort": "Blog",
+    "allPosts": "Todos os textos",
+    "by": "por {author}",
+    "completed": "✓ ZERADO",
+    "facts": {
+      "title": "Ficha técnica",
+      "practice": "NA PRÁTICA",
+      "year": "ANO",
+      "pages": "PÁGINAS",
+      "genre": "GÊNERO",
+      "genres": "GÊNEROS",
+      "platform": "PLATAFORMA",
+      "hours": "HORAS",
+      "hoursValue": "{hours}h",
+      "release": "LANÇAMENTO",
+      "worth": "VALE O PREÇO?",
+      "difficulty": "DIFICULDADE",
+      "audience": "PARA QUEM"
+    },
+    "pros": "+ GOSTEI",
+    "cons": "− NEM TANTO",
+    "verdict": "VEREDITO",
+    "verdictAria": "Nota {score} de 5",
+    "like": "Curtir",
+    "liked": "Curtido",
+    "copyLink": "Copiar link",
+    "copied": "Link copiado",
+    "share": "Compartilhar",
+    "goComments": "Ir para os comentários",
+    "reactionsTitle": "ESSE TEXTO TE…",
+    "reactionsAria": "Reagir ao texto",
+    "reactions": {
+      "agree": "Fez sentido",
+      "think": "Me fez pensar",
+      "disagree": "Discordo"
+    },
+    "nextRead": "PRÓXIMA LEITURA",
+    "nextReadKind": "PRÓXIMA · {kind}",
+    "otherThoughts": "OUTROS PENSAMENTOS",
+    "author": "João Vitor Pereira",
+    "cover": "[CAPA]",
+    "capture": "● REC [CAPTURA]",
+    "captureAlt": "Captura de {title}"
   }
 }

@@ -5,6 +5,7 @@ export * from "./content-block";
 export * from "./lesson";
 export * from "./locale";
 export * from "./post";
+export * from "./post-detail";
 export * from "./project";
 export * from "./resume";
 export * from "./rich-text";

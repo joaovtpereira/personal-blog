@@ -1,0 +1,165 @@
+.heading {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+/* Categorias: no celular/tablet o rótulo some e os chips rolam na horizontal */
+.categories .heading {
+  display: none;
+}
+
+.categoryList {
+  list-style: none;
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 0 var(--gutter);
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.categoryList::-webkit-scrollbar {
+  display: none;
+}
+
+.category {
+  height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.category:hover {
+  border-color: var(--fg);
+}
+
+.category:active {
+  transform: scale(0.95);
+}
+
+.count {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.on,
+.on:hover {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.on .count {
+  color: inherit;
+  opacity: 0.6;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tags .heading {
+  margin-right: 4px;
+}
+
+.tagList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  height: 40px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  border: 1px dashed var(--line);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.tag:hover {
+  border-color: var(--fg);
+}
+
+.tag.on {
+  border-style: solid;
+}
+
+@media (min-width: 768px) {
+  .categoryList {
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+
+  .category {
+    height: 44px;
+    padding: 0 16px;
+  }
+
+  .tags .heading {
+    margin-right: 6px;
+  }
+
+  .tag {
+    padding: 0 14px;
+    font-size: 13px;
+  }
+}
+
+/* Desktop: coluna lateral */
+@media (min-width: 1200px) {
+  .categories .heading {
+    display: block;
+  }
+
+  .categoryList {
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .category {
+    height: 48px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: var(--radius-s);
+    justify-content: space-between;
+    font-size: 16px;
+  }
+
+  .category:hover {
+    background: var(--card);
+  }
+
+  .on:hover {
+    background: var(--fg);
+  }
+
+  .tags {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tags .heading {
+    margin-right: 0;
+  }
+}

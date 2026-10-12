@@ -1,0 +1,327 @@
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* As colunas (head/aside/main) só existem no desktop; antes disso os filhos entram na grade. */
+.page {
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "title"
+    "rule"
+    "lead"
+    "search"
+    "categories"
+    "tags"
+    "featured"
+    "list";
+}
+
+.head,
+.aside,
+.main {
+  display: contents;
+}
+
+.title {
+  grid-area: title;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.line {
+  display: block;
+  font-size: clamp(64px, 22vw, 88px);
+}
+
+.accent {
+  letter-spacing: -0.03em;
+}
+
+.rule {
+  grid-area: rule;
+  height: 1px;
+  margin-top: 24px;
+  background: var(--fg);
+  transform-origin: left;
+  animation: grow 1.4s var(--ease-out) 0.4s both;
+}
+
+.lead {
+  grid-area: lead;
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--mute);
+}
+
+.search {
+  grid-area: search;
+  margin-top: 28px;
+}
+
+.categories {
+  grid-area: categories;
+  margin-top: 16px;
+  min-width: 0;
+}
+
+.tags {
+  grid-area: tags;
+  margin-top: 14px;
+}
+
+.featured {
+  grid-area: featured;
+  margin-top: 28px;
+}
+
+.featuredLabel {
+  margin-bottom: 12px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.list {
+  grid-area: list;
+  margin-top: 40px;
+  min-width: 0;
+}
+
+.listHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.listTitle {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.total {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.posts {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  color: var(--mute);
+  font-size: 15px;
+}
+
+.empty a {
+  color: var(--fg);
+}
+
+.loadMore {
+  margin-top: 24px;
+}
+
+.pagination {
+  display: none !important;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .page {
+    padding-top: 40px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "title title"
+      "rule rule"
+      "lead search"
+      "categories categories"
+      "tags tags"
+      "featured featured"
+      "list list";
+    column-gap: 24px;
+    align-items: end;
+  }
+
+  .line {
+    font-size: clamp(88px, 14vw, 116px);
+  }
+
+  .rule {
+    margin-top: 32px;
+  }
+
+  .lead {
+    margin-top: 20px;
+    font-size: 17px;
+  }
+
+  .search {
+    margin-top: 20px;
+  }
+
+  .categories {
+    margin-top: 28px;
+  }
+
+  .featured {
+    margin-top: 36px;
+  }
+
+  /* No tablet o "EM DESTAQUE" vai como selo no próprio card (rótulo acima some). */
+  .featuredLabel {
+    display: none;
+  }
+
+  .list {
+    margin-top: 48px;
+  }
+
+  .listTitle {
+    font-size: 36px;
+  }
+
+  .total {
+    font-size: 12px;
+  }
+
+  .posts {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .empty {
+    grid-column: 1 / -1;
+    padding: 56px 0;
+    font-size: 16px;
+  }
+
+  .loadMore {
+    margin-top: 28px;
+  }
+}
+
+/* Desktop: filtros à esquerda, conteúdo à direita, paginação numerada */
+@media (min-width: 1200px) {
+  .page {
+    padding-top: 72px;
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    grid-template-areas:
+      "head head"
+      "rule rule"
+      "aside main";
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  .head {
+    grid-area: head;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.25em;
+  }
+
+  .line {
+    font-size: clamp(64px, 9vw, 140px);
+  }
+
+  .lead {
+    margin-top: 0;
+    max-width: 360px;
+    font-size: 18px;
+  }
+
+  .rule {
+    margin-top: 40px;
+  }
+
+  .aside {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding-top: 48px;
+  }
+
+  .search,
+  .categories,
+  .tags {
+    margin-top: 0;
+  }
+
+  .main {
+    grid-area: main;
+    display: block;
+    padding-top: 48px;
+    min-width: 0;
+  }
+
+  .featured {
+    margin-top: 0;
+    margin-bottom: 56px;
+  }
+
+  .featuredLabel {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .list {
+    margin-top: 0;
+  }
+
+  .posts {
+    margin-top: 12px;
+    display: flex;
+  }
+
+  /* No desktop só a página atual aparece; as anteriores ficam para o "carregar mais" do celular/tablet. */
+  .earlier {
+    display: none !important;
+  }
+
+  .empty {
+    padding: 64px 0;
+    font-size: 17px;
+  }
+
+  .loadMore {
+    display: none !important;
+  }
+
+  .pagination {
+    display: flex !important;
+    margin-top: 40px;
+  }
+}

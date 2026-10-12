@@ -3,21 +3,28 @@
 import { useFormatter, useTranslations } from "next-intl";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { COMMENT_LIMITS, type PublicComment } from "@/domain/entities";
+import { formatShortDate, pad2 } from "../../utils/format";
 import { COMMENT_FORM_FIELDS as F, type CommentFormAction, type CommentFormState } from "./comment-form-state";
 import styles from "./Comments.module.css";
+
+export type CommentsVariant = "lesson" | "review" | "thought";
 
 type CommentsProps = {
   comments: PublicComment[];
   action: CommentFormAction;
-  /** Campos ocultos que identificam onde o comentário foi feito (estudo, aula...). */
+  /** Campos ocultos que identificam onde o comentário foi feito (estudo, aula, post...). */
   context: Record<string, string>;
   id?: string;
+  /** Muda título e rótulos ("Comentários" na aula/resenha, "Conversa" no pensamento). */
+  variant?: CommentsVariant;
+  /** Pede e-mail opcional (nunca publicado). */
+  askEmail?: boolean;
 };
 
 const INITIAL: CommentFormState = { status: "idle" };
 
 /** Seção de comentários com moderação: formulário + lista dos aprovados. */
-export function Comments({ comments, action, context, id = "comentarios" }: CommentsProps) {
+export function Comments({ comments, action, context, id = "comentarios", variant = "lesson", askEmail = false }: CommentsProps) {
   const t = useTranslations("Comments");
   const format = useFormatter();
   const [round, setRound] = useState(0);
@@ -33,9 +40,9 @@ export function Comments({ comments, action, context, id = "comentarios" }: Comm
     <section id={id} className={styles.section} aria-labelledby={`${id}-title`}>
       <div className={styles.header}>
         <h2 id={`${id}-title`} className={styles.title}>
-          {t("title")}
+          {t(`variants.${variant}.title`)}
         </h2>
-        <span className={`mono ${styles.count}`}>{t("count", { count: String(comments.length).padStart(2, "0") })}</span>
+        <span className={`mono ${styles.count}`}>{t(`variants.${variant}.count`, { count: pad2(comments.length) })}</span>
       </div>
 
       <CommentForm
@@ -43,6 +50,8 @@ export function Comments({ comments, action, context, id = "comentarios" }: Comm
         id={id}
         action={action}
         context={context}
+        variant={variant}
+        askEmail={askEmail}
         initialText={prefill}
         onAnother={() => {
           setPrefill("");
@@ -51,7 +60,7 @@ export function Comments({ comments, action, context, id = "comentarios" }: Comm
       />
 
       {comments.length === 0 ? (
-        <p className={styles.empty}>{t("empty")}</p>
+        <p className={styles.empty}>{t(`variants.${variant}.empty`)}</p>
       ) : (
         <ul className={styles.list}>
           {comments.map((comment, i) => {
@@ -65,7 +74,7 @@ export function Comments({ comments, action, context, id = "comentarios" }: Comm
                   <div className={styles.meta}>
                     <span className={styles.name}>{name}</span>
                     <time className={`mono ${styles.when}`} dateTime={comment.createdAt}>
-                      {format.dateTime(new Date(comment.createdAt), { day: "2-digit", month: "short", year: "numeric" }).replace(/\./g, "").toUpperCase()}
+                      {formatShortDate(format, comment.createdAt)}
                     </time>
                   </div>
                   <p className={styles.text}>{comment.text}</p>
@@ -86,14 +95,17 @@ type CommentFormProps = {
   id: string;
   action: CommentFormAction;
   context: Record<string, string>;
+  variant: CommentsVariant;
+  askEmail: boolean;
   initialText: string;
   onAnother: () => void;
 };
 
-function CommentForm({ id, action, context, initialText, onAnother }: CommentFormProps) {
+function CommentForm({ id, action, context, variant, askEmail, initialText, onAnother }: CommentFormProps) {
   const t = useTranslations("Comments");
   const [state, formAction, pending] = useActionState(action, INITIAL);
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [text, setText] = useState(initialText);
   const textRef = useRef<HTMLTextAreaElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
@@ -105,6 +117,7 @@ function CommentForm({ id, action, context, initialText, onAnother }: CommentFor
       })
     : undefined;
   const nameError = errors.name ? t("errors.nameTooLong", { max: COMMENT_LIMITS.nameMax }) : undefined;
+  const emailError = errors.email ? t("errors.emailInvalid") : undefined;
 
   useEffect(() => {
     if (state.status === "invalid") textRef.current?.focus();
@@ -144,8 +157,29 @@ function CommentForm({ id, action, context, initialText, onAnother }: CommentFor
       />
       {nameError && <p className={styles.error}>{nameError}</p>}
 
+      {askEmail && (
+        <>
+          <label htmlFor={`${id}-email`} className={`mono ${styles.label}`}>
+            {t("email")}
+          </label>
+          <input
+            id={`${id}-email`}
+            name={F.email}
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            placeholder={t("emailPlaceholder")}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            aria-invalid={emailError ? true : undefined}
+            className={styles.input}
+          />
+          {emailError && <p className={styles.error}>{emailError}</p>}
+        </>
+      )}
+
       <label htmlFor={`${id}-text`} className={`mono ${styles.label}`}>
-        {t("text")}
+        {t(`variants.${variant}.text`)}
       </label>
       <textarea
         ref={textRef}
@@ -153,7 +187,7 @@ function CommentForm({ id, action, context, initialText, onAnother }: CommentFor
         name={F.text}
         rows={3}
         maxLength={COMMENT_LIMITS.textMax}
-        placeholder={t("textPlaceholder")}
+        placeholder={t(`variants.${variant}.placeholder`)}
         value={text}
         onChange={(e) => setText(e.target.value)}
         aria-invalid={textError ? true : undefined}

@@ -1,0 +1,71 @@
+.sheet {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+
+.title {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.fact dt {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.fact dd {
+  margin: 6px 0 0;
+  font-size: 16px;
+}
+
+/* Grade: divisórias internas sem duplicar bordas */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+}
+
+.grid .title {
+  grid-column: 1 / -1;
+  padding: 14px 14px 0;
+}
+
+.grid .fact {
+  padding: 14px;
+  box-shadow: 1px 1px 0 var(--line);
+}
+
+/* Lista: rótulo à esquerda, valor à direita */
+.list {
+  border-radius: 26px;
+  padding: 6px 22px;
+}
+
+.list .title {
+  padding: 16px 0 6px;
+}
+
+.list .fact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.list .fact:last-child {
+  border-bottom: 0;
+}
+
+.list .fact dt {
+  font-size: 11px;
+}
+
+.list .fact dd {
+  margin: 0;
+  text-align: right;
+}

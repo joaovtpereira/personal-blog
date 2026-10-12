@@ -1,0 +1,291 @@
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes tilt {
+  0%,
+  100% {
+    transform: rotate(-6deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-4deg) translateY(-6px);
+  }
+}
+
+.card {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  background: var(--card);
+}
+
+.media {
+  position: relative;
+  height: 210px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(110deg, var(--card) 40%, var(--line) 50%, var(--card) 60%) 0 0 / 200% 100%;
+  animation: shimmer 3.5s linear infinite;
+}
+
+.badge {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 1;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+}
+
+.quote {
+  font-size: 120px;
+  line-height: 1;
+  color: var(--line);
+}
+
+.placeholderLabel {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.book {
+  display: none;
+}
+
+.cover {
+  position: relative;
+  width: 120px;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px 14px 14px 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+  animation: tilt 6s ease-in-out infinite;
+}
+
+.capture {
+  width: 70%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-s);
+  animation: none;
+}
+
+.coverImage {
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.screen {
+  width: 72%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-s);
+  background: var(--video-bg);
+  color: var(--video-fg);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 4px);
+}
+
+.body {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kind {
+  display: none;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.tags {
+  order: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.excerpt {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--mute);
+}
+
+.footer {
+  order: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score,
+.meta {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.date,
+.arrow {
+  display: none;
+}
+
+/* Tablet: mídia | texto */
+@media (min-width: 768px) {
+  .card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 32px;
+  }
+
+  .media {
+    height: auto;
+    min-height: 320px;
+  }
+
+  .quote,
+  .placeholderLabel {
+    display: none;
+  }
+
+  .quoteAlways {
+    display: block;
+    font-size: 160px;
+  }
+
+  .book {
+    width: 150px;
+    height: 220px;
+    border-radius: 6px 14px 14px 6px;
+    background: var(--fg);
+    color: var(--bg);
+    box-shadow: var(--shadow-float);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: tilt 6s ease-in-out infinite;
+  }
+
+  .book .mono {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+  }
+
+  .book .serif {
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .cover {
+    width: 150px;
+  }
+
+  .body {
+    padding: 28px;
+    gap: 14px;
+    justify-content: flex-end;
+  }
+
+  .kind {
+    display: block;
+  }
+
+  .title {
+    font-size: 36px;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+  }
+
+  .meta {
+    display: none;
+  }
+
+  .arrow {
+    display: block;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .card {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    border-radius: var(--radius-xl);
+  }
+
+  .book {
+    width: 160px;
+    height: 234px;
+  }
+
+  .book .serif {
+    font-size: 28px;
+  }
+
+  .cover {
+    width: 160px;
+  }
+
+  .body {
+    padding: 36px;
+    gap: 16px;
+  }
+
+  .kind {
+    display: none;
+  }
+
+  .tags {
+    order: 0;
+  }
+
+  .title {
+    font-size: 44px;
+  }
+
+  .excerpt {
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .footer {
+    padding-top: 16px;
+  }
+
+  .meta,
+  .date {
+    display: inline;
+  }
+
+  .arrow {
+    display: none;
+  }
+}

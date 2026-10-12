@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/main/i18n/routing";
+import { AppPostReactionsProvider } from "@/main/providers/AppPostReactionsProvider";
 import { AppStudyProgressProvider } from "@/main/providers/AppStudyProgressProvider";
 import { BottomNav } from "@/presentation/components/BottomNav";
 import { InlineScript } from "@/presentation/components/InlineScript";
@@ -59,12 +60,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <body id="top">
         <NextIntlClientProvider>
           <AppStudyProgressProvider>
-            <PageHeaderProvider>
-              <SiteHeader />
-              {children}
-              <SiteFooter />
-              <BottomNav />
-            </PageHeaderProvider>
+            <AppPostReactionsProvider>
+              <PageHeaderProvider>
+                <SiteHeader />
+                {children}
+                <SiteFooter />
+                <BottomNav />
+              </PageHeaderProvider>
+            </AppPostReactionsProvider>
           </AppStudyProgressProvider>
         </NextIntlClientProvider>
       </body>

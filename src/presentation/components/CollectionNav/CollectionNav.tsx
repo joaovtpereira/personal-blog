@@ -12,12 +12,17 @@ import styles from "./CollectionNav.module.css";
  */
 export function CollectionNav({ collection }: { collection: StudyCollectionPosition | null }) {
   const t = useTranslations("Lesson.collection");
+  const tc = useTranslations("Collection");
   if (!collection || !isCollection(collection.total)) return null;
+
+  // Estudos levam ao estudo; resenhas ao post.
+  const hrefOf = (slug: string) => (collection.kind === "studies" ? ROUTES.study(slug) : ROUTES.post(slug));
+  const unit = (n: number) => tc(`unitUpper.${collection.kind}`, { n });
 
   const card = (item: CollectionItem | null, direction: "previous" | "next") =>
     item ? (
-      <Link href={ROUTES.study(item.slug)} className={`${styles.card} ${styles[direction]}`}>
-        <span className={`mono ${styles.cardLabel}`}>{t(direction, { position: item.position })}</span>
+      <Link href={hrefOf(item.slug)} className={`${styles.card} ${styles[direction]}`}>
+        <span className={`mono ${styles.cardLabel}`}>{t(direction, { unit: unit(item.position) })}</span>
         <span className={styles.cardTitle}>{item.title}</span>
       </Link>
     ) : (
@@ -36,7 +41,7 @@ export function CollectionNav({ collection }: { collection: StudyCollectionPosit
             <div className={styles.title}>{collection.name}</div>
           </div>
           <span className={`mono ${styles.position}`}>
-            {t("position", { position: collection.position, total: collection.total })}
+            {t("position", { unit: unit(collection.position), total: collection.total })}
           </span>
         </div>
         <Link href={ROUTES.collection(collection.slug)} className={`${styles.seeAll} ${styles.seeAllDesktop}`}>
@@ -62,7 +67,7 @@ export function CollectionNav({ collection }: { collection: StudyCollectionPosit
       <div className={styles.cards}>
         {card(collection.previous, "previous")}
         <div className={`${styles.card} ${styles.currentCard}`} aria-current="page">
-          <span className={`mono ${styles.cardLabel}`}>{t("here", { position: collection.position })}</span>
+          <span className={`mono ${styles.cardLabel}`}>{t("here", { unit: unit(collection.position) })}</span>
           <span className={styles.cardTitle}>{collection.current.title}</span>
           <span className={styles.currentBar} aria-hidden="true">
             <span />
@@ -72,7 +77,7 @@ export function CollectionNav({ collection }: { collection: StudyCollectionPosit
       </div>
 
       <Link href={ROUTES.collection(collection.slug)} className={`${styles.seeAll} ${styles.seeAllMobile}`}>
-        {t("seeAll")} <span className={`mono ${styles.count}`}>{t("seeAllCount", { total: collection.total })}</span>
+        {t("seeAll")} <span className={`mono ${styles.count}`}>{t("seeAllCount", { total: collection.total, kind: collection.kind })}</span>
       </Link>
     </nav>
   );

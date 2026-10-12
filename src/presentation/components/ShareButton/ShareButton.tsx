@@ -11,18 +11,30 @@ type ShareButtonProps = {
   ariaLabel: string;
   copiedLabel: string;
   variant?: "round" | "pill";
+  /** share: menu nativo (ou copia) · copy: sempre copia o link. */
+  mode?: "share" | "copy";
+  icon?: "share" | "link";
   className?: string;
 };
 
 /** Compartilha a página atual pelo menu nativo; sem ele, copia o link. */
-export function ShareButton({ title, label, ariaLabel, copiedLabel, variant = "pill", className }: ShareButtonProps) {
+export function ShareButton({
+  title,
+  label,
+  ariaLabel,
+  copiedLabel,
+  variant = "pill",
+  mode = "share",
+  icon = "share",
+  className,
+}: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
 
   const share = async () => {
     const url = window.location.href;
-    if (navigator.share) {
+    if (mode === "share" && navigator.share) {
       try {
         await navigator.share({ title, url });
         return;
@@ -43,7 +55,7 @@ export function ShareButton({ title, label, ariaLabel, copiedLabel, variant = "p
       aria-label={variant === "round" ? ariaLabel : undefined}
       onClick={share}
     >
-      <Icon name="share" size={16} />
+      <Icon name={icon} size={16} />
       {variant === "pill" && <span>{copied ? copiedLabel : label}</span>}
       <span className="sr-only" aria-live="polite">
         {copied ? copiedLabel : ""}

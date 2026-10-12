@@ -4,6 +4,7 @@ import {
   ContentBlockModelMapper,
   LessonModelMapper,
   PublicCommentModelMapper,
+  PostDetailModelMapper,
   PostModelMapper,
   ProjectModelMapper,
   ResumeModelMapper,
@@ -15,6 +16,7 @@ import type {
   ContactMessageMapper,
   LessonMapper,
   PublicCommentMapper,
+  PostDetailMapper,
   PostMapper,
   ProjectMapper,
   ResumeMapper,
@@ -39,3 +41,6 @@ export const makeLessonMapper = (): LessonMapper => new LessonModelMapper(new Co
 export const makePublicCommentMapper = (): PublicCommentMapper => new PublicCommentModelMapper();
 
 export const makeCollectionMapper = (): CollectionMapper => new CollectionModelMapper();
+
+export const makePostDetailMapper = (): PostDetailMapper =>
+  new PostDetailModelMapper(new PostModelMapper(), new ContentBlockModelMapper());

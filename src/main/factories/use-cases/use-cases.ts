@@ -2,10 +2,16 @@ import {
   CollectionLoader,
   CollectionRoutesLoader,
   ContactMessageSender,
+  FeaturedPost,
   FeaturedStudies,
   LessonCommentModeration,
   LessonCommentsLoader,
   LatestPosts,
+  PostCommentModeration,
+  PostCommentsLoader,
+  PostPageLoader,
+  PostRoutesLoader,
+  PostSearch,
   Projects,
   ResumeLoader,
   StudiesCatalog,
@@ -15,8 +21,12 @@ import {
 import type {
   GetCollection,
   GetCollectionRoutes,
+  GetFeaturedPost,
   GetFeaturedStudies,
   GetLessonComments,
+  GetPostComments,
+  GetPostPage,
+  GetPostRoutes,
   GetLatestPosts,
   GetProjects,
   GetResume,
@@ -24,12 +34,16 @@ import type {
   GetStudyLesson,
   GetStudyLessonRoutes,
   PostLessonComment,
+  PostPostComment,
+  SearchPosts,
   SendContactMessage,
 } from "@/domain/use-cases";
 import { EXTERNAL } from "@/main/routes";
 import {
   makeLessonCommentsDataSource,
   makeLessonsDataSource,
+  makePostCommentsDataSource,
+  makePostContentsDataSource,
   makePostsDataSource,
   makeProjectsDataSource,
   makeResumeDataSource,
@@ -41,6 +55,7 @@ import {
   makeCollectionMapper,
   makeContactMessageMapper,
   makeLessonMapper,
+  makePostDetailMapper,
   makePostMapper,
   makeProjectMapper,
   makePublicCommentMapper,
@@ -95,3 +110,20 @@ export const makeGetCollection = (): GetCollection =>
   );
 
 export const makeGetCollectionRoutes = (): GetCollectionRoutes => new CollectionRoutesLoader(makeCollectionsDataSource());
+
+export const makeSearchPosts = (): SearchPosts => new PostSearch(makePostsDataSource(), makePostMapper());
+
+export const makeGetFeaturedPost = (): GetFeaturedPost => new FeaturedPost(makePostsDataSource(), makePostMapper());
+
+export const makeGetPostPage = (): GetPostPage =>
+  new PostPageLoader(
+    { posts: makePostsDataSource(), contents: makePostContentsDataSource(), collections: makeCollectionsDataSource() },
+    makePostDetailMapper(),
+    makePostMapper(),
+  );
+
+export const makeGetPostRoutes = (): GetPostRoutes => new PostRoutesLoader(makePostsDataSource(), makePostContentsDataSource());
+
+export const makeGetPostComments = (): GetPostComments => new PostCommentsLoader(makePostCommentsDataSource());
+
+export const makePostPostComment = (): PostPostComment => new PostCommentModeration(makeEmailSender(), EXTERNAL.email);

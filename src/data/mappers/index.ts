@@ -3,6 +3,7 @@ export * from "./contact-message-model-mapper";
 export * from "./content-block-model-mapper";
 export * from "./inline-markdown";
 export * from "./lesson-model-mapper";
+export * from "./post-detail-model-mapper";
 export * from "./post-model-mapper";
 export * from "./project-model-mapper";
 export * from "./public-comment-model-mapper";

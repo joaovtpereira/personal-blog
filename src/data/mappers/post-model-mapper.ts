@@ -29,6 +29,9 @@ export class PostModelMapper implements PostMapper {
       readingMinutes: model.reading_time_minutes,
       publishedAt: new Date(model.published_at).toISOString(),
       rating: kind === "thought" ? null : (model.rating ?? null),
+      subject: (kind === "book" ? model.author : kind === "game" ? model.platform : null) ?? null,
+      coverImage: model.cover_image ?? null,
+      featured: !!model.featured,
     };
   }
 
@@ -44,6 +47,10 @@ export class PostModelMapper implements PostMapper {
       reading_time_minutes: entity.readingMinutes,
       published_at: entity.publishedAt,
       rating: entity.rating,
+      author: entity.kind === "book" ? entity.subject : null,
+      platform: entity.kind === "game" ? entity.subject : null,
+      cover_image: entity.coverImage,
+      featured: entity.featured,
     };
   }
 }

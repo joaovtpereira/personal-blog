@@ -46,6 +46,10 @@ As aulas (`/estudos/[estudo]/[aula]`) são montadas a partir de `ContentBlock` (
 
 Coleções (`/colecoes/[slug]`) servem para estudos e para séries de resenhas do blog (`kind` no `CollectionModel`). Itens podem ser anunciados como "em breve" (só título). Regra: com menos de 2 itens publicados não é coleção (404 e sem navegação de coleção nas aulas).
 
+O blog (`/blog`) guarda filtros na URL — `?categoria=livros|jogos|pensamentos&tag=filmes&q=busca&pagina=2` — e o caso de uso `SearchPosts` filtra e pagina no servidor (6 por página). Celular/tablet acumulam páginas ("Carregar mais"); o desktop mostra só a página atual com paginação numerada. O destaque vem de `featured: true` no post (sem marcação, o mais recente). Funções de formatação compartilhadas ficam em `presentation/utils`.
+
+A leitura de um post (`/blog/[slug]`) tem dois layouts: resenha (livro ou jogo — capa/captura, ficha técnica, prós e contras, veredito e, no desktop, coluna lateral fixa) e pensamento (texto centralizado com reações "Fez sentido / Me fez pensar / Discordo"). O conteúdo vem do `PostContentModel` (`domain/models/post-content-model.ts`) e é traduzido para `PostDetail` pelo `PostDetailModelMapper`. As contagens de curtidas/reações vêm dos dados; a escolha do visitante fica no navegador (chave `post-reactions`) e soma +1 na tela. Se o post pertence a uma coleção de resenhas, aparece a navegação por "partes". Comentários passam por moderação (e-mail opcional, nunca publicado, vai como `replyTo` para a moderação).
+
 O formulário de contato usa uma Server Action (`main/actions`) que chama o caso de uso `SendContactMessage`. Hoje o envio é simulado pelo `ConsoleEmailSender` (só registra no log do servidor); para enviar de verdade, implemente um `EmailSender` em `infra/email/` e troque a instância em `main/factories/infra/email-sender.ts`.
 
 ## Breakpoints

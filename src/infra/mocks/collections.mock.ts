@@ -9,6 +9,7 @@ const TEXT = {
     about: "[Sobre a coleção: o que une esses itens e em que ordem vale a pena seguir.]",
     upcomingStudy: "[Próximo estudo da trilha]",
     upcomingReview: "[Próximo livro da série]",
+    franchise: "[Nome da franquia]",
   },
   es: {
     topic: "[Nombre del tema]",
@@ -16,6 +17,7 @@ const TEXT = {
     about: "[Sobre la colección: qué une estos ítems y en qué orden vale la pena seguirlos.]",
     upcomingStudy: "[Próximo estudio de la ruta]",
     upcomingReview: "[Próximo libro de la serie]",
+    franchise: "[Nombre de la franquicia]",
   },
   en: {
     topic: "[Topic name]",
@@ -23,6 +25,7 @@ const TEXT = {
     about: "[About the collection: what ties these items together and the order worth following.]",
     upcomingStudy: "[Next study in the track]",
     upcomingReview: "[Next book in the series]",
+    franchise: "[Franchise name]",
   },
 } satisfies Record<Locale, unknown>;
 
@@ -59,6 +62,20 @@ export const COLLECTIONS_MOCK: CollectionModel[] = (["pt", "es", "en"] as const)
         { ref_id: "p5", status: "publicado" },
         { ref_id: "p2", status: "publicado" },
         { ref_id: null, status: "em-breve", title: t.upcomingReview },
+      ],
+    },
+    // Franquia de jogos (resenhas), completa.
+    {
+      id: "col-4",
+      slug: "franquia-1",
+      locale,
+      kind: "resenhas",
+      name: t.franchise,
+      description: t.about,
+      items: [
+        { ref_id: "p8", status: "publicado" },
+        { ref_id: "p6", status: "publicado" },
+        { ref_id: "p3", status: "publicado" },
       ],
     },
   ];

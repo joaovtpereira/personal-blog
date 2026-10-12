@@ -10,6 +10,7 @@ export type CommentFormAction = (state: CommentFormState, formData: FormData) =>
 
 export const COMMENT_FORM_FIELDS = {
   name: "name",
+  email: "email",
   text: "text",
   honeypot: "website",
 } as const;

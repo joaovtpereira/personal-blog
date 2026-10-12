@@ -1,5 +1,5 @@
 import {
-  isCollection,
+  collectionPositionOf,
   type Lesson,
   type LessonSummary,
   type Locale,
@@ -85,22 +85,14 @@ export class StudyLessonLoader implements GetStudyLesson {
       .filter((item) => item.status === "publicado" && item.ref_id)
       .map((item) => studies.find((model) => model.id === item.ref_id && model.locale === locale))
       .filter((model): model is StudyModel => !!model)
-      .map((model, i) => ({ slug: model.slug, title: model.title, position: i + 1 }));
+      .map((model) => ({ slug: model.slug, title: model.title }));
 
     // Regra de negócio: com 1 item (ou estudos despublicados) não há coleção.
-    if (!isCollection(items.length)) return null;
-
-    const index = items.findIndex((item) => item.slug === study.slug);
-    return {
-      id: collection.id,
-      slug: collection.slug,
-      name: collection.name,
-      position: index + 1,
-      total: items.length,
-      previous: items[index - 1] ?? null,
-      current: items[index],
-      next: items[index + 1] ?? null,
-    };
+    return collectionPositionOf(
+      { kind: "studies", id: collection.id, slug: collection.slug, name: collection.name },
+      items,
+      study.slug,
+    );
   }
 }
 

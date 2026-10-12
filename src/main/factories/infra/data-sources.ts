@@ -2,6 +2,8 @@ import type {
   CollectionModel,
   LessonCommentModel,
   LessonModel,
+  PostCommentModel,
+  PostContentModel,
   PostModel,
   ProjectModel,
   ResumeModel,
@@ -12,6 +14,8 @@ import {
   COLLECTIONS_MOCK,
   LESSON_COMMENTS_MOCK,
   LESSONS_MOCK,
+  POST_COMMENTS_MOCK,
+  POST_CONTENTS_MOCK,
   POSTS_MOCK,
   PROJECTS_MOCK,
   RESUME_MOCK,
@@ -35,3 +39,9 @@ export const makeCollectionsDataSource = (): CollectionDataSource<CollectionMode
 
 export const makeLessonCommentsDataSource = (): CollectionDataSource<LessonCommentModel> =>
   new InMemoryDataSource(LESSON_COMMENTS_MOCK);
+
+export const makePostContentsDataSource = (): CollectionDataSource<PostContentModel> =>
+  new InMemoryDataSource(POST_CONTENTS_MOCK);
+
+export const makePostCommentsDataSource = (): CollectionDataSource<PostCommentModel> =>
+  new InMemoryDataSource(POST_COMMENTS_MOCK);
