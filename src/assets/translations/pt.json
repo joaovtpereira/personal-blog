@@ -71,13 +71,7 @@
     "studies": {
       "title": "Estudos <accent>em público</accent>",
       "description": "Trilhas do que estou aprendendo, divididas em aulas — algumas com vídeo.",
-      "seeAll": "Ver todos",
-      "lessons": "{count, plural, one {# AULA} other {# AULAS}}",
-      "videos": "{count, plural, one {# VÍDEO} other {# VÍDEOS}}",
-      "textOnly": "SÓ TEXTO",
-      "inProgress": "EM ANDAMENTO",
-      "completed": "CONCLUÍDO",
-      "progress": "{done}/{total} AULAS"
+      "seeAll": "Ver todos"
     },
     "latest": {
       "title": "Últimos <accent>textos</accent>",
@@ -209,5 +203,39 @@
     "currentCompany": "EMPRESA ATUAL · {role}",
     "cta": "Alguma ideia <accent>inovadora?</accent> Fale comigo",
     "empty": "O currículo ainda não está disponível neste idioma."
+  },
+  "Studies": {
+    "metaTitle": "Estudos — João Vitor Pereira",
+    "metaDescription": "Trilhas de estudo divididas em aulas, com vídeo ou só texto. Acompanhe seu progresso.",
+    "titleLine1": "Aprender",
+    "titleLine2": "em público",
+    "lead": "Cada estudo é uma trilha dividida em aulas. Umas têm vídeo, outras são só texto e anotações.",
+    "stats": {
+      "studies": "ESTUDOS",
+      "lessons": "AULAS",
+      "videos": "EM VÍDEO"
+    },
+    "filters": {
+      "label": "Filtrar estudos",
+      "all": "Todos",
+      "inProgress": "Em andamento",
+      "completed": "Concluídos"
+    },
+    "empty": {
+      "inProgress": "Você ainda não começou nenhum estudo. Abra um e marque as aulas que já viu.",
+      "completed": "Nenhum estudo concluído por aqui ainda.",
+      "all": "Nenhum estudo publicado ainda."
+    },
+    "progressNote": "Seu progresso fica salvo só neste navegador.",
+    "lessons": "{count, plural, one {# AULA} other {# AULAS}}",
+    "videos": "{count, plural, one {# VÍDEO} other {# VÍDEOS}}",
+    "allVideo": "VÍDEO-AULAS",
+    "textOnly": "SÓ TEXTO",
+    "status": {
+      "notStarted": "NÃO INICIADO",
+      "inProgress": "EM ANDAMENTO",
+      "completed": "CONCLUÍDO"
+    },
+    "progress": "{done}/{total} AULAS"
   }
 }

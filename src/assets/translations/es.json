@@ -71,13 +71,7 @@
     "studies": {
       "title": "Estudios <accent>en público</accent>",
       "description": "Rutas de lo que estoy aprendiendo, divididas en clases — algunas con video.",
-      "seeAll": "Ver todos",
-      "lessons": "{count, plural, one {# CLASE} other {# CLASES}}",
-      "videos": "{count, plural, one {# VIDEO} other {# VIDEOS}}",
-      "textOnly": "SOLO TEXTO",
-      "inProgress": "EN CURSO",
-      "completed": "COMPLETADO",
-      "progress": "{done}/{total} CLASES"
+      "seeAll": "Ver todos"
     },
     "latest": {
       "title": "Últimos <accent>textos</accent>",
@@ -209,5 +203,39 @@
     "currentCompany": "EMPRESA ACTUAL · {role}",
     "cta": "¿Alguna idea <accent>innovadora?</accent> Háblame",
     "empty": "El currículum todavía no está disponible en este idioma."
+  },
+  "Studies": {
+    "metaTitle": "Estudios — João Vitor Pereira",
+    "metaDescription": "Rutas de estudio divididas en clases, con video o solo texto. Sigue tu progreso.",
+    "titleLine1": "Aprender",
+    "titleLine2": "en público",
+    "lead": "Cada estudio es una ruta dividida en clases. Algunas tienen video, otras son solo texto y notas.",
+    "stats": {
+      "studies": "ESTUDIOS",
+      "lessons": "CLASES",
+      "videos": "EN VIDEO"
+    },
+    "filters": {
+      "label": "Filtrar estudios",
+      "all": "Todos",
+      "inProgress": "En curso",
+      "completed": "Completados"
+    },
+    "empty": {
+      "inProgress": "Todavía no empezaste ningún estudio. Abre uno y marca las clases que ya viste.",
+      "completed": "Todavía no hay estudios completados.",
+      "all": "Todavía no hay estudios publicados."
+    },
+    "progressNote": "Tu progreso se guarda solo en este navegador.",
+    "lessons": "{count, plural, one {# CLASE} other {# CLASES}}",
+    "videos": "{count, plural, one {# VIDEO} other {# VIDEOS}}",
+    "allVideo": "VIDEOCLASES",
+    "textOnly": "SOLO TEXTO",
+    "status": {
+      "notStarted": "SIN EMPEZAR",
+      "inProgress": "EN CURSO",
+      "completed": "COMPLETADO"
+    },
+    "progress": "{done}/{total} CLASES"
   }
 }

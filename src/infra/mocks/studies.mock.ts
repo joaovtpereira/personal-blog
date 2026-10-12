@@ -1,20 +1,24 @@
 import type { StudyLessonModel, StudyModel } from "@/domain/models";
 
-const lessons = (total: number, done: number, videos: number): StudyLessonModel[] =>
+const lessons = (studyId: string, total: number, videos: number): StudyLessonModel[] =>
   Array.from({ length: total }, (_, i) => ({
-    id: `l${i + 1}`,
+    id: `${studyId}-aula-${String(i + 1).padStart(2, "0")}`,
     format: i < videos ? "video" : "texto",
-    completed: i < done,
   }));
 
-const TITLE = { pt: "[Nome do estudo]", es: "[Nombre del estudio]", en: "[Study title]" };
+const TEXT = {
+  pt: { title: "[Nome do estudo]", description: "[Uma linha sobre o que este estudo cobre.]" },
+  es: { title: "[Nombre del estudio]", description: "[Una línea sobre lo que cubre este estudio.]" },
+  en: { title: "[Study title]", description: "[One line about what this study covers.]" },
+};
 
 const SEEDS = [
-  { id: "s1", slug: "estudo-1", tags: ["tecnologia"], lessons: lessons(8, 3, 5), updated_at: "2026-10-09T10:00:00Z" },
-  { id: "s2", slug: "estudo-2", tags: ["religião"], lessons: lessons(5, 5, 0), updated_at: "2026-10-02T10:00:00Z" },
-  { id: "s3", slug: "estudo-3", tags: ["filosofia", "história"], lessons: lessons(12, 7, 12), updated_at: "2026-09-20T10:00:00Z" },
+  { id: "s1", slug: "estudo-1", tags: ["tecnologia"], lessons: lessons("s1", 8, 5), order: 1 },
+  { id: "s2", slug: "estudo-2", tags: ["religião"], lessons: lessons("s2", 5, 0), order: 2 },
+  { id: "s3", slug: "estudo-3", tags: ["filosofia", "história"], lessons: lessons("s3", 12, 12), order: 3 },
+  { id: "s4", slug: "estudo-4", tags: ["filmes"], lessons: lessons("s4", 6, 2), order: 4 },
 ];
 
 export const STUDIES_MOCK: StudyModel[] = SEEDS.flatMap((seed) =>
-  (["pt", "es", "en"] as const).map((locale) => ({ ...seed, locale, title: TITLE[locale] })),
+  (["pt", "es", "en"] as const).map((locale) => ({ ...seed, locale, ...TEXT[locale] })),
 );

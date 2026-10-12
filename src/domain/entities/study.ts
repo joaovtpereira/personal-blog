@@ -5,16 +5,16 @@ export type Study = {
   slug: string;
   locale: Locale;
   title: string;
+  description: string;
   tags: string[];
-  totalLessons: number;
-  completedLessons: number;
+  /** Ids das aulas, na ordem da trilha. */
+  lessonIds: string[];
   videoLessons: number;
 };
 
+export const totalLessons = (study: Study): number => study.lessonIds.length;
+
 export const isTextOnlyStudy = (study: Study): boolean => study.videoLessons === 0;
 
-export const isCompletedStudy = (study: Study): boolean =>
-  study.totalLessons > 0 && study.completedLessons >= study.totalLessons;
-
-export const studyProgress = (study: Study): number =>
-  study.totalLessons === 0 ? 0 : Math.min(1, study.completedLessons / study.totalLessons);
+export const isAllVideoStudy = (study: Study): boolean =>
+  study.videoLessons > 0 && study.videoLessons >= totalLessons(study);

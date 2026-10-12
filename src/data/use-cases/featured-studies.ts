@@ -14,7 +14,7 @@ export class FeaturedStudies implements GetFeaturedStudies {
     const models = await this.dataSource.findAll();
     return models
       .filter((model) => model.locale === locale)
-      .sort((a, b) => b.updated_at.localeCompare(a.updated_at))
+      .sort((a, b) => a.order - b.order)
       .slice(0, limit)
       .map((model) => this.mapper.toEntity(model));
   }

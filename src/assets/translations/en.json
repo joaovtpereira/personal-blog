@@ -71,13 +71,7 @@
     "studies": {
       "title": "Studies <accent>in public</accent>",
       "description": "Tracks of what I am learning, split into lessons — some with video.",
-      "seeAll": "See all",
-      "lessons": "{count, plural, one {# LESSON} other {# LESSONS}}",
-      "videos": "{count, plural, one {# VIDEO} other {# VIDEOS}}",
-      "textOnly": "TEXT ONLY",
-      "inProgress": "IN PROGRESS",
-      "completed": "COMPLETED",
-      "progress": "{done}/{total} LESSONS"
+      "seeAll": "See all"
     },
     "latest": {
       "title": "Latest <accent>writing</accent>",
@@ -209,5 +203,39 @@
     "currentCompany": "CURRENT COMPANY · {role}",
     "cta": "Got an <accent>innovative</accent> idea? Talk to me",
     "empty": "The résumé is not available in this language yet."
+  },
+  "Studies": {
+    "metaTitle": "Studies — João Vitor Pereira",
+    "metaDescription": "Study tracks split into lessons, with video or text only. Keep track of your progress.",
+    "titleLine1": "Learning",
+    "titleLine2": "in public",
+    "lead": "Each study is a track split into lessons. Some have video, others are just text and notes.",
+    "stats": {
+      "studies": "STUDIES",
+      "lessons": "LESSONS",
+      "videos": "ON VIDEO"
+    },
+    "filters": {
+      "label": "Filter studies",
+      "all": "All",
+      "inProgress": "In progress",
+      "completed": "Completed"
+    },
+    "empty": {
+      "inProgress": "You haven’t started any study yet. Open one and mark the lessons you’ve watched.",
+      "completed": "No completed studies here yet.",
+      "all": "No studies published yet."
+    },
+    "progressNote": "Your progress is saved only in this browser.",
+    "lessons": "{count, plural, one {# LESSON} other {# LESSONS}}",
+    "videos": "{count, plural, one {# VIDEO} other {# VIDEOS}}",
+    "allVideo": "VIDEO LESSONS",
+    "textOnly": "TEXT ONLY",
+    "status": {
+      "notStarted": "NOT STARTED",
+      "inProgress": "IN PROGRESS",
+      "completed": "COMPLETED"
+    },
+    "progress": "{done}/{total} LESSONS"
   }
 }

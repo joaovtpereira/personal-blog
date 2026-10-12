@@ -44,17 +44,20 @@
 }
 
 @media (min-width: 768px) {
-  .responsive {
+  .responsive,
+  .hero {
     border-radius: 22px;
     padding: 20px;
   }
 
-  .responsive .value {
+  .responsive .value,
+  .hero .value {
     font-size: 40px;
     letter-spacing: -0.05em;
   }
 
-  .responsive .label {
+  .responsive .label,
+  .hero .label {
     font-size: 11px;
   }
 
@@ -81,4 +84,27 @@
 .compact .detail {
   font-size: 13px;
   max-width: 150px;
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    min-width: 140px;
+    border-radius: 24px;
+    padding: 20px 22px;
+  }
+
+  .hero .value {
+    font-size: 48px;
+  }
+
+  .invertDesktop {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+
+  .invertDesktop .label {
+    color: inherit;
+    opacity: 0.6;
+  }
 }

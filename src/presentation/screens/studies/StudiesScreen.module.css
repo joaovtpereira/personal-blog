@@ -1,0 +1,139 @@
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.screen {
+  padding-top: 24px;
+}
+
+.header {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "lead"
+    "stats";
+}
+
+.title {
+  grid-area: title;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+}
+
+.line {
+  display: block;
+  font-size: clamp(56px, 19vw, 72px);
+}
+
+.accent {
+  font-size: clamp(60px, 21vw, 80px);
+  letter-spacing: -0.03em;
+}
+
+.lead {
+  grid-area: lead;
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--mute);
+}
+
+.stats {
+  grid-area: stats;
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.rule {
+  display: none;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .screen {
+    padding-top: 40px;
+  }
+
+  .header {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "title lead"
+      "stats stats";
+    column-gap: 32px;
+    align-items: end;
+  }
+
+  .title {
+    line-height: 0.9;
+  }
+
+  .line {
+    font-size: clamp(72px, 11vw, 92px);
+  }
+
+  .accent {
+    font-size: clamp(76px, 11.5vw, 96px);
+  }
+
+  .lead {
+    margin-top: 0;
+    font-size: 17px;
+  }
+
+  .stats {
+    margin-top: 36px;
+    gap: 12px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .screen {
+    padding-top: 72px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .line {
+    font-size: clamp(64px, 9vw, 140px);
+  }
+
+  .accent {
+    font-size: clamp(64px, 9vw, 148px);
+  }
+
+  /* No desktop o texto vai para a linha dos filtros (StudiesCatalog). */
+  .lead {
+    display: none;
+  }
+
+  .stats {
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .rule {
+    display: block;
+    height: 1px;
+    margin-top: 40px;
+    background: var(--fg);
+    transform-origin: left;
+    animation: grow 1.4s var(--ease-out) 0.4s both;
+  }
+}

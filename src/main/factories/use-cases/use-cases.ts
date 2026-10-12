@@ -1,9 +1,17 @@
-import { ContactMessageSender, FeaturedStudies, LatestPosts, Projects, ResumeLoader } from "@/data/use-cases";
+import {
+  ContactMessageSender,
+  FeaturedStudies,
+  LatestPosts,
+  Projects,
+  ResumeLoader,
+  StudiesCatalog,
+} from "@/data/use-cases";
 import type {
   GetFeaturedStudies,
   GetLatestPosts,
   GetProjects,
   GetResume,
+  GetStudies,
   SendContactMessage,
 } from "@/domain/use-cases";
 import { EXTERNAL } from "@/main/routes";
@@ -33,3 +41,5 @@ export const makeSendContactMessage = (): SendContactMessage =>
   new ContactMessageSender(makeEmailSender(), makeContactMessageMapper(), EXTERNAL.email);
 
 export const makeGetResume = (): GetResume => new ResumeLoader(makeResumeDataSource(), makeResumeMapper());
+
+export const makeGetStudies = (): GetStudies => new StudiesCatalog(makeStudiesDataSource(), makeStudyMapper());

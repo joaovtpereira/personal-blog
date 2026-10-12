@@ -10,9 +10,9 @@ export class StudyModelMapper implements StudyMapper {
       slug: model.slug,
       locale: toLocale(model.locale),
       title: model.title,
+      description: model.description,
       tags: [...model.tags],
-      totalLessons: model.lessons.length,
-      completedLessons: model.lessons.filter((lesson) => lesson.completed).length,
+      lessonIds: model.lessons.map((lesson) => lesson.id),
       videoLessons: model.lessons.filter((lesson) => lesson.format === "video").length,
     };
   }
@@ -23,13 +23,10 @@ export class StudyModelMapper implements StudyMapper {
       slug: entity.slug,
       locale: entity.locale,
       title: entity.title,
+      description: entity.description,
       tags: [...entity.tags],
-      lessons: Array.from({ length: entity.totalLessons }, (_, i) => ({
-        id: `l${i + 1}`,
-        format: i < entity.videoLessons ? "video" : "texto",
-        completed: i < entity.completedLessons,
-      })),
-      updated_at: new Date().toISOString(),
+      lessons: entity.lessonIds.map((id, i) => ({ id, format: i < entity.videoLessons ? "video" : "texto" })),
+      order: 0,
     };
   }
 }

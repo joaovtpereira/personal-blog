@@ -40,6 +40,8 @@ src/
 
 Para trocar os dados mockados por markdown ou API, implemente um novo `CollectionDataSource` em `infra/` e troque a instância em `main/factories/infra/data-sources.ts`.
 
+O progresso dos estudos é do visitante e fica no navegador dele: os casos de uso `GetStudyProgress`, `SetLessonCompleted` e `WatchStudyProgress` usam o `KeyValueCache` (`shared/cache`), implementado com localStorage em `infra/cache`. A composição acontece no cliente em `main/providers/AppStudyProgressProvider.tsx`, e as telas leem pelo contexto `presentation/contexts/StudyProgressContext`.
+
 O formulário de contato usa uma Server Action (`main/actions`) que chama o caso de uso `SendContactMessage`. Hoje o envio é simulado pelo `ConsoleEmailSender` (só registra no log do servidor); para enviar de verdade, implemente um `EmailSender` em `infra/email/` e troque a instância em `main/factories/infra/email-sender.ts`.
 
 ## Breakpoints

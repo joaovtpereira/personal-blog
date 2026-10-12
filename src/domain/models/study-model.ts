@@ -2,7 +2,6 @@
 export type StudyLessonModel = {
   id: string;
   format: "video" | "texto";
-  completed: boolean;
 };
 
 export type StudyModel = {
@@ -10,7 +9,9 @@ export type StudyModel = {
   slug: string;
   locale: string;
   title: string;
+  description: string;
   tags: string[];
   lessons: StudyLessonModel[];
-  updated_at: string;
+  /** Ordem de exibição na trilha de estudos (1 = primeiro). */
+  order: number;
 };
