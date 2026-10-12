@@ -1,0 +1,131 @@
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 20px;
+  animation: swap 0.6s var(--ease-out) both;
+}
+
+.when,
+.thesisLabel {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.thesisLabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.degree {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.place {
+  margin-top: 2px;
+  font-size: 18px;
+  color: var(--mute);
+}
+
+.thesis {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.thesisTitle {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.thesisSummary {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--mute);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  background-size: 100% 1px;
+}
+
+@media (min-width: 768px) {
+  .degree {
+    margin-top: 10px;
+    font-size: 22px;
+  }
+
+  .place {
+    font-size: 19px;
+  }
+
+  .thesis {
+    margin-top: 16px;
+    padding-top: 14px;
+  }
+
+  .thesisLabel {
+    font-size: 11px;
+  }
+
+  .thesisTitle {
+    margin-top: 8px;
+    font-size: 18px;
+  }
+
+  .thesisSummary {
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    border-radius: var(--radius-l);
+    padding: 26px;
+  }
+
+  .degree {
+    margin-top: 12px;
+    font-size: 26px;
+  }
+
+  .place {
+    font-size: 21px;
+  }
+
+  .thesis {
+    margin-top: 18px;
+    padding-top: 16px;
+  }
+
+  .thesisTitle {
+    font-size: 19px;
+    letter-spacing: -0.02em;
+  }
+
+  .link {
+    background-size: 0 1px;
+  }
+}

@@ -1,0 +1,107 @@
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.panel {
+  margin-top: 28px;
+}
+
+.panel:focus-visible {
+  outline-offset: 8px;
+  border-radius: var(--radius-s);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Celular: lista com divisórias */
+.skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.skill {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  animation: swap 0.6s var(--ease-out) both;
+}
+
+.skillLabel {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.skillItems {
+  margin-top: 8px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* Tablet: cards em 2 colunas */
+@media (min-width: 768px) {
+  .tabs {
+    max-width: 480px;
+  }
+
+  .panel {
+    margin-top: 32px;
+  }
+
+  .cards,
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .skill {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+  }
+
+  .skillItems {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tabs {
+    max-width: 520px;
+  }
+
+  .panel {
+    margin-top: 40px;
+  }
+
+  .cards,
+  .skills {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 16px;
+  }
+
+  .skill {
+    padding: 26px;
+    border-radius: var(--radius-l);
+  }
+
+  .skillItems {
+    margin-top: 12px;
+    font-size: 20px;
+  }
+}

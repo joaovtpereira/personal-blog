@@ -2,4 +2,5 @@ export * from "./contact-message-mapper";
 export * from "./mapper";
 export * from "./post-mapper";
 export * from "./project-mapper";
+export * from "./resume-mapper";
 export * from "./study-mapper";

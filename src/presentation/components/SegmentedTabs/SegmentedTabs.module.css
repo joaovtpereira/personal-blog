@@ -1,0 +1,39 @@
+.tabs {
+  position: relative;
+  display: grid;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+
+.indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--fg);
+  transition: transform 0.5s var(--ease-in-out);
+}
+
+.tab {
+  position: relative;
+  z-index: 1;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  transition: color 0.35s;
+}
+
+.on {
+  color: var(--bg);
+}
+
+@media (min-width: 1200px) {
+  .tab {
+    height: 48px;
+    font-size: 15px;
+  }
+}

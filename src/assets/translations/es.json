@@ -163,5 +163,51 @@
       "Hablemos",
       "Let’s talk"
     ]
+  },
+  "Resume": {
+    "metaTitle": "Currículum — João Vitor Pereira",
+    "metaDescription": "Currículum de João Vitor Pereira: Tech Lead y desarrollador mobile, web y back-end (.NET y Node.js).",
+    "titleLine1": "Desarrollador",
+    "titleLine2": "<accent>mobile</accent> y web",
+    "avatarAlt": "Foto de João Vitor Pereira",
+    "talk": "Hablemos",
+    "linkedin": "LinkedIn",
+    "downloadPdf": "Descargar currículum en PDF",
+    "stats": {
+      "years": "AÑOS",
+      "platforms": "PLATAFORMAS",
+      "companies": "{count, plural, one {EMPRESA} other {EMPRESAS}}"
+    },
+    "stackLabel": "Tecnologías con las que trabajo",
+    "tabs": {
+      "label": "Secciones del currículum",
+      "experience": "Experiencia",
+      "education": "Formación",
+      "stack": "Stack"
+    },
+    "present": "HOY",
+    "current": "Actual",
+    "thesis": {
+      "label": "TESIS · DEFENDIDA EN {year}",
+      "link": "Leer en el repositorio de la {institution} ↗"
+    },
+    "languages": {
+      "title": "Idiomas",
+      "names": {
+        "pt": "Portugués",
+        "en": "Inglés",
+        "es": "Español"
+      },
+      "levels": {
+        "native": "NATIVO",
+        "advanced": "AVANZADO",
+        "intermediate": "INTERMEDIO",
+        "basicIntermediate": "BÁSICO-MEDIO",
+        "basic": "BÁSICO"
+      }
+    },
+    "currentCompany": "EMPRESA ACTUAL · {role}",
+    "cta": "¿Alguna idea <accent>innovadora?</accent> Háblame",
+    "empty": "El currículum todavía no está disponible en este idioma."
   }
 }

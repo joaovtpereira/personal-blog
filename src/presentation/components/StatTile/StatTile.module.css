@@ -1,0 +1,84 @@
+.tile {
+  min-width: 0;
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.outline {
+  border: 1px solid var(--line);
+}
+
+.surface {
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.inverted {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.value {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.label {
+  margin-top: 4px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.inverted .label {
+  color: inherit;
+  opacity: 0.6;
+}
+
+.detail {
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+@media (min-width: 768px) {
+  .responsive {
+    border-radius: 22px;
+    padding: 20px;
+  }
+
+  .responsive .value {
+    font-size: 40px;
+    letter-spacing: -0.05em;
+  }
+
+  .responsive .label {
+    font-size: 11px;
+  }
+
+  .responsive .detail {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+}
+
+.compact {
+  border-radius: 20px;
+  padding: 14px 18px;
+}
+
+.compact .value {
+  font-size: 32px;
+  letter-spacing: -0.05em;
+}
+
+.compact .label {
+  margin-top: 0;
+}
+
+.compact .detail {
+  font-size: 13px;
+  max-width: 150px;
+}

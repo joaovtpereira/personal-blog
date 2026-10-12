@@ -6,7 +6,7 @@ type ButtonLinkProps = {
   href: string;
   children: ReactNode;
   variant?: "primary" | "ghost" | "inverse" | "inverseGhost";
-  size?: "m" | "l";
+  size?: "s" | "m" | "l";
   /** Link externo (http, mailto) — não recebe prefixo de idioma. */
   external?: boolean;
   className?: string;

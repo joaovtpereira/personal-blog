@@ -17,6 +17,14 @@
   transform: scale(0.97);
 }
 
+.s {
+  height: 44px;
+  padding: 0 16px;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .m {
   height: 56px;
   padding: 0 28px;

@@ -163,5 +163,51 @@
       "Hablemos",
       "Let’s talk"
     ]
+  },
+  "Resume": {
+    "metaTitle": "Résumé — João Vitor Pereira",
+    "metaDescription": "Résumé of João Vitor Pereira: Tech Lead and mobile, web and back-end developer (.NET and Node.js).",
+    "titleLine1": "Developer",
+    "titleLine2": "<accent>mobile</accent> & web",
+    "avatarAlt": "Photo of João Vitor Pereira",
+    "talk": "Let’s talk",
+    "linkedin": "LinkedIn",
+    "downloadPdf": "Download résumé as PDF",
+    "stats": {
+      "years": "YEARS",
+      "platforms": "PLATFORMS",
+      "companies": "{count, plural, one {COMPANY} other {COMPANIES}}"
+    },
+    "stackLabel": "Technologies I work with",
+    "tabs": {
+      "label": "Résumé sections",
+      "experience": "Experience",
+      "education": "Education",
+      "stack": "Stack"
+    },
+    "present": "NOW",
+    "current": "Current",
+    "thesis": {
+      "label": "THESIS · DEFENDED IN {year}",
+      "link": "Read it on the {institution} repository ↗"
+    },
+    "languages": {
+      "title": "Languages",
+      "names": {
+        "pt": "Portuguese",
+        "en": "English",
+        "es": "Spanish"
+      },
+      "levels": {
+        "native": "NATIVE",
+        "advanced": "ADVANCED",
+        "intermediate": "INTERMEDIATE",
+        "basicIntermediate": "LOWER-INTERMEDIATE",
+        "basic": "BASIC"
+      }
+    },
+    "currentCompany": "CURRENT COMPANY · {role}",
+    "cta": "Got an <accent>innovative</accent> idea? Talk to me",
+    "empty": "The résumé is not available in this language yet."
   }
 }

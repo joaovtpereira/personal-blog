@@ -1,0 +1,208 @@
+.hero {
+  padding-top: 24px;
+}
+
+.avatarRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.avatarImage {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: grayscale(1) contrast(1.08);
+}
+
+.avatarDot {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+}
+
+.locationRow {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.location {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.title {
+  margin-top: 28px;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.line {
+  display: block;
+  font-size: clamp(40px, 13.5vw, 52px);
+}
+
+.line :global(.serif) {
+  letter-spacing: -0.02em;
+}
+
+.summary {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--mute);
+}
+
+.actions {
+  display: none;
+}
+
+.tabletOnly,
+.desktopOnly,
+.visual {
+  display: none !important;
+}
+
+.stats {
+  padding-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* Tablet: duas colunas com foto */
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    align-items: end;
+  }
+
+  .avatarRow {
+    display: none;
+  }
+
+  .locationRow {
+    display: flex;
+  }
+
+  .title {
+    margin-top: 24px;
+  }
+
+  .line {
+    font-size: clamp(44px, 6.6vw, 64px);
+  }
+
+  .summary {
+    margin-top: 20px;
+  }
+
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .tabletOnly {
+    display: inline-flex !important;
+  }
+
+  .visual {
+    display: block !important;
+    position: relative;
+  }
+
+  .portrait {
+    position: relative;
+    height: 420px;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .photo {
+    object-fit: cover;
+    object-position: 50% 30%;
+    filter: grayscale(1) contrast(1.08);
+  }
+
+  .floating {
+    display: none;
+  }
+
+  .stats {
+    padding-top: 32px;
+    gap: 12px;
+  }
+}
+
+/* Desktop: números flutuam sobre a foto */
+@media (min-width: 1200px) {
+  .hero {
+    padding-top: 72px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+    gap: 56px;
+  }
+
+  .title {
+    margin-top: 28px;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+  }
+
+  .line {
+    font-size: clamp(56px, 6.4vw, 116px);
+  }
+
+  .summary {
+    margin-top: 28px;
+    max-width: 540px;
+    font-size: 19px;
+  }
+
+  .actions {
+    margin-top: 32px;
+  }
+
+  .tabletOnly {
+    display: none !important;
+  }
+
+  .desktopOnly {
+    display: inline-flex !important;
+  }
+
+  .portrait {
+    height: 520px;
+    border-radius: var(--radius-xl);
+  }
+
+  .floating {
+    position: absolute;
+    left: -32px;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stats {
+    display: none;
+  }
+}

@@ -1,0 +1,55 @@
+@keyframes marq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 8px;
+  animation: marq 30s linear infinite;
+}
+
+.reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+.tag {
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 10px 16px;
+  white-space: nowrap;
+  transition: background 0.3s, color 0.3s;
+}
+
+.tag:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+@media (min-width: 768px) {
+  .marquee,
+  .track {
+    gap: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .marquee,
+  .track {
+    gap: 12px;
+  }
+}

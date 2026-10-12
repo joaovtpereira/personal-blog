@@ -1,0 +1,169 @@
+@keyframes line {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 28px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line);
+  transform-origin: top;
+  animation: line 1.6s var(--ease-out) 0.2s both;
+}
+
+.item {
+  position: relative;
+  padding-bottom: 32px;
+  animation: swap 0.6s var(--ease-out) both;
+}
+
+.dot {
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--fg);
+  background: var(--bg);
+}
+
+.current {
+  background: var(--fg);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--fg) 15%, transparent);
+}
+
+.when {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.body {
+  margin-top: 6px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: var(--mute);
+}
+
+.description {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mute);
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    padding-left: 36px;
+  }
+
+  .timeline::before {
+  content: "";
+    left: 6px;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 24px;
+    padding-bottom: 36px;
+  }
+
+  .dot {
+    left: -36px;
+    width: 13px;
+    height: 13px;
+  }
+
+  .when {
+    font-size: 12px;
+    padding-top: 4px;
+  }
+
+  .body {
+    margin-top: 0;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 22px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .timeline {
+    padding-left: 40px;
+  }
+
+  .item {
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 32px;
+    padding-bottom: 44px;
+  }
+
+  .dot {
+    left: -40px;
+    top: 8px;
+  }
+
+  .when {
+    padding-top: 6px;
+  }
+
+  .title {
+    font-size: 30px;
+    letter-spacing: -0.035em;
+  }
+
+  .subtitle {
+    font-size: 24px;
+  }
+
+  .description {
+    margin-top: 12px;
+    font-size: 17px;
+    max-width: 600px;
+  }
+}
