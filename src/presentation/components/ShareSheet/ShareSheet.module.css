@@ -1,0 +1,623 @@
+/* Celular/tablet: folha presa à base · desktop (≥1200): modal com a prévia à esquerda. */
+
+.dialog {
+  margin: auto auto 0;
+  padding: 0;
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100dvh - 24px);
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fade 0.4s var(--ease-out) both;
+}
+
+.dialog[open] .panel {
+  animation: sheetUp 0.55s var(--ease-out) both;
+}
+
+@keyframes sheetUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.panel {
+  display: grid;
+  grid-template-areas:
+    "handle"
+    "head"
+    "tabs"
+    "preview"
+    "actions";
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
+  padding: 10px var(--space-5) calc(28px + env(safe-area-inset-bottom));
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+}
+
+.handle {
+  grid-area: handle;
+  justify-self: center;
+  width: 40px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+}
+
+.head {
+  grid-area: head;
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.headText {
+  min-width: 0;
+}
+
+.kind {
+  display: none;
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+/* No celular o título é só "Compartilhar"; a ênfase do tipo aparece no desktop. */
+.titleAccent {
+  display: none;
+}
+
+.postTitle {
+  margin: 4px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.close {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  display: grid;
+  place-items: center;
+  transition: border-color 0.3s;
+}
+
+.close:hover {
+  border-color: var(--fg);
+}
+
+.tabs {
+  grid-area: tabs;
+  margin-top: 16px;
+}
+
+.preview {
+  grid-area: preview;
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.figure {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.figure figcaption {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.swap {
+  animation: rise 0.6s var(--ease-out) both;
+}
+
+.story {
+  width: 180px;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+.story img,
+.linkCard img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.linkCard {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--card);
+}
+
+.linkCard img {
+  aspect-ratio: 1200 / 630;
+  background: var(--video-bg);
+}
+
+.linkMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.linkHost {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.linkMeta strong {
+  font-weight: 500;
+}
+
+.linkSummary {
+  display: none;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.actions {
+  grid-area: actions;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.destinations {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.destination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.destination:hover:not(:disabled) {
+  transform: translateY(-4px);
+}
+
+.destination:disabled {
+  opacity: 0.6;
+}
+
+.ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  transition: border-color 0.3s;
+}
+
+.destination:hover .ring,
+.destination:focus-visible .ring {
+  border-color: var(--fg);
+}
+
+.ringPrimary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.copyField {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.copyLabel {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--mute);
+}
+
+.copyBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 4px 4px 4px 16px;
+  transition: border-color 0.3s;
+}
+
+.copyBox:focus-within {
+  border-color: var(--fg);
+}
+
+.copyBox input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mute);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.copyButton,
+.primary {
+  flex: none;
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.3s;
+}
+
+.copyButton:active,
+.primary:active {
+  transform: scale(0.96);
+}
+
+.networks {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.network {
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  transition: border-color 0.3s, transform 0.35s var(--ease-out);
+}
+
+.network:hover {
+  border-color: var(--fg);
+  transform: translateY(-3px);
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--mute);
+  text-align: center;
+}
+
+/* Só desktop: some abaixo de 1200px (no desktop cada elemento mantém o próprio display). */
+@media (max-width: 1199px) {
+  .desktopOnly {
+    display: none !important;
+  }
+}
+
+/* Tablet: a mesma folha, centralizada e um pouco maior. */
+@media (min-width: 768px) {
+  .panel {
+    padding-inline: var(--space-6);
+  }
+
+  .story {
+    width: 216px;
+  }
+}
+
+/* Desktop: modal centralizado, prévia à esquerda. */
+@media (min-width: 1200px) {
+  .dialog {
+    margin: auto;
+    max-width: 1040px;
+    max-height: calc(100dvh - 48px);
+  }
+
+  .dialog[open] .panel {
+    animation-name: pop;
+  }
+
+  .panel {
+    grid-template-columns: 420px minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "preview head"
+      "preview tabs"
+      "preview actions";
+    column-gap: 40px;
+    min-height: 700px;
+    max-height: calc(100dvh - 48px);
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+  }
+
+  .handle,
+  .compactOnly {
+    display: none !important;
+  }
+
+  .head {
+    margin-top: 0;
+  }
+
+  .kind {
+    display: block;
+  }
+
+  .title {
+    margin-top: 10px;
+    font-size: 40px;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  .titleAccent {
+    display: inline;
+  }
+
+  .postTitle {
+    margin-top: 8px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .close {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tabs {
+    margin-top: 28px;
+  }
+
+  .preview {
+    margin-top: 0;
+    align-items: center;
+    border-radius: var(--radius-l);
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+
+  .figure figcaption {
+    font-size: 11px;
+  }
+
+  .story {
+    width: 324px;
+    border-radius: 22px;
+    box-shadow: var(--shadow-float);
+  }
+
+  .linkCard {
+    width: 360px;
+    background: var(--bg);
+  }
+
+  .linkMeta {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .linkSummary {
+    display: block;
+  }
+
+  .actions {
+    margin-top: 24px;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    background: transparent;
+    text-align: left;
+    transition: border-color 0.3s, transform 0.35s var(--ease-out);
+  }
+
+  .row:hover:not(:disabled) {
+    border-color: var(--fg);
+    transform: translateY(-3px);
+  }
+
+  .row:hover .rowArrow {
+    transform: translate(3px, -3px);
+  }
+
+  .rowText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 16px;
+  }
+
+  .rowHint {
+    font-size: 13px;
+    color: var(--mute);
+  }
+
+  .rowArrow {
+    transition: transform 0.3s;
+  }
+
+  .footer {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 24px;
+  }
+
+  .primary {
+    flex: 1;
+    height: 56px;
+    font-size: 16px;
+  }
+
+  .secondary {
+    flex: none;
+    height: 56px;
+    padding: 0 22px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    background: transparent;
+    font-size: 15px;
+    transition: border-color 0.3s;
+  }
+
+  .secondary:hover {
+    border-color: var(--fg);
+  }
+
+  .copyBox {
+    padding: 5px 5px 5px 20px;
+  }
+
+  .copyBox input {
+    font-size: 14px;
+    color: var(--fg);
+  }
+
+  .copyButton {
+    height: 46px;
+    padding: 0 22px;
+    font-size: 15px;
+  }
+
+  .networks {
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .network {
+    height: 96px;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: var(--radius-m);
+    font-size: 14px;
+  }
+
+  .hint {
+    margin: auto 0 0;
+    padding-top: 24px;
+    font-size: 13px;
+    color: var(--mute);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open] .panel,
+  .dialog::backdrop,
+  .swap {
+    animation: none;
+  }
+}

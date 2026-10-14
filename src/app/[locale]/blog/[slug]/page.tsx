@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { postShareCard } from "@/domain/entities";
 import { loadPostPage, makePostScreen } from "@/main/factories/screens/make-post-screen";
+import { shareMetadata } from "@/main/factories/share/share-target";
 import { makeGetPostRoutes } from "@/main/factories/use-cases/use-cases";
 import { routing } from "@/main/i18n/routing";
+import { ROUTES } from "@/main/routes";
 
 export async function generateStaticParams() {
   const routes = await makeGetPostRoutes().execute();
@@ -21,10 +24,12 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/blog/[sl
     getTranslations({ locale, namespace: "PostPage" }),
     getTranslations({ locale, namespace: "Post" }),
   ]);
+  const share = shareMetadata(postShareCard(page, ROUTES.post(slug)));
   return {
     title: t("metaTitle", { title: post.title, kind: tp(`kind.${post.kind}`) }),
     description: page.detail.lead ?? post.excerpt,
-    openGraph: { type: "article", publishedTime: post.publishedAt, tags: post.tags },
+    openGraph: { type: "article", publishedTime: post.publishedAt, tags: post.tags, ...share.openGraph },
+    twitter: share.twitter,
   };
 }
 

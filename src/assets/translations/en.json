@@ -531,5 +531,89 @@
     "cover": "[COVER]",
     "capture": "● REC [CAPTURE]",
     "captureAlt": "Screenshot of {title}"
+  },
+  "Share": {
+    "open": "Share",
+    "title": "Share",
+    "heading": {
+      "thought": "thought",
+      "book": "review",
+      "game": "review",
+      "lesson": "lesson"
+    },
+    "close": "Close",
+    "formatLabel": "Format",
+    "tabs": {
+      "image": "Story image",
+      "link": "Link"
+    },
+    "storySize": "STORY · 1080 × 1920",
+    "linkPreviewNote": "PREVIEW ON WHATSAPP AND FACEBOOK",
+    "storyAlt": "Story image for “{title}”",
+    "linkAlt": "Link preview for “{title}”",
+    "networks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "whatsapp": "WhatsApp",
+      "download": "Download",
+      "more": "More",
+      "email": "Email"
+    },
+    "rows": {
+      "instagram": {
+        "title": "Instagram story",
+        "hint": "Download the image and post it from your phone with the link sticker."
+      },
+      "facebook": {
+        "title": "Facebook story",
+        "hint": "The same 9:16 image works for both."
+      },
+      "whatsapp": {
+        "title": "WhatsApp status",
+        "hint": "Send the image with the link in the caption."
+      }
+    },
+    "downloadPng": "Download image (PNG)",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "copy": "Copy",
+    "copied": "Copied",
+    "linkLabel": {
+      "post": "POST LINK",
+      "lesson": "LESSON LINK"
+    },
+    "linkHint": "The link shows the preview beside it on WhatsApp and Facebook.",
+    "status": {
+      "preparing": "Preparing the image…",
+      "downloaded": "Image downloaded. Post it from the app.",
+      "shared": "Done, shared.",
+      "failed": "Couldn’t create the image. Try again.",
+      "copied": "Link copied."
+    }
+  },
+  "ShareImage": {
+    "study": "STUDY",
+    "thoughtMeta": "{date} · {minutes} MIN",
+    "keyIdeaThought": "THE LINE THAT STAYS",
+    "keyIdeaLesson": "CORE IDEA",
+    "cta": {
+      "thought": "READ ON THE BLOG · {host}",
+      "review": "FULL REVIEW · {host}",
+      "lesson": "STUDY WITH ME · {host}"
+    },
+    "verdict": "VERDICT",
+    "hours": "HOURS",
+    "hoursPlayed": "{hours}H PLAYED",
+    "worth": "WORTH IT?",
+    "score": "SCORE",
+    "completed": "BEATEN",
+    "cover": "COVER",
+    "capture": "REC · GAME CAPTURE",
+    "rec": "REC",
+    "lessonWord": "LESSON",
+    "lessonPosition": "LESSON {number} OF {total}",
+    "lessonVideo": "VIDEO · {minutes} MIN",
+    "lessonVideoNoTime": "VIDEO",
+    "lessonText": "READING · {minutes} MIN"
   }
 }

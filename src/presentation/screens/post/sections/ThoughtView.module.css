@@ -108,6 +108,12 @@
   padding-top: 40px;
 }
 
+.shareRow {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
 .collection {
   padding-top: 32px;
 }

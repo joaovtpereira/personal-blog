@@ -1,4 +1,4 @@
-import type { PostPage, PublicComment } from "@/domain/entities";
+import type { PostPage, PublicComment, ShareTarget } from "@/domain/entities";
 import type { CommentFormAction } from "@/presentation/components/Comments";
 
 export type PostViewProps = {
@@ -7,4 +7,6 @@ export type PostViewProps = {
   commentAction: CommentFormAction;
   /** Campos ocultos do formulário de comentário (montados pela factory). */
   commentContext: Record<string, string>;
+  /** Painel de compartilhar (imagem para story e link). */
+  share: ShareTarget;
 };

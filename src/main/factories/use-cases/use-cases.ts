@@ -12,6 +12,8 @@ import {
   PostPageLoader,
   PostRoutesLoader,
   PostSearch,
+  LessonShareCardLoader,
+  PostShareCardLoader,
   Projects,
   ResumeLoader,
   StudiesCatalog,
@@ -28,6 +30,8 @@ import type {
   GetPostPage,
   GetPostRoutes,
   GetLatestPosts,
+  GetLessonShareCard,
+  GetPostShareCard,
   GetProjects,
   GetResume,
   GetStudies,
@@ -38,7 +42,7 @@ import type {
   SearchPosts,
   SendContactMessage,
 } from "@/domain/use-cases";
-import { EXTERNAL } from "@/main/routes";
+import { EXTERNAL, ROUTES } from "@/main/routes";
 import {
   makeLessonCommentsDataSource,
   makeLessonsDataSource,
@@ -127,3 +131,8 @@ export const makeGetPostRoutes = (): GetPostRoutes => new PostRoutesLoader(makeP
 export const makeGetPostComments = (): GetPostComments => new PostCommentsLoader(makePostCommentsDataSource());
 
 export const makePostPostComment = (): PostPostComment => new PostCommentModeration(makeEmailSender(), EXTERNAL.email);
+
+export const makeGetPostShareCard = (): GetPostShareCard => new PostShareCardLoader(makeGetPostPage(), ROUTES.post);
+
+export const makeGetLessonShareCard = (): GetLessonShareCard =>
+  new LessonShareCardLoader(makeGetStudyLesson(), ROUTES.lesson);

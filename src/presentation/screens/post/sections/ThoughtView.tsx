@@ -4,6 +4,7 @@ import { Comments } from "@/presentation/components/Comments";
 import { ContentRenderer } from "@/presentation/components/Content";
 import { AuthorByline } from "@/presentation/components/AuthorByline";
 import { ThoughtReactions } from "@/presentation/components/ReactionButtons";
+import { ShareTrigger } from "@/presentation/components/ShareSheet";
 import { ReadingTarget } from "@/presentation/components/ReadingBar";
 import { ThoughtLinkCard } from "@/presentation/components/RelatedPostCard";
 import { formatShortDate } from "@/presentation/utils/format";
@@ -11,7 +12,7 @@ import type { PostViewProps } from "../post-view-props";
 import styles from "./ThoughtView.module.css";
 
 /** Pensamento: abertura centralizada, texto em coluna estreita, reações, conversa e outros pensamentos. */
-export function ThoughtView({ page, comments, commentAction, commentContext }: PostViewProps) {
+export function ThoughtView({ page, comments, commentAction, commentContext, share }: PostViewProps) {
   const t = useTranslations("PostPage");
   const tp = useTranslations("Post");
   const format = useFormatter();
@@ -50,6 +51,9 @@ export function ThoughtView({ page, comments, commentAction, commentContext }: P
       {detail.reactions.type === "thought" && (
         <div className={styles.reactions}>
           <ThoughtReactions postId={post.id} counts={detail.reactions.counts} />
+          <div className={styles.shareRow}>
+            <ShareTrigger target={share} />
+          </div>
         </div>
       )}
 

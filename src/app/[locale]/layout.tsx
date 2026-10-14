@@ -3,8 +3,10 @@ import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_URL } from "@/main/config/site";
 import { routing } from "@/main/i18n/routing";
 import { AppPostReactionsProvider } from "@/main/providers/AppPostReactionsProvider";
+import { AppShareProvider } from "@/main/providers/AppShareProvider";
 import { AppStudyProgressProvider } from "@/main/providers/AppStudyProgressProvider";
 import { BottomNav } from "@/presentation/components/BottomNav";
 import { InlineScript } from "@/presentation/components/InlineScript";
@@ -33,6 +35,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
+    metadataBase: SITE_URL,
     title: t("title"),
     description: t("description"),
     alternates: { languages: Object.fromEntries(routing.locales.map((l) => [HTML_LANG[l], `/${l}`])) },
@@ -61,12 +64,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         <NextIntlClientProvider>
           <AppStudyProgressProvider>
             <AppPostReactionsProvider>
-              <PageHeaderProvider>
-                <SiteHeader />
-                {children}
-                <SiteFooter />
-                <BottomNav />
-              </PageHeaderProvider>
+              <AppShareProvider>
+                <PageHeaderProvider>
+                  <SiteHeader />
+                  {children}
+                  <SiteFooter />
+                  <BottomNav />
+                </PageHeaderProvider>
+              </AppShareProvider>
             </AppPostReactionsProvider>
           </AppStudyProgressProvider>
         </NextIntlClientProvider>

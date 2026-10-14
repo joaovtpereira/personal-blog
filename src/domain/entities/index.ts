@@ -9,6 +9,7 @@ export * from "./post-detail";
 export * from "./project";
 export * from "./resume";
 export * from "./rich-text";
+export * from "./share-card";
 export * from "./study";
 export * from "./study-collection";
 export * from "./study-lesson-page";

@@ -6,6 +6,7 @@ import { ContentRenderer } from "@/presentation/components/Content";
 import { LessonDoneButton } from "@/presentation/components/LessonDoneButton";
 import { LessonList } from "@/presentation/components/LessonList";
 import { MaterialList } from "@/presentation/components/MaterialList";
+import { ShareTrigger } from "@/presentation/components/ShareSheet";
 import { LessonNavCards } from "./LessonNav";
 import { ReadingArticle, ReadingSession } from "./ReadingSession";
 import { StudyHero } from "./StudyHero";
@@ -17,7 +18,7 @@ import styles from "./ReadingLessonView.module.css";
  * Celular: texto → marcar como lida → anterior/próxima → comentários → sumário.
  * Tablet/desktop: sumário fixo à esquerda e o texto à direita.
  */
-export function ReadingLessonView({ page, comments, commentAction, commentContext }: LessonViewProps) {
+export function ReadingLessonView({ page, comments, commentAction, commentContext, share }: LessonViewProps) {
   const t = useTranslations("Lesson");
   const { study, lessons, lesson } = page;
   const { previous, next } = neighbours(lessons, lesson.id);
@@ -69,7 +70,10 @@ export function ReadingLessonView({ page, comments, commentAction, commentContex
           </ReadingArticle>
 
           <div className={styles.actions}>
-            <LessonDoneButton studyId={study.id} lessonId={lesson.id} mode="reading" className={styles.done} />
+            <div className={styles.doneRow}>
+              <LessonDoneButton studyId={study.id} lessonId={lesson.id} mode="reading" className={styles.done} />
+              <ShareTrigger target={share} variant="round" className={styles.share} />
+            </div>
             <LessonNavCards studySlug={study.slug} previous={previous} next={next} />
           </div>
 

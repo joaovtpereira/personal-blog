@@ -12,7 +12,7 @@ import { PointsCard } from "@/presentation/components/PointsCard";
 import { LikeButton } from "@/presentation/components/ReactionButtons";
 import { ReadingTarget } from "@/presentation/components/ReadingBar";
 import { RelatedPostCard } from "@/presentation/components/RelatedPostCard";
-import { ShareButton } from "@/presentation/components/ShareButton";
+import { ShareTrigger } from "@/presentation/components/ShareSheet";
 import { Tag } from "@/presentation/components/Tag";
 import { VerdictCard } from "@/presentation/components/VerdictCard";
 import { formatShortDate } from "@/presentation/utils/format";
@@ -24,7 +24,7 @@ import styles from "./ReviewView.module.css";
  * Celular/tablet: tudo em coluna (no tablet, gostei · nem tanto · veredito lado a lado).
  * Desktop: texto à esquerda e coluna fixa com veredito, ficha, tags, ações e próxima leitura.
  */
-export function ReviewView({ page, comments, commentAction, commentContext }: PostViewProps) {
+export function ReviewView({ page, comments, commentAction, commentContext, share }: PostViewProps) {
   const t = useTranslations("PostPage");
   const tp = useTranslations("Post");
   const format = useFormatter();
@@ -57,16 +57,7 @@ export function ReviewView({ page, comments, commentAction, commentContext }: Po
       <a href={`#${commentsId}`} className={`${styles.round} ${styles.desktopOnly}`} aria-label={t("goComments")}>
         <Icon name="chat" />
       </a>
-      <ShareButton
-        title={post.title}
-        label={t("copyLink")}
-        ariaLabel={t("copyLink")}
-        copiedLabel={t("copied")}
-        variant="round"
-        mode="copy"
-        icon="link"
-        className={styles.copy}
-      />
+      <ShareTrigger target={share} variant="round" className={styles.copy} />
     </div>
   );
 

@@ -10,5 +10,6 @@ export * from "./post-page-loader";
 export * from "./post-search";
 export * from "./projects";
 export * from "./resume-loader";
+export * from "./share-cards";
 export * from "./studies-catalog";
 export * from "./study-lesson-loader";

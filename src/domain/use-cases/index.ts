@@ -9,4 +9,5 @@ export * from "./get-study-lesson";
 export * from "./lesson-comments";
 export * from "./search-posts";
 export * from "./send-contact-message";
+export * from "./share";
 export * from "./study-progress";

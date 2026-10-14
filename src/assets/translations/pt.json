@@ -531,5 +531,89 @@
     "cover": "[CAPA]",
     "capture": "● REC [CAPTURA]",
     "captureAlt": "Captura de {title}"
+  },
+  "Share": {
+    "open": "Compartilhar",
+    "title": "Compartilhar",
+    "heading": {
+      "thought": "pensamento",
+      "book": "resenha",
+      "game": "resenha",
+      "lesson": "aula"
+    },
+    "close": "Fechar",
+    "formatLabel": "Formato",
+    "tabs": {
+      "image": "Imagem para story",
+      "link": "Link"
+    },
+    "storySize": "STORY · 1080 × 1920",
+    "linkPreviewNote": "PRÉVIA NO WHATSAPP E NO FACEBOOK",
+    "storyAlt": "Imagem para story de “{title}”",
+    "linkAlt": "Prévia do link de “{title}”",
+    "networks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "whatsapp": "WhatsApp",
+      "download": "Baixar",
+      "more": "Mais",
+      "email": "E-mail"
+    },
+    "rows": {
+      "instagram": {
+        "title": "Story do Instagram",
+        "hint": "Baixe a imagem e publique pelo celular, com a figurinha de link."
+      },
+      "facebook": {
+        "title": "Story do Facebook",
+        "hint": "A mesma imagem 9:16 serve para os dois."
+      },
+      "whatsapp": {
+        "title": "Status do WhatsApp",
+        "hint": "Envie a imagem com o link na legenda."
+      }
+    },
+    "downloadPng": "Baixar imagem (PNG)",
+    "copyLink": "Copiar link",
+    "linkCopied": "Link copiado",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "linkLabel": {
+      "post": "LINK DO TEXTO",
+      "lesson": "LINK DA AULA"
+    },
+    "linkHint": "O link abre a prévia ao lado no WhatsApp e no Facebook.",
+    "status": {
+      "preparing": "Preparando a imagem…",
+      "downloaded": "Imagem baixada. Publique pelo app da rede.",
+      "shared": "Pronto, compartilhado.",
+      "failed": "Não deu para gerar a imagem. Tente de novo.",
+      "copied": "Link copiado."
+    }
+  },
+  "ShareImage": {
+    "study": "ESTUDO",
+    "thoughtMeta": "{date} · {minutes} MIN",
+    "keyIdeaThought": "A FRASE QUE FICA",
+    "keyIdeaLesson": "IDEIA CENTRAL",
+    "cta": {
+      "thought": "LEIA NO BLOG · {host}",
+      "review": "RESENHA COMPLETA · {host}",
+      "lesson": "ESTUDE JUNTO · {host}"
+    },
+    "verdict": "VEREDITO",
+    "hours": "HORAS",
+    "hoursPlayed": "{hours}H JOGADAS",
+    "worth": "VALE O PREÇO?",
+    "score": "NOTA",
+    "completed": "ZERADO",
+    "cover": "CAPA",
+    "capture": "REC · CAPTURA DO JOGO",
+    "rec": "REC",
+    "lessonWord": "AULA",
+    "lessonPosition": "AULA {number} DE {total}",
+    "lessonVideo": "VÍDEO · {minutes} MIN",
+    "lessonVideoNoTime": "VÍDEO",
+    "lessonText": "LEITURA · {minutes} MIN"
   }
 }

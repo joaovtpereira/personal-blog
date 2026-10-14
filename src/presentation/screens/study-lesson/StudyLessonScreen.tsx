@@ -1,7 +1,8 @@
 import { useTranslations } from "next-intl";
-import { studyLayout, type PublicComment, type StudyLessonPage } from "@/domain/entities";
+import { studyLayout, type PublicComment, type ShareTarget, type StudyLessonPage } from "@/domain/entities";
 import { ROUTES } from "@/main/routes";
 import type { CommentFormAction } from "@/presentation/components/Comments";
+import { ShareTrigger } from "@/presentation/components/ShareSheet";
 import { PageHeader } from "@/presentation/contexts/PageHeaderContext";
 import { ReadingLessonView } from "./sections/ReadingLessonView";
 import { VideoLessonView } from "./sections/VideoLessonView";
@@ -12,6 +13,8 @@ export type StudyLessonScreenProps = {
   commentAction: CommentFormAction;
   /** Campos ocultos do formulário de comentário (montados pela factory). */
   commentContext: Record<string, string>;
+  /** Painel de compartilhar (imagem para story e link). */
+  share: ShareTarget;
 };
 
 /** Aula de um estudo. Estudo com qualquer aula em vídeo usa o layout de vídeo; só texto, o modo leitura. */
@@ -27,6 +30,7 @@ export function StudyLessonScreen(props: StudyLessonScreenProps) {
         crumb={t("counter", { current: pad(page.lesson.number), total: pad(page.lessons.length) })}
         backHref={ROUTES.studies}
         backLabel={t("backToStudies")}
+        action={<ShareTrigger target={props.share} variant="round" />}
       />
       {layout === "reading" ? <ReadingLessonView {...props} /> : <VideoLessonView {...props} />}
     </main>

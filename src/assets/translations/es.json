@@ -531,5 +531,89 @@
     "cover": "[PORTADA]",
     "capture": "● REC [CAPTURA]",
     "captureAlt": "Captura de {title}"
+  },
+  "Share": {
+    "open": "Compartir",
+    "title": "Compartir",
+    "heading": {
+      "thought": "pensamiento",
+      "book": "reseña",
+      "game": "reseña",
+      "lesson": "clase"
+    },
+    "close": "Cerrar",
+    "formatLabel": "Formato",
+    "tabs": {
+      "image": "Imagen para historia",
+      "link": "Enlace"
+    },
+    "storySize": "HISTORIA · 1080 × 1920",
+    "linkPreviewNote": "VISTA PREVIA EN WHATSAPP Y FACEBOOK",
+    "storyAlt": "Imagen para historia de “{title}”",
+    "linkAlt": "Vista previa del enlace de “{title}”",
+    "networks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "whatsapp": "WhatsApp",
+      "download": "Descargar",
+      "more": "Más",
+      "email": "Correo"
+    },
+    "rows": {
+      "instagram": {
+        "title": "Historia de Instagram",
+        "hint": "Descarga la imagen y publícala desde el celular, con el sticker de enlace."
+      },
+      "facebook": {
+        "title": "Historia de Facebook",
+        "hint": "La misma imagen 9:16 sirve para las dos."
+      },
+      "whatsapp": {
+        "title": "Estado de WhatsApp",
+        "hint": "Envía la imagen con el enlace en el texto."
+      }
+    },
+    "downloadPng": "Descargar imagen (PNG)",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "Enlace copiado",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "linkLabel": {
+      "post": "ENLACE DEL TEXTO",
+      "lesson": "ENLACE DE LA CLASE"
+    },
+    "linkHint": "El enlace muestra la vista previa de al lado en WhatsApp y Facebook.",
+    "status": {
+      "preparing": "Preparando la imagen…",
+      "downloaded": "Imagen descargada. Publícala desde la app de la red.",
+      "shared": "Listo, compartido.",
+      "failed": "No se pudo generar la imagen. Inténtalo de nuevo.",
+      "copied": "Enlace copiado."
+    }
+  },
+  "ShareImage": {
+    "study": "ESTUDIO",
+    "thoughtMeta": "{date} · {minutes} MIN",
+    "keyIdeaThought": "LA FRASE QUE QUEDA",
+    "keyIdeaLesson": "IDEA CENTRAL",
+    "cta": {
+      "thought": "LEE EN EL BLOG · {host}",
+      "review": "RESEÑA COMPLETA · {host}",
+      "lesson": "ESTUDIA CONMIGO · {host}"
+    },
+    "verdict": "VEREDICTO",
+    "hours": "HORAS",
+    "hoursPlayed": "{hours}H JUGADAS",
+    "worth": "¿VALE LA PENA?",
+    "score": "NOTA",
+    "completed": "TERMINADO",
+    "cover": "PORTADA",
+    "capture": "REC · CAPTURA DEL JUEGO",
+    "rec": "REC",
+    "lessonWord": "CLASE",
+    "lessonPosition": "CLASE {number} DE {total}",
+    "lessonVideo": "VIDEO · {minutes} MIN",
+    "lessonVideoNoTime": "VIDEO",
+    "lessonText": "LECTURA · {minutes} MIN"
   }
 }

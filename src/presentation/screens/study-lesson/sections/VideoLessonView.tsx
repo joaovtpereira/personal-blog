@@ -6,8 +6,9 @@ import { ContentRenderer } from "@/presentation/components/Content";
 import { LessonDoneButton } from "@/presentation/components/LessonDoneButton";
 import { LessonList } from "@/presentation/components/LessonList";
 import { MaterialList } from "@/presentation/components/MaterialList";
+import { ShareTrigger } from "@/presentation/components/ShareSheet";
 import { VideoPlayer } from "@/presentation/components/VideoPlayer";
-import type { PublicComment } from "@/domain/entities";
+import type { PublicComment, ShareTarget } from "@/domain/entities";
 import { LessonArrow } from "./LessonNav";
 import { StudyHero } from "./StudyHero";
 import styles from "./VideoLessonView.module.css";
@@ -17,6 +18,7 @@ export type LessonViewProps = {
   comments: PublicComment[];
   commentAction: CommentFormAction;
   commentContext: Record<string, string>;
+  share: ShareTarget;
 };
 
 /**
@@ -24,7 +26,7 @@ export type LessonViewProps = {
  * Celular: player → título/ações → anotações → material → comentários → aulas.
  * Tablet: anotações e lista de aulas lado a lado. Desktop: lista de aulas fixa à direita.
  */
-export function VideoLessonView({ page, comments, commentAction, commentContext }: LessonViewProps) {
+export function VideoLessonView({ page, comments, commentAction, commentContext, share }: LessonViewProps) {
   const t = useTranslations("Lesson");
   const { study, lessons, lesson } = page;
   const { previous, next } = neighbours(lessons, lesson.id);
@@ -74,6 +76,7 @@ export function VideoLessonView({ page, comments, commentAction, commentContext 
             <LessonArrow studySlug={study.slug} lesson={previous} direction="previous" />
             <LessonDoneButton studyId={study.id} lessonId={lesson.id} mode="video" className={styles.done} />
             <LessonArrow studySlug={study.slug} lesson={next} direction="next" />
+            <ShareTrigger target={share} variant="round" className={styles.share} />
           </div>
         </div>
 
