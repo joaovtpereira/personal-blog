@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@editor/*": ["./src/*"],
+      "next-intl": ["./src/infra/blog-shims/next-intl.ts"],
+      "next/image": ["./src/infra/blog-shims/next-image.tsx"],
+      "@/main/i18n/navigation": ["./src/infra/blog-shims/navigation.tsx"],
+      "@/*": ["../src/*"],
+      "react": ["./node_modules/@types/react"],
+      "react/*": ["./node_modules/@types/react/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.mts"]
+}

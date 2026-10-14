@@ -1,0 +1,218 @@
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.title {
+  margin: 8px 0 8px;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.close {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  display: grid;
+  place-items: center;
+}
+
+.close:hover {
+  border-color: var(--fg);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Chips do DS em tamanho compacto. */
+.chip {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.count {
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.search {
+  flex: 1;
+  min-width: 200px;
+  border-radius: var(--radius-pill);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.listColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 340px;
+  overflow: auto;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.file,
+.browse {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 6px 12px 6px 6px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.file:hover {
+  border-color: var(--line);
+}
+
+.on {
+  border-color: var(--fg);
+  background: var(--bg);
+}
+
+.browse {
+  grid-template-columns: 36px minmax(0, 1fr);
+  border: 1px dashed var(--mute);
+}
+
+.browse:hover {
+  border-color: var(--fg);
+}
+
+.glyph {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+}
+
+.fileText {
+  min-width: 0;
+}
+
+.fileTitle {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.path {
+  display: block;
+  font-size: 11px;
+  color: var(--mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.hint {
+  display: block;
+  font-size: 12px;
+  color: var(--mute);
+}
+
+.empty {
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.previewTitle {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.checks {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notice {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-s);
+  border: 1px dashed var(--mute);
+  color: var(--mute);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  height: 44px;
+}

@@ -1,0 +1,27 @@
+.meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px dashed var(--mute);
+  background: transparent;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: border-color 0.25s;
+}
+
+.meter:hover {
+  border-color: var(--fg);
+}
+
+.done {
+  border-style: solid;
+  border-color: var(--fg);
+}
+
+.bar {
+  display: block;
+  width: 56px;
+}

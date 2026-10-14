@@ -1,0 +1,36 @@
+.item {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 4px 10px 4px 4px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s var(--ease-out);
+}
+
+.item:hover:not(:disabled) {
+  border-color: var(--line);
+  background: var(--card);
+  transform: translateX(3px);
+}
+
+.item:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.glyph {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+}

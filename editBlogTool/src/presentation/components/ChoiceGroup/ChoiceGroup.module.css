@@ -1,0 +1,62 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.choice {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  background: transparent;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.choice:hover {
+  border-color: var(--fg);
+}
+
+.missing .choice {
+  border-style: dashed;
+}
+
+.on {
+  border-color: var(--fg);
+  background: var(--card);
+}
+
+.choice small {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--mute);
+}
+
+.radio {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  border: 1px solid var(--mute);
+  display: grid;
+  place-items: center;
+}
+
+.on .radio {
+  border-color: var(--fg);
+}
+
+.on .radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fg);
+}

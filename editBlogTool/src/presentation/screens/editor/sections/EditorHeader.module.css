@@ -1,0 +1,128 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  flex: 1 1 180px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+}
+
+.titles {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.source {
+  max-width: 220px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px dashed var(--line);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.editing {
+  border-style: solid;
+  border-color: var(--fg);
+  color: var(--fg);
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kinds {
+  flex: 0 0 500px;
+}
+
+.actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Botões do DS em tamanho compacto para caber no cabeçalho. */
+.action {
+  height: 40px;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.action:hover svg {
+  transform: none;
+}
+
+/* Até 1599px o cabeçalho continua em uma linha: abas mais estreitas e ações secundárias só com ícone. */
+@media (max-width: 1599px) {
+  .brand {
+    flex-basis: 120px;
+  }
+
+  .kinds {
+    flex-basis: 490px;
+  }
+
+  .compactLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .action:has(.compactLabel) {
+    width: 40px;
+    padding: 0;
+  }
+}

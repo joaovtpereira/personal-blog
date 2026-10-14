@@ -1,0 +1,80 @@
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 860px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.study {
+  margin-left: 8px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: border-color 0.25s, background 0.25s, color 0.25s;
+}
+
+.tab:hover {
+  border-color: var(--fg);
+}
+
+.on {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.num,
+.format {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.name {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pending {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  border: 1px dashed currentColor;
+}
+
+.add {
+  border-style: dashed;
+}

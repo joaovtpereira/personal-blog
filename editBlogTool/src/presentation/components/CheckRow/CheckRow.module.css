@@ -1,0 +1,58 @@
+.row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--fg);
+  font-size: 12px;
+}
+
+.ok {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.warn {
+  border-style: dashed;
+  border-color: var(--mute);
+  color: var(--mute);
+}
+
+.required {
+  border-style: dashed;
+  animation: shake 0.4s ease 1;
+}
+
+.value {
+  font-size: 11px;
+  color: var(--mute);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}

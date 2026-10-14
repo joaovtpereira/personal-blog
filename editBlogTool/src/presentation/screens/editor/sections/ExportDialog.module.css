@@ -1,0 +1,127 @@
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.title {
+  margin-top: 8px;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.close {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  display: grid;
+  place-items: center;
+}
+
+.close:hover {
+  border-color: var(--fg);
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+}
+
+.list {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outline {
+  margin: 6px 0 0;
+  padding: 8px 14px;
+  list-style: none;
+  max-height: 180px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.outline li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.outline li > :first-child,
+.outline li > :last-child {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.preview {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notice {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-s);
+  border: 1px dashed var(--mute);
+  color: var(--mute);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.footer {
+  position: sticky;
+  bottom: -28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 0 -28px -28px;
+  padding: 16px 28px 28px;
+  border-top: 1px solid var(--line);
+  background: var(--card);
+}
+
+.files {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+  font-size: 11px;
+  color: var(--mute);
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.button {
+  height: 44px;
+  gap: 8px;
+}
+
+.button:hover svg {
+  transform: none;
+}

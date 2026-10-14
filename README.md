@@ -52,6 +52,10 @@ A leitura de um post (`/blog/[slug]`) tem dois layouts: resenha (livro ou jogo �
 
 O formulário de contato usa uma Server Action (`main/actions`) que chama o caso de uso `SendContactMessage`. Hoje o envio é simulado pelo `ConsoleEmailSender` (só registra no log do servidor); para enviar de verdade, implemente um `EmailSender` em `infra/email/` e troque a instância em `main/factories/infra/email-sender.ts`.
 
+## Editor desktop
+
+O editor de posts e aulas fica em `editBlogTool/` (Electron + Vite), com `package.json` próprio, e reaproveita os componentes deste projeto. Veja `editBlogTool/README.md`.
+
 ## Breakpoints
 
 Celular < 768px · Tablet 768–1199px · Desktop ≥ 1200px (conteúdo em até 1280px).

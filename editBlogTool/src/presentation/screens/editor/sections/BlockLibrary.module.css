@@ -1,0 +1,18 @@
+.library {
+  gap: 6px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+}
+
+.groupLabel {
+  padding: 8px 4px 4px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}

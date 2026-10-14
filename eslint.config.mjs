@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Editor desktop (Electron) tem build e tsconfig próprios.
+    "editBlogTool/**",
   ]),
 ]);
 

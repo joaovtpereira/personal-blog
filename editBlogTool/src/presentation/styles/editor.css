@@ -1,0 +1,25 @@
+/* Complementos do DS do blog para o editor desktop. Os tokens base vêm de globals.css do blog. */
+:root {
+  /* No site as fontes vêm do next/font; aqui, do Google Fonts (index.html). */
+  --font-geist: "Geist";
+  --font-geist-mono: "Geist Mono";
+  --font-instrument-serif: "Instrument Serif";
+
+  /* superfície das colunas laterais */
+  --panel: #0f0f0f;
+}
+
+:root[data-theme="light"] {
+  --panel: #ffffff;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
