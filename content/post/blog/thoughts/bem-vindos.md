@@ -18,7 +18,7 @@ featured: false
 ::lead
 
 :::drop-cap
-No mundo de hoje gastamos muito tempo consumindo tanta informação, que não paramos para processar os  nossos próprios pensamentos. A idéia deste blog é poder compartilhar minha visão do mundo, uma visão muitas das vezes leiga e simples, mas que pode ser de grande valor para alguém.
+No mundo de hoje gastamos muito tempo consumindo tanta informação, que não paramos para processar os  nossos próprios pensamentos. A ideia deste blog é poder compartilhar minha visão do mundo, uma visão muitas das vezes leiga e simples, mas que pode ser de grande valor para alguém.
 :::
 
 Neste exato momento estou com um olho no editor do blog e outro olho em Estudiantes x Flamengo, secando completamente o time rubro negro como um bom palmeirense que sou.
