@@ -36,6 +36,9 @@ function collectionLink(plan: CollectionPlan | null): CollectionLinkModel | null
   };
 }
 
+/** Itens vazios (linhas em branco no campo) não vão para o arquivo. */
+const cleanList = (items: string[]) => items.map((item) => item.trim()).filter(Boolean);
+
 const KIND_OF_TYPE: Record<string, PostKind> = { pensamento: "thought", "resenha-livro": "book", "resenha-jogo": "game" };
 
 /** Coleção gravada no arquivo → opção "manter coleção atual". */
@@ -77,8 +80,10 @@ export class PostDocumentModelMapper implements PostDocumentMapper {
     const locale = CONTENT_LOCALES.find((l) => l === fm.text("locale")) as ContentLocale | undefined;
     const publication = { tags: fm.list("tags"), ...(locale ? { locale } : {}) };
 
+    const featured = fm.bool("featured");
+
     if (kind === "thought") {
-      return { kind, publication, draft: { meta: { title: fm.text("title"), lead: fm.text("lead") || fm.text("excerpt") }, blocks, source } };
+      return { kind, publication, draft: { meta: { title: fm.text("title"), lead: fm.text("lead") || fm.text("excerpt"), featured }, blocks, source } };
     }
     if (kind === "book") {
       const book = fm.object("book") ?? new FrontmatterReader({});
@@ -97,6 +102,9 @@ export class PostDocumentModelMapper implements PostDocumentMapper {
             genres: book.list("genres"),
             score: fm.number("rating"),
             verdictLine: book.text("verdict_line"),
+            pros: book.list("pros"),
+            cons: book.list("cons"),
+            featured,
             collection: { answer: kept ? "kept" : "standalone", previousReviewId: null, newSeriesName: "", kept },
           },
         },
@@ -122,6 +130,10 @@ export class PostDocumentModelMapper implements PostDocumentMapper {
           worth: game.text("worth"),
           difficulty: game.text("difficulty"),
           audience: game.text("audience"),
+          pros: game.list("pros"),
+          cons: game.list("cons"),
+          completed: game.bool("completed"),
+          featured,
           collection: { answer: kept ? "kept" : "standalone", collectionId: null, newCollectionName: "", kept },
         },
       },
@@ -145,7 +157,7 @@ export class PostDocumentModelMapper implements PostDocumentMapper {
     let frontmatter: PostFrontmatterModel;
     if (kind === "thought") {
       const meta = workspace.thought.meta;
-      frontmatter = { ...base, title: meta.title, excerpt: meta.lead, lead: meta.lead, rating: null };
+      frontmatter = { ...base, title: meta.title, excerpt: meta.lead, lead: meta.lead, rating: null, featured: meta.featured };
     } else if (kind === "book") {
       const meta = workspace.book.meta;
       frontmatter = {
@@ -155,7 +167,15 @@ export class PostDocumentModelMapper implements PostDocumentMapper {
         rating: meta.score,
         author: meta.author,
         cover_image: meta.cover ? resolveImage(meta.cover) : null,
-        book: { year: meta.year, pages: meta.pages, genres: [...meta.genres], verdict_line: meta.verdictLine },
+        featured: meta.featured,
+        book: {
+          year: meta.year,
+          pages: meta.pages,
+          genres: [...meta.genres],
+          verdict_line: meta.verdictLine,
+          pros: cleanList(meta.pros),
+          cons: cleanList(meta.cons),
+        },
         collection: collectionLink(bookCollectionPlan(meta, catalog)),
       };
     } else {
@@ -176,13 +196,17 @@ export class PostDocumentModelMapper implements PostDocumentMapper {
           difficulty: meta.difficulty,
           audience: meta.audience,
           verdict_line: meta.verdictLine,
+          completed: meta.completed,
+          pros: cleanList(meta.pros),
+          cons: cleanList(meta.cons),
         },
+        featured: meta.featured,
         collection: collectionLink(gameCollectionPlan(meta, catalog)),
       };
     }
 
     return {
-      path: draft.source?.path ?? CONTENT_LOCATION.post(kind, slug),
+      path: draft.source?.path ?? CONTENT_LOCATION.post(kind, slug, locale),
       frontmatter,
       blocks: draft.blocks.map((block) => this.blocks.toModel(block, resolveImage)),
     };

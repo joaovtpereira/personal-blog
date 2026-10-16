@@ -3,7 +3,15 @@ export type ReviewSeries = { id: string; slug: string; name: string; publishedCo
 
 export type PreviousReview = { id: string; slug: string; title: string; series: ReviewSeries | null };
 
-export type StudyOption = { id: string; slug: string; title: string; lessonCount: number };
+export type StudyOption = {
+  id: string;
+  slug: string;
+  title: string;
+  lessonCount: number;
+  /** dados do _study.md (vazios quando o estudo não tem o arquivo) */
+  description: string;
+  order: number | null;
+};
 
 export type EditorCatalog = {
   previousBookReviews: PreviousReview[];

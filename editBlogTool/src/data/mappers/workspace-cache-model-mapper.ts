@@ -31,7 +31,19 @@ export class WorkspaceCacheModelMapper implements WorkspaceCacheMapper {
     ws.book.meta.collection.kept ??= null;
     ws.game.meta.collection.kept ??= null;
     ws.study.study.opened ??= null;
+    ws.study.meta ??= { description: "", order: "" };
     ws.study.lessons.forEach((lesson) => (lesson.source ??= null));
+    // Campos opcionais adicionados depois (prós/contras, zerado, destaque, resumo e material da aula).
+    for (const kind of ["thought", "book", "game"] as const) ws[kind].meta.featured ??= false;
+    ws.book.meta.pros ??= [];
+    ws.book.meta.cons ??= [];
+    ws.game.meta.pros ??= [];
+    ws.game.meta.cons ??= [];
+    ws.game.meta.completed ??= false;
+    for (const lesson of ws.study.lessons) {
+      lesson.summary ??= { keyIdea: "", text: "" };
+      lesson.materials ??= [];
+    }
     return ws;
   }
 }

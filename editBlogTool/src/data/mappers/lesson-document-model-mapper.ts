@@ -45,12 +45,16 @@ export class LessonDocumentModelMapper implements LessonDocumentMapper {
               poster: null,
             }
           : null,
+      summary: lesson.format === "text" && lesson.summary.keyIdea.trim() ? { key_idea: lesson.summary.keyIdea.trim(), text: lesson.summary.text.trim() } : null,
+      materials: lesson.materials
+        .filter((material) => material.url.trim())
+        .map((material, i) => ({ id: `${slug}-material-${i + 1}`, title: material.title.trim() || material.url.trim(), type: material.type, url: material.url.trim() })),
       study,
       tags: [...workspace.publication.tags],
     };
 
     return {
-      path: lesson.source?.path ?? CONTENT_LOCATION.lesson(study.slug, order, slug),
+      path: lesson.source?.path ?? CONTENT_LOCATION.lesson(study.slug, order, slug, workspace.publication.locale),
       frontmatter,
       blocks: lesson.blocks.map((block) => this.blocks.toModel(block, resolveImage)),
     };
@@ -60,7 +64,7 @@ export class LessonDocumentModelMapper implements LessonDocumentMapper {
     const fm = new FrontmatterReader(model.frontmatter);
     const study = fm.object("study");
     const folderSlug = folderOf(path).split("/").filter(Boolean).pop() ?? "";
-    const slug = fm.text("slug") || slugOfFile(path, true);
+    const slug = fm.text("slug") || slugOfFile(path);
     const format = fm.text("format") === "texto" ? "text" : "video";
     const video = fm.object("video");
     const locale = CONTENT_LOCALES.find((l) => l === fm.text("locale")) as ContentLocale | undefined;
@@ -73,6 +77,11 @@ export class LessonDocumentModelMapper implements LessonDocumentMapper {
         title: fm.text("title"),
         videoUrl: video ? videoUrlOf(video.text("provider"), video.text("ref")) : "",
         duration: formatDurationText(video?.number("duration_seconds")),
+        summary: { keyIdea: fm.object("summary")?.text("key_idea") ?? "", text: fm.object("summary")?.text("text") ?? "" },
+        materials: fm.objects("materials").map((item) => {
+          const type = item.text("type");
+          return { title: item.text("title"), url: item.text("url"), type: type === "pdf" || type === "link" ? type : "arquivo" };
+        }),
         blocks,
         source: { path, id: fm.text("id") || `${folderSlug}-${slug}`, slug, publishedAt: null, order: fm.number("order") },
       },

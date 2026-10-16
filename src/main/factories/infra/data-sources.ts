@@ -9,39 +9,46 @@ import type {
   ResumeModel,
   StudyModel,
 } from "@/domain/models";
-import { InMemoryDataSource } from "@/infra/data-source";
-import {
-  COLLECTIONS_MOCK,
-  LESSON_COMMENTS_MOCK,
-  LESSONS_MOCK,
-  POST_COMMENTS_MOCK,
-  POST_CONTENTS_MOCK,
-  POSTS_MOCK,
-  PROJECTS_MOCK,
-  RESUME_MOCK,
-  STUDIES_MOCK,
-} from "@/infra/mocks";
+import { MarkdownCatalogModelMapper } from "@/data/mappers";
+import { FsContentFileSource, MarkdownContentCatalog } from "@/infra/content";
+import { CatalogDataSource, InMemoryDataSource } from "@/infra/data-source";
+import { DirectiveMarkdownParser } from "@/infra/markdown";
+import { LESSON_COMMENTS_MOCK, POST_COMMENTS_MOCK, PROJECTS_MOCK, RESUME_MOCK } from "@/infra/mocks";
+import type { ContentCatalog } from "@/shared/content";
 import type { CollectionDataSource } from "@/shared/data-source";
 
-/* Trocar por fontes de markdown/API aqui, sem tocar nos casos de uso. */
-export const makePostsDataSource = (): CollectionDataSource<PostModel> => new InMemoryDataSource(POSTS_MOCK);
+/* Posts, aulas, estudos e coleções vêm dos .md em content/ (gravados pelo editor em editBlogTool). */
 
-export const makeStudiesDataSource = (): CollectionDataSource<StudyModel> => new InMemoryDataSource(STUDIES_MOCK);
+let catalog: ContentCatalog | null = null;
 
+/** Uma leitura de content/ por processo; em desenvolvimento relê a cada pedido para mostrar o arquivo salvo. */
+const makeContentCatalog = (): ContentCatalog =>
+  (catalog ??= new MarkdownContentCatalog(
+    new FsContentFileSource(),
+    new DirectiveMarkdownParser(),
+    new MarkdownCatalogModelMapper((message) => console.warn(message)),
+    process.env.NODE_ENV === "production",
+  ));
+
+export const makePostsDataSource = (): CollectionDataSource<PostModel> => new CatalogDataSource(makeContentCatalog(), "posts");
+
+export const makePostContentsDataSource = (): CollectionDataSource<PostContentModel> =>
+  new CatalogDataSource(makeContentCatalog(), "postContents");
+
+export const makeStudiesDataSource = (): CollectionDataSource<StudyModel> => new CatalogDataSource(makeContentCatalog(), "studies");
+
+export const makeLessonsDataSource = (): CollectionDataSource<LessonModel> => new CatalogDataSource(makeContentCatalog(), "lessons");
+
+export const makeCollectionsDataSource = (): CollectionDataSource<CollectionModel> =>
+  new CatalogDataSource(makeContentCatalog(), "collections");
+
+/* Ainda sem back-end/markdown: projetos, currículo e comentários seguem mockados. */
 export const makeProjectsDataSource = (): CollectionDataSource<ProjectModel> => new InMemoryDataSource(PROJECTS_MOCK);
 
 export const makeResumeDataSource = (): CollectionDataSource<ResumeModel> => new InMemoryDataSource(RESUME_MOCK);
 
-export const makeLessonsDataSource = (): CollectionDataSource<LessonModel> => new InMemoryDataSource(LESSONS_MOCK);
-
-export const makeCollectionsDataSource = (): CollectionDataSource<CollectionModel> =>
-  new InMemoryDataSource(COLLECTIONS_MOCK);
-
 export const makeLessonCommentsDataSource = (): CollectionDataSource<LessonCommentModel> =>
   new InMemoryDataSource(LESSON_COMMENTS_MOCK);
-
-export const makePostContentsDataSource = (): CollectionDataSource<PostContentModel> =>
-  new InMemoryDataSource(POST_CONTENTS_MOCK);
 
 export const makePostCommentsDataSource = (): CollectionDataSource<PostCommentModel> =>
   new InMemoryDataSource(POST_COMMENTS_MOCK);

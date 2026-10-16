@@ -2,6 +2,7 @@ export * from "./collection";
 export * from "./comment";
 export * from "./contact-message";
 export * from "./content-block";
+export * from "./content-path";
 export * from "./lesson";
 export * from "./locale";
 export * from "./post";

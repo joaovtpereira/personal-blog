@@ -38,7 +38,24 @@ src/
   assets/translations/ pt.json · es.json · en.json
 ```
 
-Para trocar os dados mockados por markdown ou API, implemente um novo `CollectionDataSource` em `infra/` e troque a instância em `main/factories/infra/data-sources.ts`.
+## Conteúdo (markdown)
+
+Posts, aulas, estudos e séries de resenhas vêm dos arquivos `.md` em `content/`, gravados pelo editor (`editBlogTool`) ou à mão:
+
+| Conteúdo | Arquivo |
+| --- | --- |
+| Pensamento | `content/post/blog/thoughts/<slug>.md` |
+| Resenha de livro | `content/post/blog/review-book/<slug>.md` |
+| Resenha de jogo | `content/post/blog/review-game/<slug>.md` |
+| Aula | `content/post/study/<estudo>/<NN>-<slug>.md` |
+| Dados do estudo | `content/post/study/<estudo>/_study.md` (id, title, description, tags, order) |
+
+- **Idiomas:** o arquivo sem sufixo é português; traduções ficam ao lado com o mesmo slug: `<slug>.es.md`, `<slug>.en.md` (aulas: `01-<slug>.es.md`, estudo: `_study.es.md`). Sem tradução, a página daquele idioma dá 404.
+- **Formato:** frontmatter YAML (`PostFrontmatterModel`, `LessonFrontmatterModel`, `StudyFrontmatterModel` em `domain/models/markdown-document-model.ts`) + corpo CommonMark/GFM com diretivas (`:::callout{tone="dica"}`, `:::steps`, `::video{...}`). Marcações de posição (`::cover`, `::verdict`) são ignoradas pelo blog; trechos não reconhecidos aparecem como texto.
+- **Opcionais:** `featured`, `book.pros/cons`, `game.pros/cons/completed`, `summary` e `materials` da aula. O que falta some da tela. Curtidas e reações começam em 0 (virão do back-end).
+- **Séries:** o campo `collection` da resenha (`join`/`create`, `position`, `previous_ref_id`) monta a coleção; com menos de 2 itens não é coleção.
+- **Leitura:** `MarkdownContentCatalog` (`infra/content`) lê os arquivos com o `FsContentFileSource`, interpreta com o `DirectiveMarkdownParser` (`infra/markdown`, o mesmo que o editor usa) e traduz com o `MarkdownCatalogModelMapper` (`data/mappers`). Em desenvolvimento os arquivos são relidos a cada página; em produção, lidos uma vez por processo (conteúdo novo pede novo build/deploy).
+- Projetos, currículo e comentários ainda são mockados (`infra/mocks`). Para outra fonte (API), implemente um `ContentFileSource`/`CollectionDataSource` e troque em `main/factories/infra/data-sources.ts`.
 
 O progresso dos estudos é do visitante e fica no navegador dele: os casos de uso `GetStudyProgress`, `SetLessonCompleted` e `WatchStudyProgress` usam o `KeyValueCache` (`shared/cache`), implementado com localStorage em `infra/cache`. A composição acontece no cliente em `main/providers/AppStudyProgressProvider.tsx`, e as telas leem pelo contexto `presentation/contexts/StudyProgressContext`.
 

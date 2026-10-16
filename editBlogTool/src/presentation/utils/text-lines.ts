@@ -1,3 +1,5 @@
+import { materialTypeOf, type LessonMaterialDraft } from "@editor/domain/entities";
+
 /** Conversões entre listas e o texto "uma linha por item" dos campos do inspector. */
 export const toLines = (text: string) =>
   text
@@ -22,6 +24,16 @@ export const LINE_FORMATS = {
   glossary: {
     parse: (text: string) => toLines(text).map((line) => splitPair(line, ":")).map(([term, definition]) => ({ term, definition })),
     format: (items: { term: string; definition: string }[]) => items.map((i) => `${i.term}: ${i.definition}`).join("\n"),
+  },
+  /** "Nome do material | https://..." — o tipo (PDF, link, arquivo) sai do endereço. */
+  materials: {
+    parse: (text: string): LessonMaterialDraft[] =>
+      toLines(text).map((line) => {
+        const [first, second] = splitPair(line, "|");
+        const [title, url] = second ? [first, second] : ["", first];
+        return { title, url, type: materialTypeOf(url) };
+      }),
+    format: (items: LessonMaterialDraft[]) => items.map((m) => (m.title ? `${m.title} | ${m.url}` : m.url)).join("\n"),
   },
   table: {
     parse: (text: string) => {

@@ -1,5 +1,5 @@
-import type { EditorCatalog, EditorWorkspace, ImageRef, LessonDraft, PostKind, Publication, StudyOption } from "../entities";
-import type { LessonFrontmatterModel, MarkdownDocumentModel, ParsedDocumentModel, PostFrontmatterModel } from "../models";
+import type { EditorCatalog, EditorWorkspace, ImageRef, LessonDraft, PostKind, Publication, StudyMetaDraft, StudyOption } from "../entities";
+import type { LessonFrontmatterModel, MarkdownDocumentModel, ParsedDocumentModel, PostFrontmatterModel, StudyFrontmatterModel } from "../models";
 import type { ImageUrlResolver } from "./editor-block-mapper";
 
 /** Documento .md ⇄ rascunho. Na leitura o frontmatter chega sem validação (ParsedDocumentModel). */
@@ -40,3 +40,14 @@ export type OpenedLesson = { lesson: LessonDraft; study: StudyRef; publication: 
 
 export type PostDocumentMapper = DocumentMapper<PostDocumentInput, MarkdownDocumentModel<PostFrontmatterModel>, OpenedPost>;
 export type LessonDocumentMapper = DocumentMapper<LessonDocumentInput, MarkdownDocumentModel<LessonFrontmatterModel>, OpenedLesson>;
+
+export type StudyDocumentInput = {
+  study: StudyRef;
+  meta: StudyMetaDraft;
+  workspace: EditorWorkspace;
+  /** ordem usada quando o campo está vazio (estudo novo vai para o fim da lista) */
+  fallbackOrder: number;
+};
+
+/** _study.md ⇄ dados do estudo. */
+export type StudyDocumentMapper = DocumentMapper<StudyDocumentInput, MarkdownDocumentModel<StudyFrontmatterModel>, StudyMetaDraft>;

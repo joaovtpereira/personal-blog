@@ -26,7 +26,10 @@ export type KeptCollection = {
   previousId: string | null;
 };
 
-export type ThoughtMeta = { title: string; lead: string };
+/** Opcionais de todo post: destaque no topo do blog. */
+export type PostExtras = { featured: boolean };
+
+export type ThoughtMeta = PostExtras & { title: string; lead: string };
 
 export type BookCollection = {
   /** null = ainda não respondeu */
@@ -38,7 +41,7 @@ export type BookCollection = {
   kept: KeptCollection | null;
 };
 
-export type BookMeta = {
+export type BookMeta = PostExtras & {
   title: string;
   author: string;
   cover: ImageRef | null;
@@ -47,6 +50,9 @@ export type BookMeta = {
   genres: string[];
   score: number | null;
   verdictLine: string;
+  /** "Gostei" e "Nem tanto" (opcionais) */
+  pros: string[];
+  cons: string[];
   collection: BookCollection;
 };
 
@@ -57,7 +63,7 @@ export type GameCollection = {
   kept: KeptCollection | null;
 };
 
-export type GameMeta = {
+export type GameMeta = PostExtras & {
   title: string;
   studio: string;
   platform: string;
@@ -70,12 +76,30 @@ export type GameMeta = {
   worth: string;
   difficulty: string;
   audience: string;
+  pros: string[];
+  cons: string[];
+  /** jogo zerado (selo ✓ ZERADO) */
+  completed: boolean;
   collection: GameCollection;
 };
 
 export type PostDraft<TMeta> = { meta: TMeta; blocks: EditorBlock[]; source: ContentSource | null };
 
 export type LessonFormat = "video" | "text";
+
+export type LessonMaterialType = "pdf" | "link" | "arquivo";
+
+export type LessonMaterialDraft = { title: string; url: string; type: LessonMaterialType };
+
+/** Tipo do material pelo endereço: .pdf → PDF, http(s) → link, o resto → arquivo do site. */
+export function materialTypeOf(url: string): LessonMaterialType {
+  const clean = url.trim().toLowerCase().split(/[?#]/)[0];
+  if (clean.endsWith(".pdf")) return "pdf";
+  return /^https?:\/\//.test(clean) ? "link" : "arquivo";
+}
+
+/** Cartão-resumo das aulas em texto dentro de estudos com vídeo (opcional). */
+export type LessonSummaryDraft = { keyIdea: string; text: string };
 
 export type LessonDraft = {
   id: string;
@@ -84,6 +108,8 @@ export type LessonDraft = {
   videoUrl: string;
   /** "12:40" */
   duration: string;
+  summary: LessonSummaryDraft;
+  materials: LessonMaterialDraft[];
   blocks: EditorBlock[];
   source: ContentSource | null;
 };
@@ -96,7 +122,22 @@ export type StudyChoice = {
   opened: { id: string | null; slug: string; title: string } | null;
 };
 
-export type StudyDraft = { study: StudyChoice; lessons: LessonDraft[] };
+/** Dados do estudo gravados em content/post/study/<estudo>/_study.md (título e tags vêm da escolha do estudo e da Publicação). */
+export type StudyMetaDraft = {
+  description: string;
+  /** posição na listagem de estudos; texto do campo ("3"), vazio = depois dos outros */
+  order: string;
+};
+
+export const EMPTY_STUDY_META: StudyMetaDraft = { description: "", order: "" };
+
+/** "3" → 3 · vazio ou inválido → null */
+export function studyOrderOf(meta: StudyMetaDraft): number | null {
+  const value = Number(meta.order.trim());
+  return meta.order.trim() && Number.isInteger(value) && value > 0 ? value : null;
+}
+
+export type StudyDraft = { study: StudyChoice; meta: StudyMetaDraft; lessons: LessonDraft[] };
 
 export type Publication = { tags: string[]; tagPool: string[]; locale: ContentLocale };
 
@@ -118,7 +159,7 @@ export function createLesson(newId: IdFactory, format: LessonFormat): LessonDraf
   const blocks: EditorBlock[] = [boundBlock(newId, "title")];
   if (format === "video") blocks.push(boundBlock(newId, "video"));
   blocks.push(createBlock(newId, "paragraph", { text: "[Abertura da aula: o contexto e a pergunta.]", dropCap: true }));
-  return { id: newId(), format, title: "", videoUrl: "", duration: "", blocks, source: null };
+  return { id: newId(), format, title: "", videoUrl: "", duration: "", summary: { keyIdea: "", text: "" }, materials: [], blocks, source: null };
 }
 
 /** Vídeo obrigatório só no formato vídeo: troca o formato e adiciona/remove o bloco fixo do player. */
@@ -137,7 +178,7 @@ export function createWorkspace(newId: IdFactory): EditorWorkspace {
   return {
     kind: "book",
     thought: {
-      meta: { title: "", lead: "" },
+      meta: { title: "", lead: "", featured: false },
       blocks: [
         slot("title"),
         slot("lead"),
@@ -158,6 +199,9 @@ export function createWorkspace(newId: IdFactory): EditorWorkspace {
         genres: [],
         score: null,
         verdictLine: "",
+        pros: [],
+        cons: [],
+        featured: false,
         collection: { answer: null, previousReviewId: null, newSeriesName: "", kept: null },
       },
       blocks: [
@@ -187,6 +231,10 @@ export function createWorkspace(newId: IdFactory): EditorWorkspace {
         worth: "",
         difficulty: "",
         audience: "",
+        pros: [],
+        cons: [],
+        completed: false,
+        featured: false,
         collection: { answer: null, collectionId: null, newCollectionName: "", kept: null },
       },
       blocks: [
@@ -203,6 +251,7 @@ export function createWorkspace(newId: IdFactory): EditorWorkspace {
     },
     study: {
       study: { mode: null, studyId: null, newStudyName: "", opened: null },
+      meta: { ...EMPTY_STUDY_META },
       lessons: [createLesson(newId, "video")],
     },
     publication: { tags: [], tagPool: [], locale: "pt" },

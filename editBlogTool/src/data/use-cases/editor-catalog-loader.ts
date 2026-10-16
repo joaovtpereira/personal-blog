@@ -43,7 +43,14 @@ export class EditorCatalogLoader implements GetEditorCatalog {
           return { id: p.id, slug: p.slug, title: p.title, series: s ? toSeries(s) : null };
         }),
       gameCollections: series.filter((c) => c.items.some((item) => postType(item.ref_id) === "resenha-jogo")).map(toSeries),
-      studies: studies.map((s) => ({ id: s.id, slug: s.slug, title: s.title, lessonCount: s.lessons.length })),
+      studies: studies.map((s) => ({
+        id: s.id,
+        slug: s.slug,
+        title: s.title,
+        lessonCount: s.lessons.length,
+        description: s.description,
+        order: Number.isSafeInteger(s.order) && s.order < Number.MAX_SAFE_INTEGER ? s.order : null,
+      })),
       tags: [...new Set([...posts, ...studies].flatMap((item) => item.tags))].sort((a, b) => a.localeCompare(b, "pt")),
     };
   }

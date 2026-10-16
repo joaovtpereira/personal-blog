@@ -43,11 +43,18 @@ A exportação só libera com todos os obrigatórios preenchidos e grava no repo
 | Resenha de livro | `content/post/blog/review-book/<slug>.md` | `public/images/<slug>/` |
 | Resenha de jogo | `content/post/blog/review-game/<slug>.md` | `public/images/<slug>/` |
 | Aula | `content/post/study/<estudo>/<NN>-<slug>.md` | `public/images/<estudo>/<aula>/` |
+| Estudo (dados) | `content/post/study/<estudo>/_study.md` | — |
+
+Em espanhol ou inglês (aba Publicação › Idioma) o arquivo ganha o sufixo do idioma ao lado do português, com o mesmo slug: `<slug>.es.md`, `<NN>-<slug>.en.md`.
 
 O frontmatter segue `PostModel`/`PostContentModel`/`LessonModel` do blog (+ `collection` quando a resenha entra ou cria
 uma série). O corpo é CommonMark + tabelas GFM com diretivas no padrão remark-directive para os blocos do DS
 (`:::callout{tone="dica"}`, `:::steps`, `::video{...}`) e marcações de posição dos blocos fixos (`::cover`, `::verdict`).
 O processo principal só aceita gravar `.md` dentro de `content/` e imagens dentro de `public/images/`.
+
+O formato (models do frontmatter, `DirectiveMarkdownParser`, YAML e regra de caminhos `content-path`) é do blog, em `../src`: o editor reaproveita a mesma implementação que o blog usa para publicar.
+
+Na aba Dados, a seção **Opcionais** grava o que não bloqueia a publicação: "Gostei"/"Nem tanto" (resenhas), "Zerei o jogo", destaque no topo do blog, resumo da aula em texto e material de apoio (`Nome | https://…`, um por linha).
 
 ## Editar um conteúdo existente
 
@@ -63,5 +70,6 @@ O processo principal só aceita gravar `.md` dentro de `content/` e imagens dent
 - Coleção gravada no arquivo aparece como "Manter coleção atual".
 - Depois de exportar um rascunho novo, ele passa a editar o arquivo gravado.
 
-O rascunho é salvo automaticamente no armazenamento local do app. Resenhas anteriores, coleções, estudos e tags vêm das
-mesmas fontes de dados do blog (`src/main/factories/infra/data-sources.ts`).
+O rascunho é salvo automaticamente no armazenamento local do app. Resenhas anteriores, coleções, estudos e tags vêm dos
+mesmos `.md` de `content/`, lidos pelo processo do Electron e interpretados pelo leitor do blog (`MarkdownContentCatalog`).
+Os dados do estudo ficam em `content/post/study/<estudo>/_study.md` (ou `_study.<idioma>.md`), gravado junto com as aulas: título do estudo escolhido, descrição e ordem na listagem (aba Dados) e as tags da aba Publicação. Escolher um estudo publicado traz a descrição e a ordem dele; abrir uma aula carrega o `_study.md` da pasta. Ordem vazia mantém a atual ou, em estudo novo, coloca no fim da lista.

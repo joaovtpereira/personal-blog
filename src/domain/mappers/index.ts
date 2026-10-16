@@ -8,3 +8,4 @@ export * from "./project-mapper";
 export * from "./resume-mapper";
 export * from "./study-mapper";
 export * from "./study-progress-mapper";
+export * from "./markdown-catalog-mapper";

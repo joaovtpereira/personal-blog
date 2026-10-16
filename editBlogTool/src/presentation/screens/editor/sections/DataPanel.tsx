@@ -21,11 +21,13 @@ import {
   type LessonDraft,
   type PostKind,
   type RequirementCheck,
+  studyOrderOf,
 } from "@editor/domain/entities";
 import { FieldHint, FieldShell, ImageField, PanelSection, RequiredBadge, ScoreSelector, SelectInput, TextArea, TextInput } from "@editor/presentation/components";
 import { pad2 } from "@editor/presentation/utils/text-lines";
 import type { EditorAction } from "../state/editor-state";
 import { CollectionQuestion } from "./CollectionQuestion";
+import { OptionalFields } from "./OptionalFields";
 import styles from "./Panels.module.css";
 
 type Input =
@@ -112,6 +114,8 @@ export function DataPanel({ workspace, lesson, lessonIndex, catalog, report, ima
           <PostFields kind={kind} workspace={workspace} catalog={catalog} report={report} imageError={imageError} onPickImage={onPickImage} dispatch={dispatch} />
         )}
       </PanelSection>
+
+      <OptionalFields workspace={workspace} lesson={lesson} dispatch={dispatch} />
     </>
   );
 }
@@ -227,6 +231,12 @@ function LessonFields({ lesson, workspace, catalog, report, dispatch }: Pick<Dat
               const value = e.target.value;
               if (value === OPENED_STUDY) return dispatch({ type: "patchStudy", patch: { mode: "opened" } });
               dispatch({ type: "patchStudy", patch: value === NEW_STUDY ? { mode: "new", studyId: null } : { mode: value ? "existing" : null, studyId: value || null } });
+              // Estudo publicado: traz a descrição e a ordem do _study.md para não apagá-las ao salvar.
+              const known = catalog.studies.find((s) => s.id === value);
+              dispatch({
+                type: "patchStudyMeta",
+                patch: known ? { description: known.description, order: known.order === null ? "" : String(known.order) } : { description: "", order: "" },
+              });
             }}
           />
         </FieldShell>
@@ -238,6 +248,7 @@ function LessonFields({ lesson, workspace, catalog, report, dispatch }: Pick<Dat
           </FieldShell>
         </div>
       )}
+      {study.mode && <StudyMetaFields workspace={workspace} catalog={catalog} dispatch={dispatch} />}
       <div className={styles.full}>
         <FieldShell htmlFor="req-title" label="Título da aula" badge={badge(titleCheck)} missing={!titleCheck?.ok}>
           <TextInput id="req-title" value={lesson.title} placeholder="[Título da aula]" onChange={(e) => dispatch({ type: "patchLesson", patch: { title: e.target.value } })} />
@@ -271,5 +282,33 @@ function LessonFields({ lesson, workspace, catalog, report, dispatch }: Pick<Dat
         </div>
       )}
     </div>
+  );
+}
+
+/** Dados do _study.md: descrição e ordem na listagem (título vem do estudo; tags, da aba Publicação). */
+function StudyMetaFields({ workspace, catalog, dispatch }: Pick<DataPanelProps, "workspace" | "catalog" | "dispatch">) {
+  const { meta } = workspace.study;
+  const patch = (p: Partial<typeof meta>) => dispatch({ type: "patchStudyMeta", patch: p });
+  const invalidOrder = meta.order.trim() !== "" && studyOrderOf(meta) === null;
+  const nextOrder = catalog.studies.length + (workspace.study.study.mode === "new" ? 1 : 0);
+
+  return (
+    <>
+      <div className={styles.full}>
+        <FieldShell htmlFor="study-description" label="Descrição do estudo" hint="Uma linha sobre o que o estudo cobre. Aparece na listagem e no topo das aulas.">
+          <TextArea id="study-description" rows={2} value={meta.description} placeholder="[Uma linha sobre o que este estudo cobre.]" onChange={(e) => patch({ description: e.target.value })} />
+        </FieldShell>
+      </div>
+      <div className={styles.half}>
+        <FieldShell
+          htmlFor="study-order"
+          label="Ordem na listagem"
+          missing={invalidOrder}
+          hint={invalidOrder ? "Use um número inteiro a partir de 1." : `Vazio = ${Math.max(1, nextOrder)}º (fim da lista).`}
+        >
+          <TextInput id="study-order" inputMode="numeric" value={meta.order} placeholder={String(Math.max(1, nextOrder))} onChange={(e) => patch({ order: e.target.value })} />
+        </FieldShell>
+      </div>
+    </>
   );
 }

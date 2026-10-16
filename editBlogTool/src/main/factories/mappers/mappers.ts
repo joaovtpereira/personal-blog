@@ -4,10 +4,18 @@ import {
   EditorBlockModelMapper,
   LessonDocumentModelMapper,
   PostDocumentModelMapper,
+  StudyDocumentModelMapper,
   WorkspaceCacheModelMapper,
 } from "@editor/data/mappers";
 import type { IdFactory } from "@editor/domain/entities";
-import type { BlockPreviewMapper, EditorBlockMapper, LessonDocumentMapper, PostDocumentMapper, WorkspaceCacheMapper } from "@editor/domain/mappers";
+import type {
+  BlockPreviewMapper,
+  EditorBlockMapper,
+  LessonDocumentMapper,
+  PostDocumentMapper,
+  StudyDocumentMapper,
+  WorkspaceCacheMapper,
+} from "@editor/domain/mappers";
 
 export const makeIdFactory = (): IdFactory => () => crypto.randomUUID();
 
@@ -21,3 +29,5 @@ export const makeWorkspaceCacheMapper = (): WorkspaceCacheMapper => new Workspac
 
 /** Pré-visualização com o mapper de blocos do próprio blog. */
 export const makeBlockPreviewMapper = (): BlockPreviewMapper => new ContentPreviewMapper(makeEditorBlockMapper(), new ContentBlockModelMapper());
+
+export const makeStudyDocumentMapper = (): StudyDocumentMapper => new StudyDocumentModelMapper();

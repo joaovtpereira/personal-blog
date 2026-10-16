@@ -22,7 +22,7 @@ import type {
 import { makeCache } from "../infra/cache";
 import { makeCollectionsDataSource, makePostsDataSource, makeStudiesDataSource } from "../infra/data-sources";
 import { makeContentFileReader, makeContentFileWriter, makeImagePicker, makeMarkdownParser, makeMarkdownSerializer } from "../infra/desktop";
-import { makeLessonDocumentMapper, makePostDocumentMapper, makeWorkspaceCacheMapper } from "../mappers/mappers";
+import { makeLessonDocumentMapper, makePostDocumentMapper, makeStudyDocumentMapper, makeWorkspaceCacheMapper } from "../mappers/mappers";
 
 const makeWorkspaceStorage = () => new CachedWorkspaceStorage(makeCache(), makeWorkspaceCacheMapper());
 
@@ -36,13 +36,13 @@ export const makeGetEditorCatalog = (): GetEditorCatalog =>
 export const makeValidateDraft = (): ValidateDraft => new DraftValidator();
 
 export const makeExportDraft = (): ExportDraft =>
-  new MarkdownDraftExporter(makeValidateDraft(), makePostDocumentMapper(), makeLessonDocumentMapper(), makeMarkdownSerializer(), makeContentFileWriter());
+  new MarkdownDraftExporter(makeValidateDraft(), makePostDocumentMapper(), makeLessonDocumentMapper(), makeMarkdownSerializer(), makeContentFileWriter(), makeStudyDocumentMapper());
 
 export const makePickImage = (): PickImage => new DesktopImageSelector(makeImagePicker());
 
 export const makeListContentFiles = (): ListContentFiles => new ContentFileCatalog(makeContentFileReader(), makeMarkdownParser());
 
 export const makeOpenContentFile = (): OpenContentFile =>
-  new MarkdownContentOpener(makeContentFileReader(), makeMarkdownParser(), makePostDocumentMapper(), makeLessonDocumentMapper(), makeImagePicker());
+  new MarkdownContentOpener(makeContentFileReader(), makeMarkdownParser(), makePostDocumentMapper(), makeLessonDocumentMapper(), makeImagePicker(), makeStudyDocumentMapper());
 
 export const makePickContentFile = (): PickContentFile => new DesktopContentPicker(makeContentFileReader());

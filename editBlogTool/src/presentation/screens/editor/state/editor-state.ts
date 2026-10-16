@@ -15,6 +15,7 @@ import {
   type FreeBlockData,
   type FreeBlockType,
   type IdFactory,
+  type StudyMetaDraft,
   type LessonDraft,
   type LessonFormat,
   type OpenedContent,
@@ -39,12 +40,13 @@ export type EditorState = {
 export type EditorAction =
   | { type: "setKind"; kind: DraftKind }
   | { type: "patchMeta"; patch: Record<string, unknown> }
-  | { type: "patchLesson"; patch: Partial<Pick<LessonDraft, "title" | "videoUrl" | "duration">> }
+  | { type: "patchLesson"; patch: Partial<Pick<LessonDraft, "title" | "videoUrl" | "duration" | "summary" | "materials">> }
   | { type: "setLessonFormat"; format: LessonFormat }
   | { type: "selectLesson"; id: string }
   | { type: "addLesson" }
   | { type: "removeLesson"; id: string }
   | { type: "patchStudy"; patch: Partial<StudyChoice> }
+  | { type: "patchStudyMeta"; patch: Partial<StudyMetaDraft> }
   | { type: "addBlock"; blockType: FreeBlockType }
   | { type: "updateBlock"; id: string; patch: Partial<FreeBlockData> }
   | { type: "moveBlock"; id: string; direction: -1 | 1 }
@@ -71,6 +73,7 @@ const EDITS = new Set<EditorAction["type"]>([
   "addLesson",
   "removeLesson",
   "patchStudy",
+  "patchStudyMeta",
   "addBlock",
   "updateBlock",
   "moveBlock",
@@ -164,6 +167,11 @@ export function createEditorReducer(newId: IdFactory) {
         return {
           ...state,
           workspace: { ...state.workspace, study: { ...state.workspace.study, study: { ...state.workspace.study.study, ...action.patch } } },
+        };
+      case "patchStudyMeta":
+        return {
+          ...state,
+          workspace: { ...state.workspace, study: { ...state.workspace.study, meta: { ...state.workspace.study.meta, ...action.patch } } },
         };
       case "addBlock": {
         const block = createBlock(newId, action.blockType);

@@ -3,12 +3,16 @@ import {
   folderOf,
   isBound,
   kindOfPath,
+  localeOfPath,
   type ContentReading,
   type EditorBlock,
   type ImageRef,
   type OpenedContent,
+  type StudyMetaDraft,
+  EMPTY_STUDY_META,
 } from "@editor/domain/entities";
-import type { LessonDocumentMapper, PostDocumentMapper } from "@editor/domain/mappers";
+import { CONTENT_PATH } from "@/domain/entities/content-path";
+import type { LessonDocumentMapper, PostDocumentMapper, StudyDocumentMapper } from "@editor/domain/mappers";
 import type { OpenContentFile } from "@editor/domain/use-cases";
 import type { ContentFileReader } from "@editor/shared/content-files";
 import type { ImagePicker } from "@editor/shared/image-picker";
@@ -25,6 +29,7 @@ export class MarkdownContentOpener implements OpenContentFile {
     private readonly posts: PostDocumentMapper,
     private readonly lessons: LessonDocumentMapper,
     private readonly images: ImagePicker,
+    private readonly studies: StudyDocumentMapper,
   ) {}
 
   async open(path: string): Promise<OpenedContent> {
@@ -55,10 +60,12 @@ export class MarkdownContentOpener implements OpenContentFile {
   }
 
   private async openStudy(path: string, resolveImage: (url: string) => ImageRef): Promise<OpenedContent> {
+    // Mesma pasta e mesmo idioma: as aulas em espanhol (.es.md) abrem separadas das em português.
     const folder = folderOf(path);
+    const locale = localeOfPath(path);
     const siblings = (await this.reader.list())
       .map((entry) => entry.path)
-      .filter((p) => folderOf(p) === folder)
+      .filter((p) => folderOf(p) === folder && kindOfPath(p) === "lesson" && localeOfPath(p) === locale)
       .sort();
     const opened = await Promise.all(
       (siblings.includes(path) ? siblings : [...siblings, path]).map(async (p) =>
@@ -68,6 +75,7 @@ export class MarkdownContentOpener implements OpenContentFile {
     opened.sort((a, b) => (a.lesson.source?.order ?? 0) - (b.lesson.source?.order ?? 0));
     const focus = opened.find((o) => o.lesson.source?.path === path) ?? opened[0];
     const { study } = focus;
+    const meta = await this.studyMeta(folder, study.slug, locale ?? focus.publication.locale ?? "pt", resolveImage);
 
     return {
       kind: "lesson",
@@ -76,6 +84,7 @@ export class MarkdownContentOpener implements OpenContentFile {
       publication: focus.publication,
       study: {
         study: { mode: "opened", studyId: study.id, newStudyName: "", opened: study },
+        meta,
         lessons: opened.map((o) => o.lesson),
       },
       reading: {
@@ -87,5 +96,14 @@ export class MarkdownContentOpener implements OpenContentFile {
         study: { title: study.title, lessons: opened.length },
       },
     };
+  }
+
+  /** _study.md do idioma (ou o do português); sem arquivo, dados vazios. */
+  private async studyMeta(folder: string, studySlug: string, locale: string, resolveImage: (url: string) => ImageRef): Promise<StudyMetaDraft> {
+    const files = new Set((await this.reader.list()).map((entry) => entry.path));
+    const candidates = [CONTENT_PATH.study(studySlug, locale as "pt"), CONTENT_PATH.study(studySlug)].filter((p) => p.startsWith(folder));
+    const file = candidates.find((p) => files.has(p));
+    if (!file) return { ...EMPTY_STUDY_META };
+    return this.studies.toEntity(this.parser.parse(await this.reader.read(file)), { path: file, resolveImage });
   }
 }

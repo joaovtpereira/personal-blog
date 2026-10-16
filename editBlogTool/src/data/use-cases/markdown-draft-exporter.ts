@@ -9,7 +9,7 @@ import {
   type ImageRef,
   type PostKind,
 } from "@editor/domain/entities";
-import type { LessonDocumentMapper, PostDocumentMapper } from "@editor/domain/mappers";
+import type { LessonDocumentMapper, PostDocumentMapper, StudyDocumentMapper } from "@editor/domain/mappers";
 import type { MarkdownDocumentModel } from "@editor/domain/models";
 import type { ExportDraft, ExportedFile, ExportResult, SavedSource, ValidateDraft } from "@editor/domain/use-cases";
 import type { ContentFileWriter } from "@editor/shared/content-files";
@@ -31,6 +31,8 @@ const figureImages = (blocks: EditorBlock[]) =>
   blocks.flatMap((b) => (!isBound(b) && b.type === "figure" && b.image ? [b.image] : []));
 
 type Job = {
+  /** study = _study.md: não é rascunho aberto, não volta como origem salva */
+  kind: "post" | "lesson" | "study";
   lessonId: string | null;
   order: number | null;
   slug: string;
@@ -50,6 +52,7 @@ export class MarkdownDraftExporter implements ExportDraft {
     private readonly lessons: LessonDocumentMapper,
     private readonly serializer: MarkdownSerializer,
     private readonly writer: ContentFileWriter,
+    private readonly studies: StudyDocumentMapper,
     private readonly now: () => Date = () => new Date(),
   ) {}
 
@@ -85,6 +88,7 @@ export class MarkdownDraftExporter implements ExportDraft {
       const document = job.document((image) => urls.get(image.sourcePath) ?? image.previewUrl);
       const result = await this.writer.writeMarkdown(document.path, this.serializer.serialize(document));
       files.push({ path: result.path, kind: "markdown", overwritten: result.overwritten });
+      if (job.kind === "study") continue;
       saved.push({
         lessonId: job.lessonId,
         source: { path: document.path, id: document.frontmatter.id, slug: job.slug, publishedAt: document.frontmatter.published_at ?? null, order: job.order },
@@ -100,19 +104,34 @@ export class MarkdownDraftExporter implements ExportDraft {
     const { lessons } = workspace.study;
     // Aulas abertas mantêm a ordem do arquivo; novas entram depois da última.
     let next = Math.max(study.existingLessons, ...lessons.map((l) => l.source?.order ?? 0));
-    return lessons.map((lesson, i) => {
+    const ref = { id: study.id, slug: study.slug, title: study.title };
+    // Estudo já publicado mantém a ordem; novo vai para o fim da lista.
+    const known = catalog.studies.find((s) => s.slug === study.slug);
+    const fallbackOrder = known?.order ?? catalog.studies.length + (known ? 0 : 1);
+    const studyJob: Job = {
+      kind: "study",
+      lessonId: null,
+      order: null,
+      slug: study.slug,
+      imageFolder: study.slug,
+      images: [],
+      document: () => this.studies.toModel({ study: ref, meta: workspace.study.meta, workspace, fallbackOrder }),
+    };
+    const lessonJobs = lessons.map((lesson, i): Job => {
       const slug = lesson.source?.slug ?? slugOf(lesson.title, `aula-${i + 1}`);
       const order = lesson.source?.order ?? ++next;
       return {
+        kind: "lesson",
         lessonId: lesson.id,
         order,
         slug,
         imageFolder: `${study.slug}/${slug}`,
         images: figureImages(lesson.blocks),
         document: (resolveImage) =>
-          this.lessons.toModel({ lesson, order, slug, study: { id: study.id, slug: study.slug, title: study.title }, workspace, resolveImage }),
+          this.lessons.toModel({ lesson, order, slug, study: ref, workspace, resolveImage }),
       };
     });
+    return [...lessonJobs, studyJob];
   }
 
   private postJob(kind: PostKind, workspace: EditorWorkspace, catalog: EditorCatalog): Job {
@@ -121,6 +140,7 @@ export class MarkdownDraftExporter implements ExportDraft {
     const slug = draft.source?.slug ?? slugOf(draft.meta.title, "sem-titulo");
     const cover = kind === "book" ? workspace.book.meta.cover : kind === "game" ? workspace.game.meta.capture : null;
     return {
+      kind: "post",
       lessonId: null,
       order: null,
       slug,

@@ -1,6 +1,2 @@
-import type { ParsedDocumentModel } from "@editor/domain/models";
-
-/** Lê o texto de um .md (frontmatter + blocos). O inverso do MarkdownSerializer. */
-export interface MarkdownParser {
-  parse(text: string): ParsedDocumentModel;
-}
+/* Mesmo contrato do blog: o leitor de .md é compartilhado. */
+export type { MarkdownParser } from "@/shared/markdown";
