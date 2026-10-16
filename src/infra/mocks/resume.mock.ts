@@ -39,6 +39,7 @@ const PERIODS = {
   senior: { start: "2025-03", end: "2026-09" },
   mobile: { start: "2021", end: "2025-02" },
   zarb: { start: "2020", end: "2021" },
+  educampo: { start: "2018", end: "2019" },
 } as const;
 
 const THESIS_URL = "https://repositorio.ufu.br/handle/123456789/36140";
@@ -88,6 +89,14 @@ const PT: ResumeModel = {
       role: "Estagiário → Júnior → Pleno",
       organization: "Zarb Solutions",
       description: "Desenvolvimento com React Native, React JS e Laravel.",
+    },
+    {
+      id: "educampo",
+      ...PERIODS.educampo,
+      role: "Estagiário",
+      organization: "UFU · AMOCA",
+      description:
+        "Desenvolvimento do app Android Educampo Mobile, em Java, no projeto da UFU com a AMOCA (Associação dos Cafeicultores de Monte Carmelo) e o Sebrae.",
     },
   ],
   education: [
@@ -163,6 +172,14 @@ const ES: ResumeModel = {
       organization: "Zarb Solutions",
       description: "Desarrollo con React Native, React JS y Laravel.",
     },
+    {
+      id: "educampo",
+      ...PERIODS.educampo,
+      role: "Pasante",
+      organization: "UFU · AMOCA",
+      description:
+        "Desarrollo de la app Android Educampo Mobile, en Java, en el proyecto de la UFU con la AMOCA (Asociación de Caficultores de Monte Carmelo) y el Sebrae.",
+    },
   ],
   education: [
     {
@@ -236,6 +253,14 @@ const EN: ResumeModel = {
       role: "Intern → Junior → Mid-level",
       organization: "Zarb Solutions",
       description: "Development with React Native, React JS and Laravel.",
+    },
+    {
+      id: "educampo",
+      ...PERIODS.educampo,
+      role: "Intern",
+      organization: "UFU · AMOCA",
+      description:
+        "Built the Educampo Mobile Android app in Java, in a project by UFU with AMOCA (Monte Carmelo Coffee Growers Association) and Sebrae.",
     },
   ],
   education: [
