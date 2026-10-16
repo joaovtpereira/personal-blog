@@ -102,6 +102,11 @@ O formulário de contato usa uma Server Action (`main/actions`) que chama o caso
 
 O editor de posts e aulas fica em `editBlogTool/` (Electron + Vite), com `package.json` próprio, e reaproveita os componentes deste projeto. Veja `editBlogTool/README.md`.
 
+## Licenças
+
+- **Código:** MIT (`LICENSE`).
+- **Conteúdo:** CC BY-NC-ND 4.0 (`content/LICENSE.md`) — posts, aulas e estudos em `content/`, imagens em `public/images/` e os dados do currículo. Pode ser compartilhado citando o autor, sem uso comercial e sem versões modificadas.
+
 ## Breakpoints
 
 Celular < 768px · Tablet 768–1199px · Desktop ≥ 1200px (conteúdo em até 1280px).
