@@ -1,6 +1,7 @@
 import {
   CollectionLoader,
   CollectionRoutesLoader,
+  CountedReactToPost,
   ContactMessageSender,
   FeaturedPost,
   FeaturedStudies,
@@ -16,6 +17,7 @@ import {
   PostShareCardLoader,
   Projects,
   ResumeLoader,
+  StoredPostReactions,
   StudiesCatalog,
   StudyLessonLoader,
   StudyLessonRoutesLoader,
@@ -28,6 +30,7 @@ import type {
   GetLessonComments,
   GetPostComments,
   GetPostPage,
+  GetPostReactions,
   GetPostRoutes,
   GetLatestPosts,
   GetLessonShareCard,
@@ -39,14 +42,13 @@ import type {
   GetStudyLessonRoutes,
   PostLessonComment,
   PostPostComment,
+  ReactToPost,
   SearchPosts,
   SendContactMessage,
 } from "@/domain/use-cases";
 import { EXTERNAL, ROUTES } from "@/main/routes";
 import {
-  makeLessonCommentsDataSource,
   makeLessonsDataSource,
-  makePostCommentsDataSource,
   makePostContentsDataSource,
   makePostsDataSource,
   makeProjectsDataSource,
@@ -55,6 +57,7 @@ import {
   makeCollectionsDataSource,
 } from "../infra/data-sources";
 import { makeEmailSender } from "../infra/email-sender";
+import { makeLessonCommentStore, makePostCommentStore, makeReactionCounterStore, makeReactionRateLimiter } from "../infra/feedback";
 import {
   makeCollectionMapper,
   makeContactMessageMapper,
@@ -96,10 +99,10 @@ export const makeGetStudyLessonRoutes = (): GetStudyLessonRoutes =>
   new StudyLessonRoutesLoader(makeStudiesDataSource(), makeLessonsDataSource());
 
 export const makeGetLessonComments = (): GetLessonComments =>
-  new LessonCommentsLoader(makeLessonCommentsDataSource(), makePublicCommentMapper());
+  new LessonCommentsLoader(makeLessonCommentStore(), makePublicCommentMapper());
 
 export const makePostLessonComment = (): PostLessonComment =>
-  new LessonCommentModeration(makeEmailSender(), EXTERNAL.email);
+  new LessonCommentModeration(makeLessonCommentStore(), makeEmailSender(), EXTERNAL.email);
 
 export const makeGetCollection = (): GetCollection =>
   new CollectionLoader(
@@ -128,11 +131,16 @@ export const makeGetPostPage = (): GetPostPage =>
 
 export const makeGetPostRoutes = (): GetPostRoutes => new PostRoutesLoader(makePostsDataSource(), makePostContentsDataSource());
 
-export const makeGetPostComments = (): GetPostComments => new PostCommentsLoader(makePostCommentsDataSource());
+export const makeGetPostComments = (): GetPostComments => new PostCommentsLoader(makePostCommentStore());
 
-export const makePostPostComment = (): PostPostComment => new PostCommentModeration(makeEmailSender(), EXTERNAL.email);
+export const makePostPostComment = (): PostPostComment => new PostCommentModeration(makePostCommentStore(), makeEmailSender(), EXTERNAL.email);
 
 export const makeGetPostShareCard = (): GetPostShareCard => new PostShareCardLoader(makeGetPostPage(), ROUTES.post);
 
 export const makeGetLessonShareCard = (): GetLessonShareCard =>
   new LessonShareCardLoader(makeGetStudyLesson(), ROUTES.lesson);
+
+export const makeGetPostReactions = (): GetPostReactions => new StoredPostReactions(makePostsDataSource(), makeReactionCounterStore());
+
+export const makeReactToPost = (): ReactToPost =>
+  new CountedReactToPost(makePostsDataSource(), makeReactionCounterStore(), makeReactionRateLimiter());

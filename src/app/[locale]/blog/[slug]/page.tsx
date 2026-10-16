@@ -6,12 +6,22 @@ import { postShareCard } from "@/domain/entities";
 import { loadPostPage, makePostScreen } from "@/main/factories/screens/make-post-screen";
 import { shareMetadata } from "@/main/factories/share/share-target";
 import { makeGetPostRoutes } from "@/main/factories/use-cases/use-cases";
+import { atLeastOne, PLACEHOLDER_SLUG } from "@/main/factories/static-params";
 import { routing } from "@/main/i18n/routing";
 import { ROUTES } from "@/main/routes";
 
+/**
+ * O conteúdo depende do slug: as páginas já publicadas vão prerenderizadas, e as novas esperam a
+ * renderização completa (sem tela de carregamento). Ver "instant" nas docs de Partial Prefetching.
+ */
+export const instant = false;
+
 export async function generateStaticParams() {
   const routes = await makeGetPostRoutes().execute();
-  return routes.map((route) => ({ locale: route.locale, slug: route.slug }));
+  return atLeastOne(
+    routes.map((route) => ({ locale: route.locale, slug: route.slug })),
+    { locale: routing.defaultLocale, slug: PLACEHOLDER_SLUG },
+  );
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/blog/[slug]">): Promise<Metadata> {

@@ -70,5 +70,6 @@ export type Resume = {
 
 export const isCurrentExperience = (experience: ResumeExperience): boolean => experience.end === null;
 
-export const yearsOfExperience = (resume: Resume, today = new Date()): number =>
-  Math.max(0, today.getFullYear() - resume.careerStartYear);
+/** `currentYear` vem de fora: o domínio não lê o relógio (páginas prerenderizadas). */
+export const yearsOfExperience = (resume: Resume, currentYear: number): number =>
+  Math.max(0, currentYear - resume.careerStartYear);

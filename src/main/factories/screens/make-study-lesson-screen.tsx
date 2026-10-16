@@ -5,7 +5,8 @@ import { postLessonCommentAction } from "@/main/actions/post-lesson-comment.acti
 import { ROUTES } from "@/main/routes";
 import { StudyLessonScreen } from "@/presentation/screens/study-lesson";
 import { makeShareTarget } from "../share/share-target";
-import { makeGetLessonComments, makeGetStudyLesson } from "../use-cases/use-cases";
+import { cachedLessonComments } from "@/main/cache/feedback-cache";
+import { makeGetStudyLesson } from "../use-cases/use-cases";
 
 export async function loadStudyLesson(locale: Locale, studySlug: string, lessonSlug?: string) {
   return makeGetStudyLesson().execute({ locale, studySlug, lessonSlug });
@@ -15,7 +16,7 @@ export async function makeStudyLessonScreen(locale: Locale, studySlug: string, l
   const page = await loadStudyLesson(locale, studySlug, lessonSlug);
   if (!page) notFound();
 
-  const comments = await makeGetLessonComments().execute({ lessonId: page.lesson.id });
+  const comments = await cachedLessonComments(page.lesson.id);
 
   return (
     <StudyLessonScreen

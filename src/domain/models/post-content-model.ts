@@ -41,6 +41,18 @@ export type PostCommentModel = {
   body: string;
   created_at: string;
   status: "aprovado" | "pendente" | "rejeitado";
+  /** só para a moderação: nunca vai para a tela */
+  author_email?: string | null;
+  locale?: string;
+};
+
+/** Totais de curtidas/reações de um post (documento post_reactions/<post_id>). */
+export type PostReactionCountsModel = {
+  post_id: string;
+  likes: number;
+  fez_sentido: number;
+  me_fez_pensar: number;
+  discordo: number;
 };
 
 /** Reações escolhidas pelo visitante, guardadas no navegador. */

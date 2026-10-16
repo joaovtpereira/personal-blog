@@ -7,6 +7,7 @@ export * from "./get-resume";
 export * from "./get-studies";
 export * from "./get-study-lesson";
 export * from "./lesson-comments";
+export * from "./post-reactions";
 export * from "./search-posts";
 export * from "./send-contact-message";
 export * from "./share";

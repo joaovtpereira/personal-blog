@@ -1,5 +1,5 @@
 import type { ContentBlock } from "./content-block";
-import type { Post } from "./post";
+import type { Post, PostKind } from "./post";
 import type { CollectionPosition } from "./study-collection";
 
 export type Verdict = {
@@ -52,6 +52,32 @@ export type PostReactions =
 
 /** Reação que o visitante escolheu: "like" nas resenhas ou uma das três nos pensamentos. */
 export type PostReactionChoice = "like" | ThoughtReaction;
+
+/** Reações que cada tipo de post aceita: pensamentos têm três; resenhas, só "curtir". */
+export const reactionChoicesFor = (kind: PostKind): readonly PostReactionChoice[] => (kind === "thought" ? THOUGHT_REACTIONS : ["like"]);
+
+/** Regra de troca: tocar na mesma reação desfaz; em outra, passa a ser ela. */
+export const nextReactionChoice = (previous: PostReactionChoice | null, touched: PostReactionChoice): PostReactionChoice | null =>
+  previous === touched ? null : touched;
+
+/** Totais depois de trocar `previous` por `next` (atualização otimista na tela, igual à do servidor). */
+export function applyReactionChange(
+  reactions: PostReactions,
+  previous: PostReactionChoice | null,
+  next: PostReactionChoice | null,
+): PostReactions {
+  if (reactions.type === "like") {
+    const delta = (next === "like" ? 1 : 0) - (previous === "like" ? 1 : 0);
+    return { type: "like", count: Math.max(0, reactions.count + delta) };
+  }
+  const counts = { ...reactions.counts };
+  if (previous && previous !== "like") counts[previous] = Math.max(0, counts[previous] - 1);
+  if (next && next !== "like") counts[next] += 1;
+  return { type: "thought", counts };
+}
+
+export const isReactionChoice = (value: unknown): value is PostReactionChoice =>
+  value === "like" || THOUGHT_REACTIONS.includes(value as ThoughtReaction);
 
 export type PostDetail = {
   post: Post;

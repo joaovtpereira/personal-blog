@@ -7,6 +7,7 @@ export * from "./latest-posts";
 export * from "./lesson-comments";
 export * from "./post-comments";
 export * from "./post-page-loader";
+export * from "./post-reactions";
 export * from "./post-search";
 export * from "./projects";
 export * from "./resume-loader";

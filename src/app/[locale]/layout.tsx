@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { currentYear } from "@/main/cache/clock";
 import { SITE_URL } from "@/main/config/site";
 import { routing } from "@/main/i18n/routing";
 import { AppPostReactionsProvider } from "@/main/providers/AppPostReactionsProvider";
@@ -68,7 +69,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
                 <PageHeaderProvider>
                   <SiteHeader />
                   {children}
-                  <SiteFooter />
+                  <SiteFooter year={await currentYear()} />
                   <BottomNav />
                 </PageHeaderProvider>
               </AppShareProvider>

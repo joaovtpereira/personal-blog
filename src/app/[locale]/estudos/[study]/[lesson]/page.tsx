@@ -6,12 +6,22 @@ import { lessonShareCard } from "@/domain/entities";
 import { loadStudyLesson, makeStudyLessonScreen } from "@/main/factories/screens/make-study-lesson-screen";
 import { shareMetadata } from "@/main/factories/share/share-target";
 import { makeGetStudyLessonRoutes } from "@/main/factories/use-cases/use-cases";
+import { atLeastOne, PLACEHOLDER_SLUG } from "@/main/factories/static-params";
 import { routing } from "@/main/i18n/routing";
 import { ROUTES } from "@/main/routes";
 
+/**
+ * O conteúdo depende do slug: as páginas já publicadas vão prerenderizadas, e as novas esperam a
+ * renderização completa (sem tela de carregamento). Ver "instant" nas docs de Partial Prefetching.
+ */
+export const instant = false;
+
 export async function generateStaticParams() {
   const routes = await makeGetStudyLessonRoutes().execute();
-  return routes.map((r) => ({ locale: r.locale, study: r.studySlug, lesson: r.lessonSlug }));
+  return atLeastOne(
+    routes.map((r) => ({ locale: r.locale, study: r.studySlug, lesson: r.lessonSlug })),
+    { locale: routing.defaultLocale, study: PLACEHOLDER_SLUG, lesson: PLACEHOLDER_SLUG },
+  );
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/estudos/[study]/[lesson]">): Promise<Metadata> {

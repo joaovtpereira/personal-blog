@@ -7,4 +7,5 @@ export type LessonCommentModel = {
   body: string;
   created_at: string;
   status: "aprovado" | "pendente" | "rejeitado";
+  locale?: string;
 };

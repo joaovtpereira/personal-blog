@@ -12,7 +12,7 @@ import type { PostViewProps } from "../post-view-props";
 import styles from "./ThoughtView.module.css";
 
 /** Pensamento: abertura centralizada, texto em coluna estreita, reações, conversa e outros pensamentos. */
-export function ThoughtView({ page, comments, commentAction, commentContext, share }: PostViewProps) {
+export function ThoughtView({ page, comments, commentAction, commentContext, share, reactions, reactionAction }: PostViewProps) {
   const t = useTranslations("PostPage");
   const tp = useTranslations("Post");
   const format = useFormatter();
@@ -48,9 +48,9 @@ export function ThoughtView({ page, comments, commentAction, commentContext, sha
         <ContentRenderer blocks={detail.blocks} headingOffset={0} />
       </ReadingTarget>
 
-      {detail.reactions.type === "thought" && (
+      {reactions.type === "thought" && (
         <div className={styles.reactions}>
-          <ThoughtReactions postId={post.id} counts={detail.reactions.counts} />
+          <ThoughtReactions postId={post.id} reactions={reactions} action={reactionAction} />
           <div className={styles.shareRow}>
             <ShareTrigger target={share} />
           </div>

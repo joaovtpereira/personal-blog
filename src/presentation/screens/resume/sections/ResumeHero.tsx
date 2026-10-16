@@ -16,9 +16,9 @@ const PORTRAIT = "/images/portrait.webp";
  * Tablet: texto + foto grande; números abaixo.
  * Desktop: números flutuando sobre a foto e botão "Vamos conversar".
  */
-export function ResumeHero({ resume }: { resume: Resume }) {
+export function ResumeHero({ resume, currentYear }: { resume: Resume; currentYear: number }) {
   const t = useTranslations("Resume");
-  const years = `${yearsOfExperience(resume)}+`;
+  const years = `${yearsOfExperience(resume, currentYear)}+`;
   const platforms = resume.platforms.join(" · ");
 
   return (

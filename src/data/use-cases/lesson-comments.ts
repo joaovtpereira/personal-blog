@@ -7,27 +7,28 @@ import type {
   PostLessonCommentParams,
   PostLessonCommentResult,
 } from "@/domain/use-cases";
-import type { CollectionDataSource } from "@/shared/data-source";
 import type { EmailSender } from "@/shared/email";
+import type { CommentStore } from "@/shared/feedback";
 
 export class LessonCommentsLoader implements GetLessonComments {
   constructor(
-    private readonly dataSource: CollectionDataSource<LessonCommentModel>,
+    private readonly store: CommentStore<LessonCommentModel>,
     private readonly mapper: PublicCommentMapper,
   ) {}
 
   async execute({ lessonId }: { lessonId: string }): Promise<PublicComment[]> {
-    const models = await this.dataSource.findAll();
+    const models = await this.store.listFor(lessonId);
     return models
-      .filter((model) => model.lesson_id === lessonId && model.status === "aprovado")
+      .filter((model) => model.status === "aprovado")
       .sort((a, b) => b.created_at.localeCompare(a.created_at))
       .map((model) => this.mapper.toEntity(model));
   }
 }
 
-/** Valida e manda o comentário para a moderação (hoje, um e-mail para o autor do site). */
+/** Valida, guarda como "pendente" e avisa o moderador. Aparece depois de aprovado no Firestore. */
 export class LessonCommentModeration implements PostLessonComment {
   constructor(
+    private readonly store: CommentStore<LessonCommentModel>,
     private readonly emailSender: EmailSender,
     private readonly moderatorEmail: string,
   ) {}
@@ -37,17 +38,24 @@ export class LessonCommentModeration implements PostLessonComment {
     if (Object.keys(errors).length > 0) return { status: "invalid", errors };
 
     const model: LessonCommentModel = {
-      id: `c-${Date.now().toString(36)}`,
+      id: `lc-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
       study_id: params.studyId,
       lesson_id: params.lessonId,
       author_name: params.name.trim() || null,
       body: params.text.trim(),
       created_at: new Date().toISOString(),
       status: "pendente",
+      locale: params.locale,
     };
 
     try {
-      await this.emailSender.send({
+      await this.store.add(model);
+    } catch {
+      return { status: "failed" };
+    }
+
+    await this.emailSender
+      .send({
         to: this.moderatorEmail,
         replyTo: this.moderatorEmail,
         subject: `[Moderação] Comentário em “${params.lessonTitle}”`,
@@ -60,10 +68,8 @@ export class LessonCommentModeration implements PostLessonComment {
           "",
           model.body,
         ].join("\n"),
-      });
-      return { status: "pending" };
-    } catch {
-      return { status: "failed" };
-    }
+      })
+      .catch(() => undefined);
+    return { status: "pending" };
   }
 }

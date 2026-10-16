@@ -2,9 +2,9 @@ import { useTranslations } from "next-intl";
 import { EXTERNAL } from "@/main/routes";
 import styles from "./SiteFooter.module.css";
 
-export function SiteFooter() {
+/** `year` vem de fora (main/cache/clock): o rodapé é prerenderizado e não pode ler o relógio. */
+export function SiteFooter({ year }: { year: number }) {
   const t = useTranslations("Common");
-  const year = new Date().getFullYear();
 
   return (
     <footer className={`wrap ${styles.footer}`}>

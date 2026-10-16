@@ -15,9 +15,11 @@ const FIRST_ROW = 5;
 
 export type ResumeScreenProps = {
   resume: Resume | null;
+  /** ano atual (anos de experiência) */
+  currentYear: number;
 };
 
-export function ResumeScreen({ resume }: ResumeScreenProps) {
+export function ResumeScreen({ resume, currentYear }: ResumeScreenProps) {
   const t = useTranslations("Resume");
 
   if (!resume) {
@@ -32,7 +34,7 @@ export function ResumeScreen({ resume }: ResumeScreenProps) {
 
   return (
     <main id="conteudo">
-      <ResumeHero resume={resume} />
+      <ResumeHero resume={resume} currentYear={currentYear} />
 
       <TagMarquee
         label={t("stackLabel")}

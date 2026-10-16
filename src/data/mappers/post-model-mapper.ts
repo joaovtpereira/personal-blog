@@ -9,6 +9,8 @@ const KIND_BY_TYPE: Record<PostModel["type"], PostKind> = {
   "resenha-jogo": "game",
 };
 
+export const toPostKind = (type: PostModel["type"]): PostKind => KIND_BY_TYPE[type];
+
 const TYPE_BY_KIND: Record<PostKind, PostModel["type"]> = {
   thought: "pensamento",
   book: "resenha-livro",

@@ -24,7 +24,7 @@ import styles from "./ReviewView.module.css";
  * Celular/tablet: tudo em coluna (no tablet, gostei · nem tanto · veredito lado a lado).
  * Desktop: texto à esquerda e coluna fixa com veredito, ficha, tags, ações e próxima leitura.
  */
-export function ReviewView({ page, comments, commentAction, commentContext, share }: PostViewProps) {
+export function ReviewView({ page, comments, commentAction, commentContext, share, reactions, reactionAction }: PostViewProps) {
   const t = useTranslations("PostPage");
   const tp = useTranslations("Post");
   const format = useFormatter();
@@ -37,7 +37,6 @@ export function ReviewView({ page, comments, commentAction, commentContext, shar
   const facts = isBook ? bookFacts(review, t) : gameFacts(review, t);
   const practice = isBook ? [] : practiceFacts(review, t);
   const subtitle = isBook ? t("by", { author: review.author }) : `${review.studio} · ${review.platform}`;
-  const likes = detail.reactions.type === "like" ? detail.reactions.count : 0;
   const next = related[0];
   const commentsId = "comentarios";
 
@@ -53,7 +52,7 @@ export function ReviewView({ page, comments, commentAction, commentContext, shar
 
   const actions = (
     <div className={styles.actionsRow}>
-      <LikeButton postId={post.id} count={likes} className={styles.like} />
+      <LikeButton postId={post.id} reactions={reactions} action={reactionAction} className={styles.like} />
       <a href={`#${commentsId}`} className={`${styles.round} ${styles.desktopOnly}`} aria-label={t("goComments")}>
         <Icon name="chat" />
       </a>

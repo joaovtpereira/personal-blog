@@ -530,7 +530,9 @@
     "author": "João Vitor Pereira",
     "cover": "[COVER]",
     "capture": "● REC [CAPTURE]",
-    "captureAlt": "Screenshot of {title}"
+    "captureAlt": "Screenshot of {title}",
+    "reactionLimited": "Too many reactions in a row. Try again in a few minutes.",
+    "reactionFailed": "Couldn’t save your reaction. Try again."
   },
   "Share": {
     "open": "Share",

@@ -49,11 +49,13 @@ export function PostReactionsProvider({ getChoices, setChoice, watch, children }
   return <PostReactionsContext.Provider value={value}>{children}</PostReactionsContext.Provider>;
 }
 
-/** Reação atual do visitante neste post e como trocá-la (tocar de novo remove). */
+/** Reação que o visitante escolheu neste post (guardada no navegador) e como gravá-la. */
 export function usePostReaction(postId: string) {
   const context = useContext(PostReactionsContext);
   if (!context) throw new Error("usePostReaction precisa estar dentro de <PostReactionsProvider>.");
   const choice = context.choices[postId] ?? null;
-  const toggle = (next: PostReactionChoice) => context.setChoice(postId, choice === next ? null : next);
-  return { ready: context.ready, choice, toggle };
+  const { setChoice: save } = context;
+  // Estável entre renderizações: o formulário de reação usa em efeitos.
+  const setChoice = useCallback((next: PostReactionChoice | null) => void save(postId, next), [save, postId]);
+  return { ready: context.ready, choice, setChoice };
 }

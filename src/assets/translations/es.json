@@ -530,7 +530,9 @@
     "author": "João Vitor Pereira",
     "cover": "[PORTADA]",
     "capture": "● REC [CAPTURA]",
-    "captureAlt": "Captura de {title}"
+    "captureAlt": "Captura de {title}",
+    "reactionLimited": "Demasiadas reacciones seguidas. Inténtalo de nuevo en unos minutos.",
+    "reactionFailed": "No se pudo registrar tu reacción. Inténtalo de nuevo."
   },
   "Share": {
     "open": "Compartir",
